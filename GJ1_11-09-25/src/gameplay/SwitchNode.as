@@ -9,6 +9,7 @@ package gameplay
 	import net.flashpunk.Entity;
 	import net.flashpunk.graphics.Image;
 	import net.flashpunk.utils.Input;
+	import net.flashpunk.Sfx;
 	import net.flashpunk.utils.Key;
 	
 	public class SwitchNode extends Entity implements NetworkElement 
@@ -24,6 +25,9 @@ package gameplay
 		[Embed(source = '../../assets/switchright.png')] private const PICRIGHT:Class;
 		[Embed(source = '../../assets/switchup.png')] private const PICUP:Class;
 		[Embed(source = '../../assets/switchdown.png')] private const PICDOWN:Class;
+		
+		[Embed(source = '../../assets/turnswitch.mp3')] private const SOUNDSWITCH:Class;
+		public var soundswitch:Sfx = new Sfx(SOUNDSWITCH);
 		
 		private var m_picLeft : Image;
 		private var m_picRight : Image;
@@ -49,6 +53,7 @@ package gameplay
 		public function turnSwitch(): void 
 		{
 			setDirection((getDirection() + 1) % DIRECTIONS_NUMBER);
+			soundswitch.play();
 		}
 		
 		public function setDirection(direction: int): void
