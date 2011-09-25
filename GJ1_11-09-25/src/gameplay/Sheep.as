@@ -29,8 +29,11 @@ package gameplay
 			graphic = m_anim;
 			m_anim.scale = 0.5;
 			m_currentWire = a_currentWire;
-			x = a_currentWire.getPos(0, true).x;
-			y = a_currentWire.getPos(0, true).y;
+			this.setHitbox(m_anim.scaledWidth, m_anim.scaledHeight, x, y);
+		
+			var xy:IntPoint = m_currentWire.getPos(m_progression, m_direction);
+			x = xy.x - halfWidth;
+			y = xy.y - halfHeight;
 		}
 		
 		override public function update():void 

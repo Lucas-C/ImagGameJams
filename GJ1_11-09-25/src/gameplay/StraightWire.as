@@ -10,7 +10,7 @@ package gameplay
 	public class StraightWire extends NetworkElement
 	{
 		private const STANDARDLENGTH:Number = 1.0;
-		private const WIRELAYER = 5;
+		private const WIRELAYER:int = 5;
 		
 		/**
 		 * Ext1 boundary
