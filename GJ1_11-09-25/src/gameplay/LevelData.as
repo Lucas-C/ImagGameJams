@@ -1,6 +1,5 @@
 package gameplay 
 {
-	import gameplay.SwitchNode;
 	import net.flashpunk.World;
 	/**
 	 * @author Lucas Cimon
@@ -13,7 +12,7 @@ package gameplay
 
 		public function init():void
 		{
-			add(new StraightWire(100,100,100,200));
+			add(new StraightWire(new Point(100,100), new Point(100,200)));
 
 			//var pp:PowerPlant = new PowerPlant(SheepColor.RED, 40, 50);
 			//var sh:Sheep = new Sheep(SheepColor.RED);
