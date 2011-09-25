@@ -1,7 +1,7 @@
 package gameplay 
 {
 	import net.flashpunk.World;
-	
+	import net.flashpunk.Sfx;
 	/**
 	 * @author Lucas Cimon
 	 */
@@ -10,8 +10,12 @@ package gameplay
 		private var frame:Number;
 		private var pp:PowerPlant = new PowerPlant(SheepColor.RED, 40, 50);
 		
+		[Embed(source = '../../assets/music.mp3')] private const MUSIC:Class;
+		public var music:Sfx = new Sfx(MUSIC);
+		
 		public function LevelData() 
 		{
+			
 		}
 
 		public function init():void
@@ -70,6 +74,8 @@ package gameplay
 			switchnode.addStraightWire(wire_switch_power1_1, SwitchNode.LEFT);
 			switchnode.addStraightWire(wire_switch_power2_1, SwitchNode.RIGHT);
 			farm.popSheep();
+			
+			music.play();
 		}	
 		
 		override public function update():void
