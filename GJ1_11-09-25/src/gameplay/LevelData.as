@@ -10,6 +10,11 @@ package gameplay
 		private var frame:Number;
 		private var pp:PowerPlant = new PowerPlant(SheepColor.RED, 40, 50);
 		
+		private var power_1:PowerPlant;
+		private var power_2:PowerPlant;
+		private var power_3:PowerPlant;
+		private var power_4:PowerPlant;
+		
 		public function LevelData() 
 		{
 		}
@@ -99,31 +104,31 @@ package gameplay
 			var point_33:IntPoint = new IntPoint(abs_3, ord_3);
 			
 			// Powerplants
-			var power_1:PowerPlant = new PowerPlant(SheepColor.RED, 30, 60);
+			var power_1:PowerPlant = new PowerPlant(SheepColor.RED, 80, 100);
 			power_1.x = abs_1;
 			power_1.y = ord_1;
 			add(power_1);
 			
-			var power_2:PowerPlant = new PowerPlant(SheepColor.BLUE, 30, 60);
+			var power_2:PowerPlant = new PowerPlant(SheepColor.BLUE, 80, 100);
 			power_2.x = abs_1;
 			power_2.y = ord_3;
 			add(power_2);
 			
-			var power_3:PowerPlant = new PowerPlant(SheepColor.YELLOW, 30, 60);
+			var power_3:PowerPlant = new PowerPlant(SheepColor.YELLOW, 80, 100);
 			power_3.x = abs_3;
 			power_3.y = ord_1;
 			add(power_3);
 			
-			var power_4:PowerPlant = new PowerPlant(SheepColor.GREEN, 30, 60);
+			var power_4:PowerPlant = new PowerPlant(SheepColor.GREEN, 80, 100);
 			power_4.x = abs_3;
 			power_4.y = ord_3;
 			add(power_4);
 			
 			// Farms
-			var farm_1:Farm = new Farm(abs_1, ord_2);
+			var farm_1:Farm = new Farm(abs_1, ord_2, 240, 180);
 			add(farm_1);
 			
-			var farm_2:Farm = new Farm(abs_3, ord_2);
+			var farm_2:Farm = new Farm(abs_3, ord_2, 300, 180);
 			add(farm_2);
 			
 			// Switches
@@ -194,6 +199,22 @@ package gameplay
 		override public function update():void
 		{
 			super.update();
+			if (power_1 == null)
+			{
+				return;
+			}
+			
+			// Victory test
+			if (power_1.isPowered() && power_2.isPowered() && power_3.isPowered() && power_4.isPowered())
+			{
+				trace("victory");
+			}
+			
+			// Defeat test
+			if (power_1.hasNoPower() && power_2.hasNoPower() && power_3.hasNoPower() && power_4.hasNoPower())
+			{
+				trace("defeat");
+			}
 		}
 	}
 }

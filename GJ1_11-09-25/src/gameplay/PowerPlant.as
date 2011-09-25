@@ -38,7 +38,7 @@ package gameplay
 		public function PowerPlant(a_color:SheepColor, a_min_power:int, a_max_power:int) 
 		{
 			layer = POWERPLANTLAYER;
-			m_power = 0;
+			m_power = 20;
 			m_min_power = a_min_power;
 			m_max_power = a_max_power;
 			m_color = a_color;
@@ -48,25 +48,36 @@ package gameplay
 			m_anim.add("plop", [0, 1, 2, 3], 5, true);
 			m_anim.play("plop");
 			// Power Gauge
+			var common_abs = m_anim.scaledWidth;
 			var red_height:int = (100 - m_max_power) * m_anim.scaledHeight / 100;
-			var red_rectangle:Image = Image.createRect(10, red_height, 0xFF0000);
-			red_rectangle.x = m_anim.scaledWidth;
 			
+			if (red_height > 0)
+			{
+				var red_rectangle:Image = Image.createRect(10, red_height, 0xFF0000);
+				red_rectangle.x = common_abs;			
+				addGraphic(red_rectangle);
+			}
+						
 			var green_height:int = (m_max_power - m_min_power) * m_anim.scaledHeight / 100;
-			var green_rectangle:Image = Image.createRect(10, green_height, 0x00FF00);
-			green_rectangle.x = red_rectangle.x;
-			green_rectangle.y = red_height;
+			if (green_height > 0)
+			{
+				var green_rectangle:Image = Image.createRect(10, green_height, 0x00FF00);
+				green_rectangle.x = common_abs;
+				green_rectangle.y = red_height;
+				addGraphic(green_rectangle);
+			}
 			
-			var blue_rectangle:Image = Image.createRect(10, m_min_power * m_anim.scaledHeight / 100, 0x0000FF);
-			blue_rectangle.x = red_rectangle.x;
-			blue_rectangle.y = red_height+green_height;
-			
-			addGraphic(red_rectangle);
-			addGraphic(green_rectangle);
-			addGraphic(blue_rectangle);
+			var blue_height:int = m_min_power * m_anim.scaledHeight / 100;
+			if (green_height > 0)
+			{
+				var blue_rectangle:Image = Image.createRect(10, blue_height, 0x0000FF);
+				blue_rectangle.x = common_abs;
+				blue_rectangle.y = red_height+green_height;			
+				addGraphic(blue_rectangle);
+			}
 			
 			m_power_indicator = new Image(INDICATOR);
-			m_power_indicator.x = red_rectangle.x + 10;
+			m_power_indicator.x = common_abs + 10;
 			updateIndicator();
 			addGraphic(m_power_indicator);
 			
@@ -114,6 +125,16 @@ package gameplay
 		public function getPower():int
 		{
 			return m_power;
+		}
+		
+		public function isPowered():Boolean
+		{
+			return m_power >= m_min_power && m_power <= m_max_power;
+		}
+		
+		public function hasNoPower():Boolean
+		{
+			return m_power == 0;
 		}
 		
 		/* INTERFACE gameplay.NetworkElement */
