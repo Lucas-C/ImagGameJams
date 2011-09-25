@@ -51,7 +51,7 @@ package gameplay
 			super.update();
 		}
 		
-		private function popSheep():void
+		public function popSheep():void
 		{
 			var sh:Sheep;
 			var rand:int = Math.random() * 4;

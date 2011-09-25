@@ -69,6 +69,7 @@ package gameplay
 			switchnode.addStraightWire(wire_farm_switch, SwitchNode.UP);
 			switchnode.addStraightWire(wire_switch_power1_1, SwitchNode.LEFT);
 			switchnode.addStraightWire(wire_switch_power2_1, SwitchNode.RIGHT);
+			farm.popSheep();
 		}	
 		
 		override public function update():void

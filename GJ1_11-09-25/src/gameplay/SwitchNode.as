@@ -45,10 +45,10 @@ package gameplay
 			x = switchx;
 			y = switchy;
 			m_isPushed = false;
-			m_anim.add("up", [0], 20, true);
-			m_anim.add("right", [1], 20, true);
-			m_anim.add("left", [2], 20, true);
-			m_anim.add("down", [3], 20, true);
+			m_anim.add("up", [0, 1, 2, 3], 5, true);
+			m_anim.add("right", [4, 5, 6, 7], 5, true);
+			m_anim.add("left", [8, 9, 10, 11], 5, true);
+			m_anim.add("down", [12, 13, 14, 15], 5, true);
 			graphic = m_anim;
 			m_straightsWires = new Array(4);
 			for (var i: int = 0; i < 4; i++)
@@ -91,10 +91,10 @@ package gameplay
 		{
 			if (Input.mouseDown) {
 				if (!m_isPushed) {
-					if (Input.mouseX >= this.x
-						&& Input.mouseX <= this.x + this.width
-						&& Input.mouseY >= this.y
-						&& Input.mouseY <= this.y + this.height) {
+					if (Input.mouseX >= this.x - halfWidth
+						&& Input.mouseX <= this.x + halfWidth
+						&& Input.mouseY >= halfHeight
+						&& Input.mouseY <= this.y + halfHeight) {
 						m_isPushed = true;
 						turnSwitch();
 					}
