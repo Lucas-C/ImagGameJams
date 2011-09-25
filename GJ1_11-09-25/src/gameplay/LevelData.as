@@ -55,8 +55,8 @@ package gameplay
 			wire_farm_switch.ext1 = farm;
 			wire_farm_switch.ext2 = switchnode;
 			
-			wire_switch_power1_1.ext1 = wire_farm_switch;
-			wire_switch_power1_1.ext2 = wire_switch_power1_2;
+			wire_switch_power1_1.ext2 = switchnode;
+			wire_switch_power1_1.ext1 = wire_switch_power1_2;
 			
 			wire_switch_power1_2.ext1 = wire_switch_power1_1;
 			wire_switch_power1_2.ext2 = power1;
