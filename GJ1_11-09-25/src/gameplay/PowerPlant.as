@@ -37,7 +37,6 @@ package gameplay
 			
 			m_image = new Image(POWERPLANT);
 			m_image.color = m_color.getCode();
-			m_image.scale = 0.5;
 			graphic = m_image;
 			
 			// Power Gauge
