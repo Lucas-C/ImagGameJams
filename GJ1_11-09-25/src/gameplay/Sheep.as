@@ -27,6 +27,8 @@ package gameplay
 			m_anim.color = m_color.getCode();
 			graphic = m_anim;
 			m_currentWire = a_currentWire;
+			x = a_currentWire.getPos(0, true).x;
+			y = a_currentWire.getPos(0, true).y;
 		}
 		
 		override public function update():void 
