@@ -30,6 +30,8 @@ package gameplay
 		 */
 		public var yExt2:Number = 0;
 
+		[Embed(source = '../../assets/switchleft.png')] private const PAF:Class;
+
 		/**
 		 * Constructor
 		 */
@@ -39,11 +41,16 @@ package gameplay
 			this.yExt1 = yExt1_;
 			this.xExt2 = xExt2_;
 			this.yExt2 = yExt2_;
-			//this._pipe = Image.createRect(Math.abs(yExt1 - xExt1), Math.abs(yExt2 - xExt2));
-			super(xExt1, yExt1/*, _pipe*/);
+			super(xExt1, yExt1);
+			if (xExt1 == xExt2)
+				if (yExt1 == yExt2)
+					throw new Error("Null StraightWire");
+				else 
+					this.graphic = Image.createRect(1, Math.abs(yExt2 - yExt1), 0xFF000000);
+			else if (yExt1 == yExt2)
+					this.graphic = Image.createRect(Math.abs(xExt2 - xExt1), 1, 0xFF000000);
+			else
+				throw new Error("Non flat StraightWire");
 		}
-
-		// StraighWire information.
-		/** @private */ internal var _pipe:Graphic;
 	}
 }

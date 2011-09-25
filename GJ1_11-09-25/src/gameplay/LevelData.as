@@ -13,14 +13,14 @@ package gameplay
 
 		public function init():void
 		{
-			var wire:StraightWire = new StraightWire(0,0,0,1);
+			add(new StraightWire(100,100,100,200));
 
-			var pp:PowerPlant = new PowerPlant(SheepColor.RED, 40, 50);
-			var sh:Sheep = new Sheep(SheepColor.RED);
-			trace(pp.getPower());
-			pp.recieveSheep(sh);
-			trace(pp.getPower());
-			add (new SwitchNode);
+			//var pp:PowerPlant = new PowerPlant(SheepColor.RED, 40, 50);
+			//var sh:Sheep = new Sheep(SheepColor.RED);
+			//trace(pp.getPower());
+			//pp.recieveSheep(sh);
+			//trace(pp.getPower());
+			//add (new SwitchNode);
 		}
 
 	}
