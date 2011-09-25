@@ -26,18 +26,12 @@ package gameplay
 			layer = FARMLAYER;
 			x = a_x;
 			y = a_y;
-<<<<<<< HEAD:GJ1_11-09-25/src/gameplay/Farm.as
-			this.setHitbox(m_anim.width, m_anim.height, x, y);
 			m_anim.add("plop", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], 10, true);
 			m_anim.play("plop");
 			graphic = m_anim;
-=======
-			m_image = new Image(FARM);
-			this.setHitbox(m_image.width, m_image.height, x, y);
-			this.setHitbox(m_image.scaledWidth, m_image.scaledHeight, x, y);
+			this.setHitbox(m_anim.width, m_anim.height, x, y);
+			this.setHitbox(m_anim.scaledWidth, m_anim.scaledHeight, x, y);
 			
-			graphic = m_image;
->>>>>>> dd0f7259dc052dd582b2c12affd9aa3090fde1af:GJ1_11-09-25/src/gameplay/Farm.as
 		}
 		
 		override public function getProgressionStep():Number 
