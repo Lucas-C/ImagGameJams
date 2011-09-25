@@ -50,7 +50,9 @@ package gameplay
 					this.graphic = Image.createRect(Math.abs(posExt2.x - posExt1.x), 1, 0xFF000000);
 			else
 				throw new Error("Non flat StraightWire");
+			this.setHitbox(Math.abs(posExt2.x - posExt1.x), Math.abs(posExt2.y - posExt1.y), x, y);
 		}
+		
 		
 		/**
 		 * Access next wire in given direction
