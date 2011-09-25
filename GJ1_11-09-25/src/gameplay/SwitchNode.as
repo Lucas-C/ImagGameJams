@@ -91,7 +91,7 @@ package gameplay
 		{
 			if (Input.mouseDown) {
 				if (!m_isPushed) {
-					if (Input.mouseX >= this.x 
+					if (Input.mouseX >= this.x
 						&& Input.mouseX <= this.x + this.width
 						&& Input.mouseY >= this.y
 						&& Input.mouseY <= this.y + this.height) {
