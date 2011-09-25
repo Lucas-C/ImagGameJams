@@ -9,8 +9,8 @@ package gameplay
 	{
 		private var frame:Number;
 		// Points du level.
-		private var pp1:IntPoint = new IntPoint(40, 50);
-		private var pp2:IntPoint = new IntPoint(20, 50);
+		private var pp1:IntPoint = new IntPoint(20, 50);
+		private var pp2:IntPoint = new IntPoint(40, 50);
 		private var pf:IntPoint = new IntPoint(30, 30);
 		private var ps:IntPoint = new IntPoint(30, 40);
 		private var pe1:IntPoint  = new IntPoint(20, 40);
