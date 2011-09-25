@@ -47,12 +47,12 @@ package gameplay
 			m_isPushed = false;
 			m_anim.add("up", [0], 20, true);
 			m_anim.add("right", [1], 20, true);
-			m_anim.add("down", [2], 20, true);
-			m_anim.add("left", [3], 20, true);
+			m_anim.add("left", [2], 20, true);
+			m_anim.add("down", [3], 20, true);
 			graphic = m_anim;
 			m_straightsWires = new Array(4);
 			for (var i: int = 0; i < 4; i++)
-				m_straightsWires[i] = null;
+				m_straightsWires[i] = null;jij
 			setDirection(UP);
 		}
 		
