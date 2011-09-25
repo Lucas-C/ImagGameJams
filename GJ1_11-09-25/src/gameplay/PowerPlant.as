@@ -1,6 +1,7 @@
 package gameplay 
 {
 	import flash.display.Shape;
+	import net.flashpunk.FP;
 	import net.flashpunk.graphics.Image;
 		import net.flashpunk.Sfx;
 
@@ -78,6 +79,7 @@ package gameplay
 			var power:int = m_color_power[a_sheep.getColor().getIndex()][m_color.getIndex()];
 			increasePower(power);
 			soundswitch.play();
+			FP.world.remove(a_sheep);
 		}
 		
 		private function updateIndicator():void
@@ -88,6 +90,17 @@ package gameplay
 		public function increasePower(a_power:int):void
 		{
 			m_power += a_power;
+			
+			if (m_power > 100)
+			{
+				m_power = 100;
+			}
+			
+			if (m_power < 0)
+			{
+				m_power = 0;
+			}
+			
 			updateIndicator();
 		}
 		

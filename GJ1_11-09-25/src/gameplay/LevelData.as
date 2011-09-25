@@ -55,8 +55,8 @@ package gameplay
 			wire_farm_switch.ext1 = farm;
 			wire_farm_switch.ext2 = switchnode;
 			
-			wire_switch_power1_1.ext1 = wire_farm_switch;
-			wire_switch_power1_1.ext2 = wire_switch_power1_2;
+			wire_switch_power1_1.ext2 = switchnode;
+			wire_switch_power1_1.ext1 = wire_switch_power1_2;
 			
 			wire_switch_power1_2.ext1 = wire_switch_power1_1;
 			wire_switch_power1_2.ext2 = power1;
@@ -69,6 +69,7 @@ package gameplay
 			switchnode.addStraightWire(wire_farm_switch, SwitchNode.UP);
 			switchnode.addStraightWire(wire_switch_power1_1, SwitchNode.LEFT);
 			switchnode.addStraightWire(wire_switch_power2_1, SwitchNode.RIGHT);
+			farm.popSheep();
 		}	
 		
 		override public function update():void
