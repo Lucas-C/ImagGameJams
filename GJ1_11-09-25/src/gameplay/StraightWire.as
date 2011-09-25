@@ -50,16 +50,34 @@ package gameplay
 		
 		/**
 		 * Access next wire in given direction
-		 * @param direction true for progression ext1 -> ext2. Modified by method.
+		 * @param direction true for progression ext1 -> ext2
 		 */
 		public function getNext(direction:Boolean):NetworkElement
 		{
-			return null;
+			if (direction)
+				return ext2;
+			else
+				return ext1;
 		}
 		
 		public function getPos(progression:Number, direction:Boolean):Point
 		{
-			return new Point;
+			if (direction)
+				return new Point(	posExt1.x + (posExt2.x - posExt1.x) * progression,
+									posExt1.y + (posExt2.y - posExt1.y) * progression);
+			else
+				return new Point(	posExt2.x + (posExt1.x - posExt2.x) * progression,
+									posExt2.y + (posExt1.y - posExt2.y) * progression);
+		}
+
+		public function getDir(srcElem:NetworkElement):Boolean
+		{
+			if (srcElem == ext1)
+				return true;
+			else if (srcElem == ext2)
+				return false;
+			else
+				throw new Error("StraightWire.getDir - Invalid jonction");
 		}
 	}
 }

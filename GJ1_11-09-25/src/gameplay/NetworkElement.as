@@ -13,6 +13,8 @@ package gameplay
 		 * @param progression between 0 & 1
 		 */
 		function getPos(progression:Number, direction:Boolean):Point;
+
+		function getDir(srcElem:NetworkElement):Boolean;
 	}
 	
 }
