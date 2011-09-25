@@ -7,7 +7,7 @@ package gameplay
 	
 	import gameplay.NetworkElement;
 	import gameplay.StraightWire;
-	import gameplay.Point;
+	import gameplay.IntPoint;
 	import net.flashpunk.Entity;
 	import net.flashpunk.graphics.Image;
 	import net.flashpunk.utils.Input;
@@ -121,9 +121,9 @@ package gameplay
 			return getStraightWire(m_direction);
 		}
 		
-		public function getPos(progression:Number, direction:Boolean):Point
+		public function getPos(progression:Number, direction:Boolean):IntPoint
 		{
-			return new Point(x + halfWidth, y + halfHeight);
+			return new IntPoint(x + halfWidth, y + halfHeight);
 		}
 		
 		public function getDir(srcElem:NetworkElement):Boolean

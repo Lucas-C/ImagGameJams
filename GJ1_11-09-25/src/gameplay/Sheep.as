@@ -49,7 +49,7 @@ package gameplay
 		
 		override public function render():void 
 		{
-			var xy:Point = m_currentWire.getPos(m_progression, m_direction);
+			var xy:IntPoint = m_currentWire.getPos(m_progression, m_direction);
 			x = xy.x;
 			y = xy.y;
 			//var prog1:int;
