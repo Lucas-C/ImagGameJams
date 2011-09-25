@@ -52,7 +52,7 @@ package gameplay
 			graphic = m_anim;
 			m_straightsWires = new Array(4);
 			for (var i: int = 0; i < 4; i++)
-				m_straightsWires[i] = null;jij
+				m_straightsWires[i] = null;
 			setDirection(UP);
 		}
 		
