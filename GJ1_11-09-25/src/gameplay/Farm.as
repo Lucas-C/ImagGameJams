@@ -11,7 +11,7 @@ package gameplay
 		[Embed(source = '../../assets/popSheep.mp3')] private const SOUNDPOP:Class;
 		public var soundpop:Sfx = new Sfx(SOUNDPOP);
 		
-		private static const FARMLAYER = 4;
+		private static const FARMLAYER:int = 4;
 		
 		[Embed(source = '../../assets/farm.png')] private const FARM:Class;
 		private const sheepPopStep:Number = 0.005;
