@@ -53,8 +53,8 @@ package gameplay
 			}
 			if (m_currentWire) {
 				var xy:IntPoint = m_currentWire.getPos(m_progression, m_direction);
-				x = xy.x;
-				y = xy.y;
+				x = xy.x - halfWidth;
+				y = xy.y- halfHeight;
 			}
 			this.setHitbox(m_anim.scaledWidth, m_anim.scaledHeight, x, y);
 			super.update();
