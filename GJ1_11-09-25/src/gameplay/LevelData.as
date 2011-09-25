@@ -27,6 +27,7 @@ package gameplay
 			pp.x = 300;
 			pp.y = 100;
 			add(pp);
+			add (new Farm);
 			
 			add(new SwitchNode);
 		}
