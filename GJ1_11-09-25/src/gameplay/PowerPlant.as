@@ -15,6 +15,10 @@ package gameplay
 		[Embed(source = '../../assets/powerplant.png')] private const POWERPLANT:Class;
 		[Embed(source = '../../assets/explosion2.png')] private static const EXPLOSION:Class;
 		[Embed(source = '../../assets/indicator.png')] private static const INDICATOR:Class;
+		
+		[Embed(source = '../../assets/beee.mp3')] private static const BEEESOUND:Class;
+		public var soundbeee:Sfx = new Sfx(BEEESOUND);
+		
 		[Embed(source = '../../assets/electricity.mp3')] private static const ELECTRICITYSOUND:Class;
 		public var soundswitch:Sfx = new Sfx(ELECTRICITYSOUND);
 		
@@ -78,10 +82,10 @@ package gameplay
 		
 		public override function receiveSheep(a_sheep:Sheep):void
 		{
-			trace("receiveSheep");
 			var power:int = m_color_power[a_sheep.getColor().getIndex()][m_color.getIndex()];
 			increasePower(power);
 			soundswitch.play();
+			soundbeee.play();
 			FP.world.remove(a_sheep);
 		}
 		
