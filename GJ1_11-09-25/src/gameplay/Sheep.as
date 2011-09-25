@@ -11,17 +11,16 @@ package gameplay
 	public class Sheep extends Entity 
 	{
 		[Embed(source = '../../assets/mouton.png')] private const MOUTON:Class;
+		
 		private const STEP:Number = 0.01;
 		private var m_color:SheepColor;
 		private var m_image:Image;
 		private var m_currentWire:NetworkElement;
-		private var m_id:int = -1;
 		private var m_direction:Boolean = true;
 		private var m_progression:Number = 0;
 		
-		public function Sheep(a_id:int, a_color:SheepColor, a_currentWire:NetworkElement) 
+		public function Sheep(a_color:SheepColor, a_currentWire:NetworkElement) 
 		{
-			m_id = a_id;
 			m_color = a_color;
 			m_image = new Image(MOUTON);
 			m_image.color = m_color.getCode();
