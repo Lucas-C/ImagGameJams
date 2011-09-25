@@ -19,7 +19,7 @@ package gameplay
 			//trace(pp.getPower());
 			//pp.recieveSheep(sh);
 			//trace(pp.getPower());
-			//add (new SwitchNode);
+			add (new SwitchNode);
 		}
 
 	}

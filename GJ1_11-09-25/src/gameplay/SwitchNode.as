@@ -116,20 +116,17 @@ package gameplay
 			return m_straightsWires[direction];
 		}
 		
-		function getNext(direction:Boolean):NetworkElement
+		public function getNext(direction:Boolean):NetworkElement
 		{
 			return getStraightWire(m_direction);
 		}
 		
-		/**
-		 * @param progression between 0 & 1
-		 */
-		function getPos(progression:Number, direction:Boolean):Point
+		public function getPos(progression:Number, direction:Boolean):Point
 		{
 			return new Point(x + halfWidth, y + halfHeight);
 		}
 		
-		function getDir(srcElem:NetworkElement):Boolean
+		public function getDir(srcElem:NetworkElement):Boolean
 		{
 			return true;
 		}
