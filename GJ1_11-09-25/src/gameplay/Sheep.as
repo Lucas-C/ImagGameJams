@@ -4,7 +4,6 @@ package gameplay
 	import net.flashpunk.FP;
 	import net.flashpunk.graphics.Spritemap;
 
-
 	/**
 	 * ...
 	 * @author ...
@@ -52,13 +51,16 @@ package gameplay
 				}
 			}
 			super.update();
+			if (m_currentWire) {
+				var xy:IntPoint = m_currentWire.getPos(m_progression, m_direction);
+				x = xy.x;
+				y = xy.y;
+			}
 		}
 		
 		override public function render():void 
 		{
-			var xy:IntPoint = m_currentWire.getPos(m_progression, m_direction);
-			x = xy.x;
-			y = xy.y;
+
 			//var prog1:int;
 			//var prog2:int;
 			//if (m_direction) {
