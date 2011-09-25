@@ -41,8 +41,10 @@ package gameplay
 		private var m_direction: int;
 		private var m_isPushed: Boolean;
 		
-		public function SwitchNode() 
+		public function SwitchNode(switchx: int = 0, switchy: int  = 0) 
 		{
+			x = switchx;
+			y = switchy;
 			m_isPushed = false;
 			m_pictures = new Array(4);
 			m_pictures[UP] = new Image(PICUP);
