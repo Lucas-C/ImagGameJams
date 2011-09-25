@@ -26,6 +26,15 @@ package gameplay
 			return false;
 		}
 		
+		public function getBehaviour():void
+		{
+			
+		}
+		
+		public function getProgressionStep():Number
+		{
+			return 1;
+		}
 		
 		override public function render():void 
 		{

@@ -68,7 +68,7 @@ package gameplay
 			}
 		}
 		
-		public function receiveSheep(a_sheep:Sheep):void
+		public function getBehaviour(a_sheep:Sheep):void
 		{
 			var power:int = m_color_power[a_sheep.getColor().getIndex()][m_color.getIndex()];
 			increasePower(power);
@@ -82,6 +82,7 @@ package gameplay
 		public function increasePower(a_power:int):void
 		{
 			m_power += a_power;
+			updateIndicator();
 		}
 		
 		public function getPower():int
