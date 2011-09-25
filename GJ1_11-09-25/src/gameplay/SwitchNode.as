@@ -17,6 +17,7 @@ package gameplay
 	
 	public class SwitchNode extends NetworkElement 
 	{
+		private static const SWITCHNODELAYER = 2;
 		public static var nodesNumber:int = 1;
 		public static const UP:int = 0;
 		public static const LEFT:int = 1;
@@ -40,6 +41,7 @@ package gameplay
 		
 		public function SwitchNode(switchx: int = 0, switchy: int = 0) 
 		{
+			layer = SWITCHNODELAYER;
 			m_id = nodesNumber;
 			nodesNumber++;
 			x = switchx;

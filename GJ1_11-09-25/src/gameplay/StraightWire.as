@@ -9,7 +9,8 @@ package gameplay
 	 */
 	public class StraightWire extends NetworkElement
 	{
-		private const STANDARDSTEP = 0.0001;
+		private const STANDARDLENGTH:Number = 1.0;
+		private const WIRELAYER = 5;
 		
 		/**
 		 * Ext1 boundary
@@ -36,6 +37,7 @@ package gameplay
 		 */
 		public function StraightWire(pos1:IntPoint, pos2:IntPoint) 
 		{
+			this.layer = WIRELAYER;
 			//x = Math.min(pos1.x,pos2.x);
 			//y = Math.min(pos1.y, pos2.y);
 			x = (pos1.x + pos2.x) / 2;
@@ -62,7 +64,7 @@ package gameplay
 		
 		override public function getProgressionStep():Number 
 		{
-			return STANDARDSTEP * Math.max(Math.abs(posExt1.x - posExt2.x), Math.abs(posExt1.y - posExt2.y));
+			return STANDARDLENGTH / Math.abs(posExt1.x - posExt2.x + posExt1.y - posExt2.y);
 		}
 		
 		

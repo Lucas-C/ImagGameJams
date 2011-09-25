@@ -11,7 +11,7 @@ package gameplay
 	public class Sheep extends Entity 
 	{
 		[Embed(source = '../../assets/mouton.png')] private const MOUTON:Class;
-		
+		private const SHEEPLAYER:int = 3;
 		private const STEP:Number = 0.01;
 		private var m_color:SheepColor;
 		private var m_currentWire:NetworkElement;
@@ -21,6 +21,7 @@ package gameplay
 		
 		public function Sheep(a_color:SheepColor, a_currentWire:NetworkElement) 
 		{
+			this.layer = SHEEPLAYER;
 			m_color = a_color;
 			m_anim.add("right", [0, 1], 20, true);
 			m_anim.add("left", [2, 3], 20, true);
