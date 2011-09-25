@@ -7,6 +7,7 @@ package gameplay
 	
 	import gameplay.NetworkElement;
 	import gameplay.StraightWire;
+	import gameplay.Point;
 	import net.flashpunk.Entity;
 	import net.flashpunk.graphics.Image;
 	import net.flashpunk.utils.Input;
@@ -40,8 +41,10 @@ package gameplay
 		private var m_direction: int;
 		private var m_isPushed: Boolean;
 		
-		public function SwitchNode() 
+		public function SwitchNode(switchx: int = 0, switchy: int  = 0) 
 		{
+			x = switchx;
+			y = switchy;
 			m_isPushed = false;
 			m_pictures = new Array(4);
 			m_pictures[UP] = new Image(PICUP);
@@ -113,8 +116,17 @@ package gameplay
 			return m_straightsWires[direction];
 		}
 		
-		public function getCurrentStraightWire(direction : int): StraightWire {
+		function getNext(direction:Boolean):NetworkElement
+		{
 			return getStraightWire(m_direction);
+		}
+		
+		/**
+		 * @param progression between 0 & 1
+		 */
+		function getPos(progression:Number, direction:Boolean):Point
+		{
+			return new Point(x + halfWidth, y + halfHeight);
 		}
 	}
 }
