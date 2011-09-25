@@ -16,7 +16,7 @@ package gameplay
 		[Embed(source = '../../assets/indicator.png')] private static const INDICATOR:Class;
 		[Embed(source = '../../assets/electricity.mp3')] private static const ELECTRICITYSOUND:Class;
 		public var soundswitch:Sfx = new Sfx(ELECTRICITYSOUND);
-		
+		private const POWERPLANTLAYER = 6;
 		
 		private var m_power:int;
 		private var m_power_indicator:Image;
@@ -31,6 +31,7 @@ package gameplay
 		
 		public function PowerPlant(a_color:SheepColor, a_min_power:int, a_max_power:int) 
 		{
+			layer = POWERPLANTLAYER;
 			m_power = 0;
 			m_min_power = a_min_power;
 			m_max_power = a_max_power;
