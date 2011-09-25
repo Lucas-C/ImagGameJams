@@ -91,6 +91,17 @@ package gameplay
 		public function increasePower(a_power:int):void
 		{
 			m_power += a_power;
+			
+			if (m_power > 100)
+			{
+				m_power = 100;
+			}
+			
+			if (m_power < 0)
+			{
+				m_power = 0;
+			}
+			
 			updateIndicator();
 		}
 		
