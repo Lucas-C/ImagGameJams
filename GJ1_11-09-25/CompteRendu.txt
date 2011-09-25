@@ -6,11 +6,13 @@ TOOLS:
 	Unity3d
 	Flashpunk
 
+
 CHOIX:
 	Flashpunk -> http://flashgamedojo.com/go/
 	FlashDevelop-4.0.0-Beta3
 	flashplayer_10_sa_debug
 	Draknek-FlashPunk-adbf544
+
 
 GAME:
 	Pseudo 'Tower defense' game
@@ -21,6 +23,9 @@ GAME:
 
 	Reflexion sur les boucles du réseau & croisements.
 	Suggestion des tapis roulants & beliers
+
+	Pixel Art with Paint.NET
+	Sound with sfxr & musagi
 
 
 ASSESMENT:
