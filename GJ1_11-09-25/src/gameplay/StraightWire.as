@@ -22,17 +22,17 @@ package gameplay
 		/**
 		 * X position of the Ext1 boundary
 		 */
-		public var posExt1:Point;
+		public var posExt1:IntPoint;
 		
 		/**
 		 * X position of the Ext2 boundary
 		 */
-		public var posExt2:Point;
+		public var posExt2:IntPoint;
 		
 		/**
 		 * Constructor
 		 */
-		public function StraightWire(pos1:Point, pos2:Point) 
+		public function StraightWire(pos1:IntPoint, pos2:IntPoint) 
 		{
 			this.posExt1 = pos1;
 			this.posExt2 = pos2;
@@ -60,13 +60,13 @@ package gameplay
 				return ext1;
 		}
 		
-		public function getPos(progression:Number, direction:Boolean):Point
+		public function getPos(progression:Number, direction:Boolean):IntPoint
 		{
 			if (direction)
-				return new Point(	posExt1.x + (posExt2.x - posExt1.x) * progression,
+				return new IntPoint(	posExt1.x + (posExt2.x - posExt1.x) * progression,
 									posExt1.y + (posExt2.y - posExt1.y) * progression);
 			else
-				return new Point(	posExt2.x + (posExt1.x - posExt2.x) * progression,
+				return new IntPoint(	posExt2.x + (posExt1.x - posExt2.x) * progression,
 									posExt2.y + (posExt1.y - posExt2.y) * progression);
 		}
 

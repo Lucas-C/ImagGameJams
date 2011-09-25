@@ -4,7 +4,7 @@ package gameplay
 	/**
 	 * @author Lucas Cimon
 	 */
-	public class Point
+	public class IntPoint
 	{
 		
 		/**
@@ -17,7 +17,7 @@ package gameplay
 		 */
 		public var y:int = 0;
 		
-		public function Point(x:int = 0, y:int = 0)
+		public function IntPoint(x:int = 0, y:int = 0)
 		{
 			this.x = x;
 			this.y = y;
