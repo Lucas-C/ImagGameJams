@@ -41,36 +41,43 @@ package gameplay
 			m_pictures[LEFT] = new Image(PICLEFT);
 			m_pictures[DOWN] = new Image(PICDOWN);
 			m_pictures[RIGHT] = new Image(PICRIGHT);
-			
-			graphic = m_pictures[UP];
+			x = 100;
+			y = 100;
+			setDirection(UP);
 		}
 		
 		public function turnSwitch(): void 
 		{
-			setDirection((m_direction + 1) % DIRECTIONS_NUMBER);
+			setDirection((getDirection() + 1) % DIRECTIONS_NUMBER);
 		}
 		
 		public function setDirection(direction: int): void
 		{
 			m_direction = direction;
 			graphic = m_pictures[direction];
+			setHitbox(m_pictures[direction].width, m_pictures[direction].height, x, y);
 		}
 		
 		override public function update():void
 		{
 			if (Input.mouseDown) {
 				if (!m_isPushed) {
-					m_isPushed = true;
-					turnSwitch();
+					if (Input.mouseX >= this.x 
+						&& Input.mouseX <= this.x + this.width
+						&& Input.mouseY >= this.y
+						&& Input.mouseY <= this.y + this.height) {
+						m_isPushed = true;
+						turnSwitch();
+					}
 				}
 			}
-			
 			if (Input.mouseUp) {
 				m_isPushed = false;
 			}
-			
 		}
 		
+		public function getDirection(): int {
+			return m_direction;
+		}
 	}
-
 }
