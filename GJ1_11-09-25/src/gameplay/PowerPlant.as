@@ -2,6 +2,8 @@ package gameplay
 {
 	import flash.display.Shape;
 	import net.flashpunk.graphics.Image;
+		import net.flashpunk.Sfx;
+
 	/**
 	 * ...
 	 * @author Kak0
@@ -11,6 +13,9 @@ package gameplay
 		[Embed(source = '../../assets/powerplant.png')] private const POWERPLANT:Class;
 		[Embed(source = '../../assets/explosion2.png')] private static const EXPLOSION:Class;
 		[Embed(source = '../../assets/indicator.png')] private static const INDICATOR:Class;
+		[Embed(source = '../../assets/electricity.mp3')] private static const ELECTRICITYSOUND:Class;
+		public var soundswitch:Sfx = new Sfx(ELECTRICITYSOUND);
+		
 		
 		private var m_power:int;
 		private var m_power_indicator:Image;
@@ -72,6 +77,7 @@ package gameplay
 		{
 			var power:int = m_color_power[a_sheep.getColor().getIndex()][m_color.getIndex()];
 			increasePower(power);
+			soundswitch.play();
 		}
 		
 		private function updateIndicator():void

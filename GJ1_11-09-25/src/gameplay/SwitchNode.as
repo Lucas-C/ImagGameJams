@@ -17,6 +17,7 @@ package gameplay
 	
 	public class SwitchNode extends NetworkElement 
 	{
+		public static var nodesNumber:int = 1;
 		public static const UP:int = 0;
 		public static const LEFT:int = 1;
 		public static const DOWN:int = 2;
@@ -35,9 +36,12 @@ package gameplay
 		private var m_straightsWires: Array;
 		private var m_direction: int;
 		private var m_isPushed: Boolean;
+		private var m_id: int;
 		
 		public function SwitchNode(switchx: int = 0, switchy: int  = 0) 
 		{
+			m_id = nodesNumber;
+			nodesNumber++;
 			x = switchx;
 			y = switchy;
 			m_isPushed = false;
@@ -58,6 +62,7 @@ package gameplay
 			while (i < 4 && m_straightsWires[(i + getDirection()) % 4] == null) {
 				i++;
 			}
+
 			setDirection((getDirection() + i) % DIRECTIONS_NUMBER);
 			soundswitch.play();
 		}
@@ -98,6 +103,24 @@ package gameplay
 			if (Input.mouseUp) {
 				m_isPushed = false;
 			}
+			if (Input.check(Key.NUMPAD_1) && m_id == 1)
+				turnSwitch();
+			if (Input.check(Key.NUMPAD_2) && m_id == 2)
+				turnSwitch();
+			if (Input.check(Key.NUMPAD_3) && m_id == 3)
+				turnSwitch();
+			if (Input.check(Key.NUMPAD_4) && m_id == 4)
+				turnSwitch();
+			if (Input.check(Key.NUMPAD_5) && m_id == 5)
+				turnSwitch();
+			if (Input.check(Key.NUMPAD_6) && m_id == 6)
+				turnSwitch();
+			if (Input.check(Key.NUMPAD_7) && m_id == 7)
+				turnSwitch();
+			if (Input.check(Key.NUMPAD_8) && m_id == 8)
+				turnSwitch();
+			if (Input.check(Key.NUMPAD_9) && m_id == 9)
+				turnSwitch();
 		}
 		
 		public function getDirection(): int {

@@ -26,6 +26,7 @@ package gameplay
 			m_anim.add("right", [2, 3], 20, true);
 			m_anim.color = m_color.getCode();
 			graphic = m_anim;
+			m_currentWire = a_currentWire;
 		}
 		
 		override public function update():void 
@@ -35,7 +36,7 @@ package gameplay
 				if (m_currentWire != null) {
 					var m_precWire:NetworkElement = m_currentWire;
 					m_progression = 0;
-					m_currentWire.getNext(m_direction);
+					m_currentWire = m_currentWire.getNext(m_direction);
 					if (m_currentWire != null) {
 						m_direction = m_currentWire.getDir(m_precWire);
 						if (m_direction) {
@@ -50,13 +51,13 @@ package gameplay
 					//FP.world.SheepArray.splice(m_id, 1); 
 				}
 			}
-			super.update();
 			if (m_currentWire) {
 				var xy:IntPoint = m_currentWire.getPos(m_progression, m_direction);
-				x = xy.x;
-				y = xy.y;
+				x = xy.x - halfWidth;
+				y = xy.y- halfHeight;
 			}
 			this.setHitbox(m_anim.scaledWidth, m_anim.scaledHeight, x, y);
+			super.update();
 		}
 		
 		override public function render():void 
