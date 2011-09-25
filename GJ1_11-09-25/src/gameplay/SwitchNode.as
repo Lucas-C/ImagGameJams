@@ -26,8 +26,6 @@ package gameplay
 		public static const DIRECTIONS_NUMBER:int = 4;
 		public static const NODESTEP:Number = 0.4;
 		
-				[Embed(source = '../../assets/music.mp3')] private const MUSIC:Class;
-		public var music:Sfx = new Sfx(MUSIC);
 		
 		[Embed(source = '../../assets/switches.png')] private const ANIM_SWITCHES:Class;
 		public var m_anim:Spritemap = new Spritemap(ANIM_SWITCHES, 32, 32);
@@ -90,7 +88,6 @@ package gameplay
 				m_anim.play("left");
 				break;
 			}
-			music.loop();
 			setHitbox(m_anim.width, m_anim.height, x, y);
 		}
 		
