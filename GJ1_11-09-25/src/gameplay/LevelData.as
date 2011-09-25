@@ -1,5 +1,6 @@
 package gameplay 
 {
+	import gameplay.SwitchNode;
 	import net.flashpunk.World;
 	/**
 	 * @author Lucas Cimon
@@ -19,6 +20,7 @@ package gameplay
 			trace(pp.getPower());
 			pp.recieveSheep(sh);
 			trace(pp.getPower());
+			add (new SwitchNode);
 		}
 
 	}
