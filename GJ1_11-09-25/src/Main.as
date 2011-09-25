@@ -14,8 +14,8 @@ package
 			super(400, 300, 60, false);
 			FP.screen.scale = 2;
 			FP.screen.color = 0xFFFFFFFF;
-			FP.world = new MyWorld;
 			var level:LevelData = new LevelData;
+			FP.world = level;
 			level.init();
 		}
 	}

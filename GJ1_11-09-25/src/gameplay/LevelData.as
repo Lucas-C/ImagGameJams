@@ -1,9 +1,10 @@
 package gameplay 
 {
+	import net.flashpunk.World;
 	/**
 	 * @author Lucas Cimon
 	 */
-	public class LevelData 
+	public class LevelData extends World
 	{
 		public function LevelData() 
 		{
