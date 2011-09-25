@@ -1,5 +1,6 @@
 package  
 {
+	import gameplay.SwitchNode;
 	import net.flashpunk.World;
 	/**
 	 * ...
@@ -10,7 +11,7 @@ package
 		
 		public function MyWorld() 
 		{
-			
+			add (new SwitchNode);
 		}
 		
 	}
