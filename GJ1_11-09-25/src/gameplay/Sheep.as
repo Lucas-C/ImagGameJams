@@ -56,6 +56,7 @@ package gameplay
 				x = xy.x;
 				y = xy.y;
 			}
+			this.setHitbox(m_anim.scaledWidth, m_anim.scaledHeight, x, y);
 		}
 		
 		override public function render():void 
