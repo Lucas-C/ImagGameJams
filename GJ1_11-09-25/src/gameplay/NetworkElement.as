@@ -25,16 +25,6 @@ package gameplay
 		{
 			return false;
 		}
-		
-		
-		override public function render():void 
-		{
-			x -= width / 2;
-			y -= halfHeight;
-			super.render();
-			x += halfWidth;
-			y += halfHeight;		
-		}
 	}
 	
 }

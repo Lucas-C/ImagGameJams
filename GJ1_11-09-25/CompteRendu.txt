@@ -22,5 +22,3 @@ GAME:
 	Reflexion sur les boucles du réseau & croisements.
 	Suggestion des tapis roulants & beliers
 
-
-ASSESMENT:

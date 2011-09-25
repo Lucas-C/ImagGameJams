@@ -16,14 +16,12 @@ package gameplay
 		private var m_progression:Number = 0;
 		private var m_networkElement: NetworkElement;
 		private var m_image:Image;
-		private var m_isGroing: Boolean = false;
 		
 		public function Farm(a_x:int , a_y:int) 
 		{
 			x = a_x;
 			y = a_y;
 			m_image = new Image(FARM);
-			this.setHitbox(m_image.width, m_image.height, x, y);
 			graphic = m_image;
 		}
 		
@@ -39,15 +37,6 @@ package gameplay
 				m_progression = 0;
 				popSheep();
 			}
-			if (!m_isGroing && m_image.scale > 1) {
-				m_image.scale -= 0.07;
-			}
-			if (m_isGroing) {
-				m_image.scale += 0.07;
-				if (m_image.scale > 1.5)
-					m_isGroing = false;
-			}
-			this.setHitbox(m_image.scaledWidth, m_image.scaledHeight, x, y);
 			super.update();
 		}
 		
@@ -59,7 +48,6 @@ package gameplay
 			sh = new Sheep(color, this);
 			FP.world.add(sh);
 			soundpop.play();
-			m_isGroing = true;
 		}
 		
 		
@@ -75,9 +63,6 @@ package gameplay
 		{
 			return true;
 		}
-		
-		
-
 	}
 
 }

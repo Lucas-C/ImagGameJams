@@ -34,13 +34,8 @@ package gameplay
 		 */
 		public function StraightWire(pos1:IntPoint, pos2:IntPoint) 
 		{
-			if (pos1.x <= pos2.x) {
-				this.posExt1 = pos1;
-				this.posExt2 = pos2;
-			} else {
-				this.posExt1 = pos2;
-				this.posExt2 = pos1;				
-			}
+			this.posExt1 = pos1;
+			this.posExt2 = pos2;
 			if (posExt1.x == posExt2.x)
 				if (posExt1.y == posExt2.y)
 					throw new Error("Null StraightWire");
@@ -50,9 +45,7 @@ package gameplay
 					this.graphic = Image.createRect(Math.abs(posExt2.x - posExt1.x), 1, 0xFF000000);
 			else
 				throw new Error("Non flat StraightWire");
-			this.setHitbox(Math.abs(posExt2.x - posExt1.x), Math.abs(posExt2.y - posExt1.y), x, y);
 		}
-		
 		
 		/**
 		 * Access next wire in given direction
