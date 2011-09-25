@@ -17,12 +17,9 @@ package gameplay
 		[Embed(source = '../../assets/indicator.png')] private static const INDICATOR:Class;
 		[Embed(source = '../../assets/electricity.mp3')] private static const ELECTRICITYSOUND:Class;
 		public var soundswitch:Sfx = new Sfx(ELECTRICITYSOUND);
-<<<<<<< HEAD:GJ1_11-09-25/src/gameplay/PowerPlant.as
 		
 		public var m_anim:Spritemap = new Spritemap(POWERPLANT, 64, 64);
-=======
 		private const POWERPLANTLAYER = 6;
->>>>>>> 459f5cf1adc4b054e20b36919cc2d8d9ce1a740d:GJ1_11-09-25/src/gameplay/PowerPlant.as
 		
 		private var m_power:int;
 		private var m_power_indicator:Image;
