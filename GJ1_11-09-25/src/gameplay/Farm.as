@@ -14,14 +14,16 @@ package gameplay
 		private static const FARMLAYER:int = 4;
 		private static const FARMSTEP:Number = 0.5;
 		
+		//private static const RANDOMSTEP:Number = 0.02;
+		
 		[Embed(source = '../../assets/farm.png')] private const FARM:Class;
 		public var m_anim:Spritemap = new Spritemap(FARM, 64, 64);
-		private const sheepPopStep:Number = 0.005;
+		private const sheepPopStep:Number = 0.01;
 		private var m_progression:Number = 0;
 		public var networkElement: NetworkElement;
 		private var m_isGroing: Boolean = false;
 		
-		public function Farm(a_x:int , a_y:int) 
+		public function Farm(a_x:int , a_y:int, a_prog_init:Number=1) 
 		{
 			layer = FARMLAYER;
 			x = a_x;
@@ -31,7 +33,7 @@ package gameplay
 			graphic = m_anim;
 			this.setHitbox(m_anim.width, m_anim.height, x, y);
 			this.setHitbox(m_anim.scaledWidth, m_anim.scaledHeight, x, y);
-			
+			m_progression = a_prog_init;
 		}
 		
 		override public function getProgressionStep():Number 
@@ -46,7 +48,7 @@ package gameplay
 		
 	    override public function update():void 
 		{
-			m_progression += sheepPopStep;
+			m_progression += sheepPopStep // + RANDOMSTEP * Math.random();
 			if (m_progression >= 1.0) {
 				m_progression = 0;
 				popSheep();
