@@ -128,5 +128,10 @@ package gameplay
 		{
 			return new Point(x + halfWidth, y + halfHeight);
 		}
+		
+		function getDir(srcElem:NetworkElement):Boolean
+		{
+			return true;
+		}
 	}
 }
