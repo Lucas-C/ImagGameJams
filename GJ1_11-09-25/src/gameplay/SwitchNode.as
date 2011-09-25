@@ -6,6 +6,7 @@ package gameplay
 	 */
 	
 	import gameplay.NetworkElement;
+	import gameplay.StraightWire;
 	import net.flashpunk.Entity;
 	import net.flashpunk.graphics.Image;
 	import net.flashpunk.utils.Input;
@@ -18,6 +19,7 @@ package gameplay
 		public static const LEFT:int = 1;
 		public static const DOWN:int = 2;
 		public static const RIGHT:int = 3;
+		
 		
 		public static const DIRECTIONS_NUMBER:int = 4;
 		
@@ -34,6 +36,7 @@ package gameplay
 		private var m_picUp : Image;
 		private var m_picDown : Image;
 		private var m_pictures: Array;
+		private var m_straightsWires: Array;
 		private var m_direction: int;
 		private var m_isPushed: Boolean;
 		
@@ -45,6 +48,11 @@ package gameplay
 			m_pictures[LEFT] = new Image(PICLEFT);
 			m_pictures[DOWN] = new Image(PICDOWN);
 			m_pictures[RIGHT] = new Image(PICRIGHT);
+			m_straightsWires = new Array(4);
+			var i: int;
+			for (i = 0; i < 4; i++) {
+				m_straightsWires[i] = null;
+			}
 			x = 100;
 			y = 100;
 			setDirection(UP);
@@ -52,7 +60,12 @@ package gameplay
 		
 		public function turnSwitch(): void 
 		{
-			setDirection((getDirection() + 1) % DIRECTIONS_NUMBER);
+			var i: int;
+			i = 1;
+			while (i < 4 && m_straightsWires[(i + getDirection()) % 4] == null) {
+				i++;
+			}
+			setDirection((getDirection() + i) % DIRECTIONS_NUMBER);
 			soundswitch.play();
 		}
 		
@@ -83,6 +96,25 @@ package gameplay
 		
 		public function getDirection(): int {
 			return m_direction;
+		}
+		
+		public function addStraightWire(sw : StraightWire, direction : int): void {
+			if (direction < 0 || direction > 3) {
+				trace("In SwitchNode.addStraightWire: direction must be between 0 and 3");
+			}
+			if (m_straightsWires[direction] != null) {
+				trace("In SwitchNode.addStraightWire: this direction already has a straightwire associated, it will be erased");
+			}
+			m_straightsWires[direction] = sw;
+			setDirection(direction);
+		}
+		
+		public function getStraightWire(direction : int): StraightWire {
+			return m_straightsWires[direction];
+		}
+		
+		public function getCurrentStraightWire(direction : int): StraightWire {
+			return getStraightWire(m_direction);
 		}
 	}
 }
