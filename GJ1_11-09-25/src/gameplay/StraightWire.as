@@ -34,6 +34,8 @@ package gameplay
 		 */
 		public function StraightWire(pos1:IntPoint, pos2:IntPoint) 
 		{
+			//x = Math.min(pos1.x,pos2.x);
+			//y = Math.min(pos1.y, pos2.y);
 			x = (pos1.x + pos2.x) / 2;
 			y = (pos1.y + pos2.y) / 2;
 			if (pos1.x <= pos2.x) {
