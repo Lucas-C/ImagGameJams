@@ -24,6 +24,7 @@ package gameplay
 		public static const DOWN:int = 2;
 		public static const RIGHT:int = 3;
 		public static const DIRECTIONS_NUMBER:int = 4;
+		public static const NODESTEP:Number = 0.4;
 		
 		[Embed(source = '../../assets/switches.png')] private const ANIM_SWITCHES:Class;
 		public var m_anim:Spritemap = new Spritemap(ANIM_SWITCHES, 32, 32);
@@ -129,6 +130,11 @@ package gameplay
 			return m_direction;
 		}
 		
+		override public function getProgressionStep():Number 
+		{
+			return NODESTEP;
+		}
+		
 		public function addStraightWire(sw : StraightWire, direction : int): void {
 			if (direction < 0 || direction > 3) {
 				trace("In SwitchNode.addStraightWire: direction must be between 0 and 3");
@@ -151,7 +157,8 @@ package gameplay
 		
 		public override function getPos(progression:Number, direction:Boolean):IntPoint
 		{
-			return new IntPoint(x + halfWidth, y + halfHeight);
+			//return new IntPoint(x + halfWidth, y + halfHeight);
+			return new IntPoint(x, y);
 		}
 		
 		public override function getDir(srcElem:NetworkElement):Boolean
