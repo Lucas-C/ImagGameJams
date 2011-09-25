@@ -11,7 +11,7 @@ package gameplay
 	public class Sheep extends Entity 
 	{
 		[Embed(source = '../../assets/mouton.png')] private const MOUTON:Class;
-		private const STEP:Number = 0.1;
+		private const STEP:Number = 0.01;
 		private var m_color:SheepColor;
 		private var m_image:Image;
 		private var m_currentWire:NetworkElement;
@@ -33,8 +33,11 @@ package gameplay
 			m_progression+=STEP;
 			if (m_progression >= 1.0) {
 				if (m_currentWire != null) {
+					var m_precWire:NetworkElement = m_currentWire;
 					m_progression = 0;
 					m_currentWire.getNext(m_direction);
+					if (m_currentWire != null)
+						m_direction = m_currentWire.getDir(m_precWire);
 				} else {
 					// Destruction du mouton à l'arrivee a la centrale
 					FP.world.remove(this);
