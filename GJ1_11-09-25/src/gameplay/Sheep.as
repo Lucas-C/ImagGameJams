@@ -33,6 +33,7 @@ package gameplay
 		{
 			m_progression+=STEP;
 			if (m_progression >= 1.0) {
+				
 				if (m_currentWire != null) {
 					var m_precWire:NetworkElement = m_currentWire;
 					m_progression = 0;
