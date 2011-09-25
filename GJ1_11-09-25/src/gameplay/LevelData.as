@@ -1,7 +1,9 @@
 package gameplay 
 {
 	import net.flashpunk.World;
-	
+	import net.flashpunk.Sfx;
+	import net.flashpunk.FP;
+
 	/**
 	 * @author Lucas Cimon
 	 */
@@ -15,13 +17,18 @@ package gameplay
 		private var power_3:PowerPlant;
 		private var power_4:PowerPlant;
 		
+		[Embed(source = '../../assets/music.mp3')] private const MUSIC:Class;
+		public var music:Sfx = new Sfx(MUSIC);
+		
 		public function LevelData() 
 		{
+			
 		}
 
 		public function init():void
 		{
 			level_2();
+			music.loop();
 		}
 		
 		private function level_1():void
@@ -79,6 +86,7 @@ package gameplay
 			
 			switchnode.addStraightWire(wire_switch_power1_1, SwitchNode.LEFT);
 			switchnode.addStraightWire(wire_switch_power2_1, SwitchNode.RIGHT);
+			
 		}
 		
 		private function level_2():void

@@ -35,6 +35,8 @@ package gameplay
 		
 		private static var m_color_power:Array = null;
 		
+		
+		
 		public function PowerPlant(a_color:SheepColor, a_min_power:int, a_max_power:int) 
 		{
 			layer = POWERPLANTLAYER;

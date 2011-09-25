@@ -19,13 +19,12 @@ GAME:
 	Moutons électriques, centrales, réseau de cables & fermes
 	Répartition 1 : sprites, centrales, switches, réseau
 
-	"C'était peut être pas un très bon nom de class ça 'switch'."
+	"C'était peut être pas un très bon nom de classe ça, 'switch'."
 
 	Reflexion sur les boucles du réseau & croisements.
 	Suggestion des tapis roulants & beliers
 
 	Pixel Art with Paint.NET
 	Sound with sfxr & musagi
-
 
 ASSESMENT:

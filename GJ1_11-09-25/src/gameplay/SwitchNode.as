@@ -17,7 +17,7 @@ package gameplay
 	
 	public class SwitchNode extends NetworkElement 
 	{
-		private static const SWITCHNODELAYER = 2;
+		private static const SWITCHNODELAYER:int = 2;
 		public static var nodesNumber:int = 1;
 		public static const UP:int = 0;
 		public static const LEFT:int = 1;
@@ -25,6 +25,7 @@ package gameplay
 		public static const RIGHT:int = 3;
 		public static const DIRECTIONS_NUMBER:int = 4;
 		public static const NODESTEP:Number = 0.4;
+		
 		
 		[Embed(source = '../../assets/switches.png')] private const ANIM_SWITCHES:Class;
 		public var m_anim:Spritemap = new Spritemap(ANIM_SWITCHES, 32, 32);
