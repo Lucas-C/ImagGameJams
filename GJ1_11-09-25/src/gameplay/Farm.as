@@ -12,6 +12,7 @@ package gameplay
 		public var soundpop:Sfx = new Sfx(SOUNDPOP);
 		
 		private static const FARMLAYER:int = 4;
+		private static const FARMSTEP:Number = 0.5;
 		
 		[Embed(source = '../../assets/farm.png')] private const FARM:Class;
 		public var m_anim:Spritemap = new Spritemap(FARM, 64, 64);
@@ -25,10 +26,23 @@ package gameplay
 			layer = FARMLAYER;
 			x = a_x;
 			y = a_y;
+<<<<<<< HEAD:GJ1_11-09-25/src/gameplay/Farm.as
 			this.setHitbox(m_anim.width, m_anim.height, x, y);
 			m_anim.add("plop", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], 10, true);
 			m_anim.play("plop");
 			graphic = m_anim;
+=======
+			m_image = new Image(FARM);
+			this.setHitbox(m_image.width, m_image.height, x, y);
+			this.setHitbox(m_image.scaledWidth, m_image.scaledHeight, x, y);
+			
+			graphic = m_image;
+>>>>>>> dd0f7259dc052dd582b2c12affd9aa3090fde1af:GJ1_11-09-25/src/gameplay/Farm.as
+		}
+		
+		override public function getProgressionStep():Number 
+		{
+			return FARMSTEP;
 		}
 		
 		public override function getNext(direction:Boolean):NetworkElement
@@ -70,8 +84,8 @@ package gameplay
 		public override function getPos(progression:Number, direction:Boolean):IntPoint
 		{
 			var p:IntPoint = new IntPoint;
-			p.x = x * (1 - progression) + networkElement.x * progression;
-			p.y = y * (1 - progression) + networkElement.y * progression;
+			p.x = x;
+			p.y = y;
 			return p;
 		}
 
