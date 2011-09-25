@@ -50,6 +50,25 @@ package gameplay
 			add(wire_switch_power2_1);
 			var wire_switch_power2_2:StraightWire = new StraightWire(inter_point_2, new IntPoint(power2.x, power2.y));
 			add(wire_switch_power2_2);
+			
+			farm.networkElement = wire_farm_switch;
+			wire_farm_switch.ext1 = farm;
+			wire_farm_switch.ext2 = switchnode;
+			
+			wire_switch_power1_1.ext1 = wire_farm_switch;
+			wire_switch_power1_1.ext2 = wire_switch_power1_2;
+			
+			wire_switch_power1_2.ext1 = wire_switch_power1_1;
+			wire_switch_power1_2.ext2 = power1;
+			
+			wire_switch_power2_1.ext1 = switchnode;
+			wire_switch_power2_1.ext2 = wire_switch_power2_2;
+			
+			wire_switch_power2_2.ext1 = wire_switch_power2_1;
+			wire_switch_power2_2.ext2 = power2;
+			switchnode.addStraightWire(wire_farm_switch, SwitchNode.UP);
+			switchnode.addStraightWire(wire_switch_power1_1, SwitchNode.LEFT);
+			switchnode.addStraightWire(wire_switch_power2_1, SwitchNode.RIGHT);
 		}	
 		
 		override public function update():void

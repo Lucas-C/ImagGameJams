@@ -14,7 +14,7 @@ package gameplay
 		[Embed(source = '../../assets/farm.png')] private const FARM:Class;
 		private const sheepPopStep:Number = 0.005;
 		private var m_progression:Number = 0;
-		private var m_networkElement: NetworkElement;
+		public var networkElement: NetworkElement;
 		private var m_image:Image;
 		private var m_isGroing: Boolean = false;
 		
@@ -29,7 +29,7 @@ package gameplay
 		
 		public override function getNext(direction:Boolean):NetworkElement
 		{
-			return m_networkElement;
+			return networkElement;
 		}
 		
 	    override public function update():void 
@@ -66,8 +66,8 @@ package gameplay
 		public override function getPos(progression:Number, direction:Boolean):IntPoint
 		{
 			var p:IntPoint = new IntPoint;
-			p.x = x * (1 - progression) + m_networkElement.x * progression;
-			p.y = y * (1 - progression) + m_networkElement.y * progression;
+			p.x = x * (1 - progression) + networkElement.x * progression;
+			p.y = y * (1 - progression) + networkElement.y * progression;
 			return p;
 		}
 
