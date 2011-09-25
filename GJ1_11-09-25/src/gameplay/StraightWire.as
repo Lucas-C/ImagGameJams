@@ -36,7 +36,6 @@ package gameplay
 		{
 			this.posExt1 = pos1;
 			this.posExt2 = pos2;
-			super(posExt1.x, posExt1.y);
 			if (posExt1.x == posExt2.x)
 				if (posExt1.y == posExt2.y)
 					throw new Error("Null StraightWire");
