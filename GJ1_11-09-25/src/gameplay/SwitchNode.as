@@ -62,8 +62,6 @@ package gameplay
 			for (i = 0; i < 4; i++) {
 				m_straightsWires[i] = null;
 			}
-			x = 100;
-			y = 100;
 			setDirection(UP);
 		}
 		
@@ -74,6 +72,7 @@ package gameplay
 			while (i < 4 && m_straightsWires[(i + getDirection()) % 4] == null) {
 				i++;
 			}
+
 			setDirection((getDirection() + i) % DIRECTIONS_NUMBER);
 			soundswitch.play();
 		}
