@@ -26,6 +26,7 @@ package gameplay
 			m_anim.add("left", [2, 3], 20, true);
 			m_anim.color = m_color.getCode();
 			graphic = m_anim;
+			m_anim.scale = 0.5;
 			m_currentWire = a_currentWire;
 			x = a_currentWire.getPos(0, true).x;
 			y = a_currentWire.getPos(0, true).y;
@@ -60,7 +61,7 @@ package gameplay
 			if (m_currentWire) {
 				var xy:IntPoint = m_currentWire.getPos(m_progression, m_direction);
 				x = xy.x - halfWidth;
-				y = xy.y- halfHeight;
+				y = xy.y - halfHeight;
 			}
 			this.setHitbox(m_anim.scaledWidth, m_anim.scaledHeight, x, y);
 			super.update();
