@@ -1,0 +1,13 @@
+TOOLS:
+	SDL/SFML
+	XNA
+	Löve
+	PyGame
+	Unity3d
+	Flashpunk
+
+CHOIX:
+	Flashpunk -> http://flashgamedojo.com/go/
+	FlashDevelop-4.0.0-Beta3
+	flashplayer_10_sa_debug
+	Draknek-FlashPunk-adbf544
