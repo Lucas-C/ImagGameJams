@@ -38,7 +38,7 @@ package gameplay
 		private var m_isPushed: Boolean;
 		private var m_id: int;
 		
-		public function SwitchNode(switchx: int = 0, switchy: int  = 0) 
+		public function SwitchNode(switchx: int = 0, switchy: int = 0) 
 		{
 			m_id = nodesNumber;
 			nodesNumber++;
@@ -91,7 +91,7 @@ package gameplay
 		{
 			if (Input.mouseDown) {
 				if (!m_isPushed) {
-					if (Input.mouseX >= this.x 
+					if (Input.mouseX >= this.x
 						&& Input.mouseX <= this.x + this.width
 						&& Input.mouseY >= this.y
 						&& Input.mouseY <= this.y + this.height) {
