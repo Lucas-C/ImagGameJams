@@ -18,3 +18,7 @@ GAME:
 	Répartition 1 : sprites, centrales, switches, réseau
 
 	"C'était peut être pas un très bon nom de class ça 'switch'."
+
+	Reflexion sur les boucles du réseau & croisements.
+	Suggestion des tapis roulants & beliers
+

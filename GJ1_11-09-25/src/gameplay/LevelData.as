@@ -1,6 +1,5 @@
 package gameplay 
 {
-	import gameplay.SwitchNode;
 	import net.flashpunk.World;
 	/**
 	 * @author Lucas Cimon
@@ -26,12 +25,14 @@ package gameplay
 			sh.x = 100;
 			sh.y = 100;
 			add(sh);
+			
+			add(new StraightWire(new Point(100, 100), new Point(100, 200)));
+			add(new SwitchNode);
 		}
 		
 		override public function update():void
 		{
 			super.update();
-			
 		}
 	}
 }

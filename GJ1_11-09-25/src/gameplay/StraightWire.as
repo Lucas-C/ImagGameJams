@@ -7,43 +7,77 @@ package gameplay
 	/**
 	 * @author Lucas Cimon
 	 */
-	public class StraightWire extends Entity
+	public class StraightWire extends Entity implements NetworkElement
 	{
+		/**
+		 * Ext1 boundary
+		 */
+		public var ext1:NetworkElement = null;
+
+		/**
+		 * Ext2 boundary
+		 */
+		public var ext2:NetworkElement = null;
 
 		/**
 		 * X position of the Ext1 boundary
 		 */
-		public var xExt1:Number = 0;
+		public var posExt1:Point;
 		
-		/**
-		 * Y position of the Ext1 boundary
-		 */
-		public var yExt1:Number = 0;
-
 		/**
 		 * X position of the Ext2 boundary
 		 */
-		public var xExt2:Number = 0;
+		public var posExt2:Point;
 		
-		/**
-		 * Y position of the Ext2 boundary
-		 */
-		public var yExt2:Number = 0;
-
 		/**
 		 * Constructor
 		 */
-		public function StraightWire(xExt1_:int, yExt1_:int, xExt2_:int, yExt2_:int) 
+		public function StraightWire(pos1:Point, pos2:Point) 
 		{
-			this.xExt1 = xExt1_;
-			this.yExt1 = yExt1_;
-			this.xExt2 = xExt2_;
-			this.yExt2 = yExt2_;
-			//this._pipe = Image.createRect(Math.abs(yExt1 - xExt1), Math.abs(yExt2 - xExt2));
-			super(xExt1, yExt1/*, _pipe*/);
+			this.posExt1 = pos1;
+			this.posExt2 = pos2;
+			super(posExt1.x, posExt1.y);
+			if (posExt1.x == posExt2.x)
+				if (posExt1.y == posExt2.y)
+					throw new Error("Null StraightWire");
+				else 
+					this.graphic = Image.createRect(1, Math.abs(posExt2.y - posExt1.y), 0xFF000000);
+			else if (posExt1.y == posExt2.y)
+					this.graphic = Image.createRect(Math.abs(posExt2.x - posExt1.x), 1, 0xFF000000);
+			else
+				throw new Error("Non flat StraightWire");
+		}
+		
+		/**
+		 * Access next wire in given direction
+		 * @param direction true for progression ext1 -> ext2
+		 */
+		public function getNext(direction:Boolean):NetworkElement
+		{
+			if (direction)
+				return ext2;
+			else
+				return ext1;
+		}
+		
+		public function getPos(progression:Number, direction:Boolean):Point
+		{
+			if (direction)
+				return new Point(	posExt1.x + (posExt2.x - posExt1.x) * progression,
+									posExt1.y + (posExt2.y - posExt1.y) * progression);
+			else
+				return new Point(	posExt2.x + (posExt1.x - posExt2.x) * progression,
+									posExt2.y + (posExt1.y - posExt2.y) * progression);
 		}
 
-		// StraighWire information.
-		/** @private */ internal var _pipe:Graphic;
+		public function getDir(srcElem:NetworkElement):Boolean
+		{
+			if (srcElem == ext1)
+				return true;
+			else if (srcElem == ext2)
+				return false;
+			else
+				throw new Error("StraightWire.getDir - Invalid jonction");
+		}
 	}
 }
