@@ -91,13 +91,13 @@ package gameplay
 		
 		private function level_2():void
 		{
-			var ord_1:int = 20;
-			var ord_2:int = 120;
-			var ord_3:int = 220;
+			var ord_1:int = 40;
+			var ord_2:int = 140;
+			var ord_3:int = 240;
 			
-			var abs_1:int = 20;
-			var abs_2:int = 170;
-			var abs_3:int = 320;
+			var abs_1:int = 40;
+			var abs_2:int = 190;
+			var abs_3:int = 340;
 			
 			var point_11:IntPoint = new IntPoint(abs_1, ord_1);
 			var point_12:IntPoint = new IntPoint(abs_1, ord_2);
@@ -133,10 +133,10 @@ package gameplay
 			add(power_4);
 			
 			// Farms
-			var farm_1:Farm = new Farm(abs_1, ord_2, 240, 180);
+			var farm_1:Farm = new Farm(abs_1, ord_2, 240, 360);
 			add(farm_1);
 			
-			var farm_2:Farm = new Farm(abs_3, ord_2, 300, 180);
+			var farm_2:Farm = new Farm(abs_3, ord_2, 320, 360);
 			add(farm_2);
 			
 			// Switches
@@ -157,7 +157,7 @@ package gameplay
 			
 			var wire_2:StraightWire = new StraightWire(point_21, point_31);
 			wire_2.ext1 = switch_1;
-			wire_2.ext2 = power_2;
+			wire_2.ext2 = power_3;
 			add(wire_2);
 			
 			var wire_3:StraightWire = new StraightWire(point_21, point_22);
@@ -181,7 +181,7 @@ package gameplay
 			add(wire_6);
 			
 			var wire_7:StraightWire = new StraightWire(point_13, point_23);
-			wire_7.ext1 = power_3;
+			wire_7.ext1 = power_2;
 			wire_7.ext2 = switch_3;
 			add(wire_7);
 			
@@ -206,23 +206,21 @@ package gameplay
 		
 		override public function update():void
 		{
-			super.update();
-			if (power_1 == null)
-			{
-				return;
-			}
-			
 			// Victory test
 			if (power_1.isPowered() && power_2.isPowered() && power_3.isPowered() && power_4.isPowered())
 			{
-				trace("victory");
+				var victory:Victory = new Victory;
+				FP.world = victory;
 			}
 			
 			// Defeat test
 			if (power_1.hasNoPower() && power_2.hasNoPower() && power_3.hasNoPower() && power_4.hasNoPower())
 			{
-				trace("defeat");
+				var gameover:GameOver = new GameOver;
+				FP.world = gameover;
 			}
+			
+			super.update();
 		}
 	}
 }
