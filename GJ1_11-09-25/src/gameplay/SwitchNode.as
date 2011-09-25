@@ -10,6 +10,7 @@ package gameplay
 	import gameplay.IntPoint;
 	import net.flashpunk.Entity;
 	import net.flashpunk.graphics.Image;
+	import net.flashpunk.graphics.Spritemap;
 	import net.flashpunk.utils.Input;
 	import net.flashpunk.Sfx;
 	import net.flashpunk.utils.Key;
@@ -21,17 +22,10 @@ package gameplay
 		public static const LEFT:int = 1;
 		public static const DOWN:int = 2;
 		public static const RIGHT:int = 3;
-		
-		
 		public static const DIRECTIONS_NUMBER:int = 4;
 		
-		[Embed(source = '../../assets/switchleft.png')] private const PICLEFT:Class;
-		[Embed(source = '../../assets/switchright.png')] private const PICRIGHT:Class;
-		[Embed(source = '../../assets/switchup.png')] private const PICUP:Class;
-		[Embed(source = '../../assets/switchdown.png')] private const PICDOWN:Class;
-		
-
-		
+		[Embed(source = '../../assets/switches.png')] private const ANIM_SWITCHES:Class;
+		public var m_anim:Spritemap = new Spritemap(ANIM_SWITCHES, 32, 32);
 		[Embed(source = '../../assets/turnswitch.mp3')] private const SOUNDSWITCH:Class;
 		public var soundswitch:Sfx = new Sfx(SOUNDSWITCH);
 		
@@ -39,7 +33,6 @@ package gameplay
 		private var m_picRight : Image;
 		private var m_picUp : Image;
 		private var m_picDown : Image;
-		private var m_pictures: Array;
 		private var m_straightsWires: Array;
 		private var m_direction: int;
 		private var m_isPushed: Boolean;
@@ -52,23 +45,20 @@ package gameplay
 			x = switchx;
 			y = switchy;
 			m_isPushed = false;
-			m_pictures = new Array(4);
-			m_pictures[UP] = new Image(PICUP);
-			m_pictures[LEFT] = new Image(PICLEFT);
-			m_pictures[DOWN] = new Image(PICDOWN);
-			m_pictures[RIGHT] = new Image(PICRIGHT);
+			m_anim.add("up", [0], 20, true);
+			m_anim.add("right", [1], 20, true);
+			m_anim.add("down", [2], 20, true);
+			m_anim.add("left", [3], 20, true);
+			graphic = m_anim;
 			m_straightsWires = new Array(4);
-			var i: int;
-			for (i = 0; i < 4; i++) {
+			for (var i: int = 0; i < 4; i++)
 				m_straightsWires[i] = null;
-			}
 			setDirection(UP);
 		}
 		
 		public function turnSwitch(): void 
 		{
-			var i: int;
-			i = 1;
+			var i: int = 1;
 			while (i < 4 && m_straightsWires[(i + getDirection()) % 4] == null) {
 				i++;
 			}
@@ -80,8 +70,21 @@ package gameplay
 		public function setDirection(direction: int): void
 		{
 			m_direction = direction;
-			graphic = m_pictures[direction];
-			setHitbox(m_pictures[direction].width, m_pictures[direction].height, x, y);
+			switch(m_direction) {
+			case UP:
+				m_anim.play("up");
+				break;
+			case RIGHT:
+				m_anim.play("right");
+				break;
+			case DOWN:
+				m_anim.play("down");
+				break;
+			case LEFT:
+				m_anim.play("left");
+				break;
+			}
+			setHitbox(m_anim.width, m_anim.height, x, y);
 		}
 		
 		override public function update():void
