@@ -14,23 +14,31 @@ package gameplay
 		private static const FARMLAYER:int = 4;
 		private static const FARMSTEP:Number = 0.5;
 		
+		//private static const RANDOMSTEP:Number = 0.02;
+		
 		[Embed(source = '../../assets/farm.png')] private const FARM:Class;
 		public var m_anim:Spritemap = new Spritemap(FARM, 64, 64);
-		private const sheepPopStep:Number = 0.005;
-		private var m_progression:Number = 0;
+		private var m_sheepPopInterval:int = 60;
+		private var m_progression:int = 0;
 		public var networkElement: NetworkElement;
 		private var m_isGroing: Boolean = false;
 		
-		public function Farm(a_x:int , a_y:int) 
+		public function Farm(a_x:int , a_y:int, a_prog_init:Number=0, a_sheepPopInterval:Number=60) 
 		{
 			layer = FARMLAYER;
 			x = a_x;
 			y = a_y;
 			m_anim.add("plop", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], 10, true);
 			m_anim.play("plop");
+			m_sheepPopInterval = a_sheepPopInterval;
+			
+			
 			graphic = m_anim;
 			this.setHitbox(m_anim.width, m_anim.height, x, y);
 			this.setHitbox(m_anim.scaledWidth, m_anim.scaledHeight, x, y);
+			
+			m_progression =  m_sheepPopInterval - a_prog_init;
+			
 			
 		}
 		
@@ -46,8 +54,8 @@ package gameplay
 		
 	    override public function update():void 
 		{
-			m_progression += sheepPopStep;
-			if (m_progression >= 1.0) {
+			m_progression ++; // + RANDOMSTEP * Math.random();
+			if (m_progression >= m_sheepPopInterval) {
 				m_progression = 0;
 				popSheep();
 			}
