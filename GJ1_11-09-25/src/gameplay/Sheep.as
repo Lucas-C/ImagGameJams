@@ -22,8 +22,8 @@ package gameplay
 		public function Sheep(a_color:SheepColor, a_currentWire:NetworkElement) 
 		{
 			m_color = a_color;
-			m_anim.add("left", [0, 1], 20, true);
-			m_anim.add("right", [2, 3], 20, true);
+			m_anim.add("right", [0, 1], 20, true);
+			m_anim.add("left", [2, 3], 20, true);
 			m_anim.color = m_color.getCode();
 			graphic = m_anim;
 			m_currentWire = a_currentWire;
