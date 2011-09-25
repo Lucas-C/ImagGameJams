@@ -2,7 +2,7 @@ package gameplay
 {
 	import net.flashpunk.Entity;
 	import net.flashpunk.FP;
-	import net.flashpunk.graphics.Image;
+	import net.flashpunk.graphics.Spritemap;
 
 	/**
 	 * ...
@@ -14,17 +14,18 @@ package gameplay
 		
 		private const STEP:Number = 0.01;
 		private var m_color:SheepColor;
-		private var m_image:Image;
 		private var m_currentWire:NetworkElement;
 		private var m_direction:Boolean = true;
 		private var m_progression:Number = 0;
+		public var m_anim:Spritemap = new Spritemap(MOUTON, 64, 32);
 		
 		public function Sheep(a_color:SheepColor, a_currentWire:NetworkElement) 
 		{
 			m_color = a_color;
-			m_image = new Image(MOUTON);
-			m_image.color = m_color.getCode();
-			graphic = m_image;
+			m_anim.add("left", [0, 1], 20, true);
+			m_anim.add("right", [2, 3], 20, true);
+			m_anim.color = m_color.getCode();
+			graphic = m_anim;
 		}
 		
 		override public function update():void 
@@ -35,8 +36,14 @@ package gameplay
 					var m_precWire:NetworkElement = m_currentWire;
 					m_progression = 0;
 					m_currentWire.getNext(m_direction);
-					if (m_currentWire != null)
+					if (m_currentWire != null) {
 						m_direction = m_currentWire.getDir(m_precWire);
+						if (m_direction) {
+							m_anim.play("right");
+						} else {
+							m_anim.play("left");
+						}
+					}
 				} else {
 					// Destruction du mouton à l'arrivee a la centrale
 					FP.world.remove(this);
@@ -44,13 +51,16 @@ package gameplay
 				}
 			}
 			super.update();
+			if (m_currentWire) {
+				var xy:IntPoint = m_currentWire.getPos(m_progression, m_direction);
+				x = xy.x;
+				y = xy.y;
+			}
 		}
 		
 		override public function render():void 
 		{
-			var xy:IntPoint = m_currentWire.getPos(m_progression, m_direction);
-			x = xy.x;
-			y = xy.y;
+
 			//var prog1:int;
 			//var prog2:int;
 			//if (m_direction) {
