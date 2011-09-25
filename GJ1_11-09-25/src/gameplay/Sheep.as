@@ -23,8 +23,8 @@ package gameplay
 		{
 			this.layer = SHEEPLAYER;
 			m_color = a_color;
-			m_anim.add("right", [0, 1], 20, true);
-			m_anim.add("left", [2, 3], 20, true);
+			m_anim.add("right", [0,1,2,3,4,5,6,7], 20, true);
+			m_anim.add("left", [8,9,10,11,12,13,14,15], 20, true);
 			m_anim.color = m_color.getCode();
 			graphic = m_anim;
 			m_anim.scale = 0.5;
