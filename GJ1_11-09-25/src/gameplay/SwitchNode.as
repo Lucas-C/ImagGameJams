@@ -29,6 +29,8 @@ package gameplay
 		[Embed(source = '../../assets/switchup.png')] private const PICUP:Class;
 		[Embed(source = '../../assets/switchdown.png')] private const PICDOWN:Class;
 		
+
+		
 		[Embed(source = '../../assets/turnswitch.mp3')] private const SOUNDSWITCH:Class;
 		public var soundswitch:Sfx = new Sfx(SOUNDSWITCH);
 		
@@ -116,17 +118,17 @@ package gameplay
 			return m_straightsWires[direction];
 		}
 		
-		public function getNext(direction:Boolean):NetworkElement
+		public override function getNext(direction:Boolean):NetworkElement
 		{
 			return getStraightWire(m_direction);
 		}
 		
-		public function getPos(progression:Number, direction:Boolean):IntPoint
+		public override function getPos(progression:Number, direction:Boolean):IntPoint
 		{
 			return new IntPoint(x + halfWidth, y + halfHeight);
 		}
 		
-		public function getDir(srcElem:NetworkElement):Boolean
+		public override function getDir(srcElem:NetworkElement):Boolean
 		{
 			return true;
 		}
