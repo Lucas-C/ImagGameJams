@@ -26,7 +26,7 @@ package gameplay
 			return false;
 		}
 		
-		public function getBehaviour():void
+		public function receiveSheep(a_sheep:Sheep):void
 		{
 			
 		}
