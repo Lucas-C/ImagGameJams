@@ -3,7 +3,8 @@ package gameplay
 	import flash.display.Shape;
 	import net.flashpunk.FP;
 	import net.flashpunk.graphics.Image;
-		import net.flashpunk.Sfx;
+	import net.flashpunk.Sfx;
+	import net.flashpunk.graphics.Spritemap;
 
 	/**
 	 * ...
@@ -17,6 +18,8 @@ package gameplay
 		[Embed(source = '../../assets/electricity.mp3')] private static const ELECTRICITYSOUND:Class;
 		public var soundswitch:Sfx = new Sfx(ELECTRICITYSOUND);
 		
+		public var m_anim:Spritemap = new Spritemap(POWERPLANT, 64, 64);
+		private const POWERPLANTLAYER = 6;
 		
 		private var m_power:int;
 		private var m_power_indicator:Image;
@@ -24,34 +27,33 @@ package gameplay
 		private var m_max_power:int;
 		
 		private var m_color:SheepColor;
-		private var m_image:Image;
 		private static var m_explosion_image:Image = new Image(EXPLOSION);
 		
 		private static var m_color_power:Array = null;
 		
 		public function PowerPlant(a_color:SheepColor, a_min_power:int, a_max_power:int) 
 		{
+			layer = POWERPLANTLAYER;
 			m_power = 0;
 			m_min_power = a_min_power;
 			m_max_power = a_max_power;
 			m_color = a_color;
 			
-			m_image = new Image(POWERPLANT);
-			m_image.color = m_color.getCode();
-			m_image.scale = 0.5;
-			graphic = m_image;
-			
+			m_anim.color = m_color.getCode();
+			graphic = m_anim;
+			m_anim.add("plop", [0, 1, 2, 3], 5, true);
+			m_anim.play("plop");
 			// Power Gauge
-			var red_height:int = (100 - m_max_power) * m_image.scaledHeight / 100;
+			var red_height:int = (100 - m_max_power) * m_anim.scaledHeight / 100;
 			var red_rectangle:Image = Image.createRect(10, red_height, 0xFF0000);
-			red_rectangle.x = m_image.scaledWidth;
+			red_rectangle.x = m_anim.scaledWidth;
 			
-			var green_height:int = (m_max_power - m_min_power) * m_image.scaledHeight / 100;
+			var green_height:int = (m_max_power - m_min_power) * m_anim.scaledHeight / 100;
 			var green_rectangle:Image = Image.createRect(10, green_height, 0x00FF00);
 			green_rectangle.x = red_rectangle.x;
 			green_rectangle.y = red_height;
 			
-			var blue_rectangle:Image = Image.createRect(10, m_min_power * m_image.scaledHeight / 100, 0x0000FF);
+			var blue_rectangle:Image = Image.createRect(10, m_min_power * m_anim.scaledHeight / 100, 0x0000FF);
 			blue_rectangle.x = red_rectangle.x;
 			blue_rectangle.y = red_height+green_height;
 			
@@ -76,7 +78,6 @@ package gameplay
 		
 		public override function receiveSheep(a_sheep:Sheep):void
 		{
-			trace("receiveSheep");
 			var power:int = m_color_power[a_sheep.getColor().getIndex()][m_color.getIndex()];
 			increasePower(power);
 			soundswitch.play();
@@ -85,7 +86,7 @@ package gameplay
 		
 		private function updateIndicator():void
 		{
-			m_power_indicator.y = ((100 - m_power) * m_image.scaledHeight / 100) - (m_power_indicator.scaledHeight/2);
+			m_power_indicator.y = ((100 - m_power) * m_anim.scaledHeight / 100) - (m_power_indicator.scaledHeight/2);
 		}
 		
 		public function increasePower(a_power:int):void

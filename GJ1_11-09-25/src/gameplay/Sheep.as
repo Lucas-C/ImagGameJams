@@ -11,7 +11,7 @@ package gameplay
 	public class Sheep extends Entity 
 	{
 		[Embed(source = '../../assets/mouton.png')] private const MOUTON:Class;
-		
+		private const SHEEPLAYER:int = 3;
 		private const STEP:Number = 0.01;
 		private var m_color:SheepColor;
 		private var m_currentWire:NetworkElement;
@@ -21,11 +21,13 @@ package gameplay
 		
 		public function Sheep(a_color:SheepColor, a_currentWire:NetworkElement) 
 		{
+			this.layer = SHEEPLAYER;
 			m_color = a_color;
-			m_anim.add("left", [0, 1], 20, true);
-			m_anim.add("right", [2, 3], 20, true);
+			m_anim.add("right", [0, 1], 20, true);
+			m_anim.add("left", [2, 3], 20, true);
 			m_anim.color = m_color.getCode();
 			graphic = m_anim;
+			m_anim.scale = 0.5;
 			m_currentWire = a_currentWire;
 			x = a_currentWire.getPos(0, true).x;
 			y = a_currentWire.getPos(0, true).y;
@@ -37,6 +39,7 @@ package gameplay
 				m_progression += m_currentWire.getProgressionStep();
 			}
 			if (m_progression >= 1.0) {
+				
 				if (m_currentWire != null) {
 					var m_precWire:NetworkElement = m_currentWire;
 					m_progression = 0;
@@ -59,7 +62,7 @@ package gameplay
 			if (m_currentWire) {
 				var xy:IntPoint = m_currentWire.getPos(m_progression, m_direction);
 				x = xy.x - halfWidth;
-				y = xy.y- halfHeight;
+				y = xy.y - halfHeight;
 			}
 			this.setHitbox(m_anim.scaledWidth, m_anim.scaledHeight, x, y);
 			super.update();

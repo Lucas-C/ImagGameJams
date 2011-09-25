@@ -60,8 +60,8 @@ package gameplay
 			wire_farm_switch.ext1 = farm;
 			wire_farm_switch.ext2 = switchnode;
 			
-			wire_switch_power1_1.ext1 = switchnode;
-			wire_switch_power1_1.ext2 = wire_switch_power1_2;
+			wire_switch_power1_1.ext2 = switchnode;
+			wire_switch_power1_1.ext1 = wire_switch_power1_2;
 			
 			wire_switch_power1_2.ext1 = wire_switch_power1_1;
 			wire_switch_power1_2.ext2 = power1;
@@ -147,22 +147,17 @@ package gameplay
 			wire_2.ext2 = power_2;
 			add(wire_2);
 			
-			var wire_3:StraightWire = new StraightWire(point_21, point_22);
+			var wire_3:StraightWire = new StraightWire(point_12, point_22);
 			wire_3.ext1 = switch_1;
 			wire_3.ext2 = switch_2;
 			add(wire_3);
-			
-			var wire_3:StraightWire = new StraightWire(point_21, point_22);
-			wire_3.ext1 = switch_1;
-			wire_3.ext2 = switch_2;
-			add(wire_3);
-			
+						
 			var wire_4:StraightWire = new StraightWire(point_12, point_22);
 			wire_4.ext1 = farm_1;
 			wire_4.ext2 = switch_2;
 			add(wire_4);
 			
-			var wire_5:StraightWire = new StraightWire(point_22, point_23);
+			var wire_5:StraightWire = new StraightWire(point_22, point_32);
 			wire_5.ext1 = switch_2;
 			wire_5.ext2 = farm_2;
 			add(wire_5);
@@ -172,12 +167,12 @@ package gameplay
 			wire_6.ext2 = switch_3;
 			add(wire_6);
 			
-			var wire_7:StraightWire = new StraightWire(point_32, point_31);
-			wire_7.ext1 = switch_3;
-			wire_7.ext2 = power_3;
+			var wire_7:StraightWire = new StraightWire(point_13, point_23);
+			wire_7.ext1 = power_3;
+			wire_7.ext2 = switch_3;
 			add(wire_7);
 			
-			var wire_8:StraightWire = new StraightWire(point_32, point_33);
+			var wire_8:StraightWire = new StraightWire(point_23, point_33);
 			wire_8.ext1 = switch_3;
 			wire_8.ext2 = power_4;
 			add(wire_8);

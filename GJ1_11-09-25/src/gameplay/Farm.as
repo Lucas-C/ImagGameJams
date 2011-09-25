@@ -11,6 +11,8 @@ package gameplay
 		[Embed(source = '../../assets/popSheep.mp3')] private const SOUNDPOP:Class;
 		public var soundpop:Sfx = new Sfx(SOUNDPOP);
 		
+		private static const FARMLAYER:int = 4;
+		
 		[Embed(source = '../../assets/farm.png')] private const FARM:Class;
 		private const sheepPopStep:Number = 0.005;
 		private var m_progression:Number = 0;
@@ -20,6 +22,7 @@ package gameplay
 		
 		public function Farm(a_x:int , a_y:int) 
 		{
+			layer = FARMLAYER;
 			x = a_x;
 			y = a_y;
 			m_image = new Image(FARM);
@@ -51,7 +54,7 @@ package gameplay
 			super.update();
 		}
 		
-		private function popSheep():void
+		public function popSheep():void
 		{
 			var sh:Sheep;
 			var rand:int = Math.random() * 4;
