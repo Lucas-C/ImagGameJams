@@ -147,7 +147,7 @@ package gameplay
 			wire_2.ext2 = power_2;
 			add(wire_2);
 			
-			var wire_3:StraightWire = new StraightWire(point_12, point_22);
+			var wire_3:StraightWire = new StraightWire(point_21, point_22);
 			wire_3.ext1 = switch_1;
 			wire_3.ext2 = switch_2;
 			add(wire_3);
@@ -162,7 +162,7 @@ package gameplay
 			wire_5.ext2 = farm_2;
 			add(wire_5);
 			
-			var wire_6:StraightWire = new StraightWire(point_22, point_32);
+			var wire_6:StraightWire = new StraightWire(point_22, point_23);
 			wire_6.ext1 = switch_2;
 			wire_6.ext2 = switch_3;
 			add(wire_6);
