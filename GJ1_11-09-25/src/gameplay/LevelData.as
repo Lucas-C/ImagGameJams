@@ -9,7 +9,6 @@ package gameplay
 	{
 		private var frame:Number;
 		private var pp:PowerPlant = new PowerPlant(SheepColor.RED, 40, 50);
-		private var sh:Sheep = new Sheep(SheepColor.RED);
 		
 		public function LevelData() 
 		{

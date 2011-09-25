@@ -7,7 +7,7 @@ package gameplay
 	/**
 	 * @author Lucas Cimon
 	 */
-	public class StraightWire extends Entity implements NetworkElement
+	public class StraightWire extends NetworkElement
 	{
 		/**
 		 * Ext1 boundary
@@ -52,7 +52,7 @@ package gameplay
 		 * Access next wire in given direction
 		 * @param direction true for progression ext1 -> ext2
 		 */
-		public function getNext(direction:Boolean):NetworkElement
+		public override function getNext(direction:Boolean):NetworkElement
 		{
 			if (direction)
 				return ext2;
@@ -60,7 +60,7 @@ package gameplay
 				return ext1;
 		}
 		
-		public function getPos(progression:Number, direction:Boolean):IntPoint
+		public override function getPos(progression:Number, direction:Boolean):IntPoint
 		{
 			if (direction)
 				return new IntPoint(	posExt1.x + (posExt2.x - posExt1.x) * progression,
@@ -70,7 +70,7 @@ package gameplay
 									posExt2.y + (posExt1.y - posExt2.y) * progression);
 		}
 
-		public function getDir(srcElem:NetworkElement):Boolean
+		public override function getDir(srcElem:NetworkElement):Boolean
 		{
 			if (srcElem == ext1)
 				return true;

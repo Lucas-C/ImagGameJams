@@ -1,20 +1,30 @@
 package gameplay 
 {
+	import net.flashpunk.Entity;
 	
 	/**
 	 * ...
 	 * @author ur mom
 	 */
-	public interface NetworkElement 
+	public class NetworkElement extends Entity 
 	{
-		function getNext(direction:Boolean):NetworkElement;
+		public function getNext(direction:Boolean):NetworkElement
+		{
+			return null;
+		}
 		
 		/**
 		 * @param progression between 0 & 1
 		 */
-		function getPos(progression:Number, direction:Boolean):IntPoint;
+		public function getPos(progression:Number, direction:Boolean):IntPoint
+		{
+			return null;
+		}
 
-		function getDir(srcElem:NetworkElement):Boolean;
+		public function getDir(srcElem:NetworkElement):Boolean
+		{
+			return false;
+		}
 	}
 	
 }
