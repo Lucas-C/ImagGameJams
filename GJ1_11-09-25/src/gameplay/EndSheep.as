@@ -23,8 +23,7 @@ package gameplay
 			}
 			var animName:String = "CrazySheep_" + sheepCounter++;
 			endAnim.add(animName, [0,1,2,3,4,5,6,7], 20, true);
-			endAnim.play(animName);	
-			trace("EndSheep");
+			endAnim.play(animName);
 		}
 		
 		public override function update():void

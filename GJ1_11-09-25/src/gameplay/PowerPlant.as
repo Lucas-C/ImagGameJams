@@ -23,7 +23,7 @@ package gameplay
 		public var soundswitch:Sfx = new Sfx(ELECTRICITYSOUND);
 		
 		public var m_anim:Spritemap = new Spritemap(POWERPLANT, 64, 64);
-		private const POWERPLANTLAYER = 4;
+		private const POWERPLANTLAYER:int = 4;
 		
 		private var m_power:int;
 		private var m_power_indicator:Image;
@@ -50,7 +50,7 @@ package gameplay
 			m_anim.add("plop", [0, 1, 2, 3], 5, true);
 			m_anim.play("plop");
 			// Power Gauge
-			var common_abs = m_anim.scaledWidth;
+			var common_abs:int = m_anim.scaledWidth;
 			var red_height:int = (100 - m_max_power) * m_anim.scaledHeight / 100;
 			
 			if (red_height > 0)

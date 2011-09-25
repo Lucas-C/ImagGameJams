@@ -16,6 +16,7 @@ package gameplay
 		private var power_2:PowerPlant;
 		private var power_3:PowerPlant;
 		private var power_4:PowerPlant;
+		private var initialized:Boolean = false;
 		
 		[Embed(source = '../../assets/music.mp3')] private const MUSIC:Class;
 		public var music:Sfx = new Sfx(MUSIC);
@@ -112,31 +113,31 @@ package gameplay
 			var point_33:IntPoint = new IntPoint(abs_3, ord_3);
 			
 			// Powerplants
-			var power_1:PowerPlant = new PowerPlant(SheepColor.RED, 80, 100);
+			power_1 = new PowerPlant(SheepColor.RED, 80, 100);
 			power_1.x = abs_1;
 			power_1.y = ord_1;
 			add(power_1);
 			
-			var power_2:PowerPlant = new PowerPlant(SheepColor.BLUE, 80, 100);
+			power_2 = new PowerPlant(SheepColor.BLUE, 80, 100);
 			power_2.x = abs_1;
 			power_2.y = ord_3;
 			add(power_2);
 			
-			var power_3:PowerPlant = new PowerPlant(SheepColor.YELLOW, 80, 100);
+			power_3 = new PowerPlant(SheepColor.YELLOW, 80, 100);
 			power_3.x = abs_3;
 			power_3.y = ord_1;
 			add(power_3);
 			
-			var power_4:PowerPlant = new PowerPlant(SheepColor.GREEN, 80, 100);
+			power_4 = new PowerPlant(SheepColor.GREEN, 80, 100);
 			power_4.x = abs_3;
 			power_4.y = ord_3;
 			add(power_4);
 			
 			// Farms
-			var farm_1:Farm = new Farm(abs_1, ord_2, 240, 360);
+			var farm_1:Farm = new Farm(abs_1, ord_2, 240, 180);
 			add(farm_1);
 			
-			var farm_2:Farm = new Farm(abs_3, ord_2, 320, 360);
+			var farm_2:Farm = new Farm(abs_3, ord_2, 360, 180);
 			add(farm_2);
 			
 			// Switches
@@ -202,10 +203,18 @@ package gameplay
 			
 			switch_3.addStraightWire(wire_7, SwitchNode.LEFT);
 			switch_3.addStraightWire(wire_8, SwitchNode.RIGHT);
+			
+			initialized = true;
 		}
 		
 		override public function update():void
 		{
+			super.update();
+			if (!initialized)
+			{
+				return;
+			}
+			
 			// Victory test
 			if (power_1.isPowered() && power_2.isPowered() && power_3.isPowered() && power_4.isPowered())
 			{
@@ -214,13 +223,11 @@ package gameplay
 			}
 			
 			// Defeat test
-			if (power_1.hasNoPower() && power_2.hasNoPower() && power_3.hasNoPower() && power_4.hasNoPower())
+			if (power_1.hasNoPower() || power_2.hasNoPower() || power_3.hasNoPower() || power_4.hasNoPower())
 			{
 				var gameover:GameOver = new GameOver;
 				FP.world = gameover;
 			}
-			
-			super.update();
 		}
 	}
 }
