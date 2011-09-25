@@ -16,18 +16,18 @@ package gameplay
 
 		public function init():void
 		{
-			var powerplant_ord:int = 200;
+			var powerplant_ord:int = 150;
 			var farm_abs:int = 200;
-			var switch_ord:int = 120;
+			var switch_ord:int = 100;
 			
-			var farm:Farm = new Farm(farm_abs, 0);
+			var farm:Farm = new Farm(farm_abs, 20);
 			add(farm);
 			
 			var power1:PowerPlant = new PowerPlant(SheepColor.RED, 30, 60);
-			power1.x = 100;
+			power1.x = 60;
 			
 			var power2:PowerPlant = new PowerPlant(SheepColor.BLUE, 40, 80);
-			power2.x = 300;
+			power2.x = power1.x + 200;
 			power1.y = power2.y = powerplant_ord;
 			
 			add(power1);
