@@ -11,7 +11,7 @@ package gameplay
 		public static const GREEN:SheepColor = new SheepColor(2);
 		public static const YELLOW:SheepColor = new SheepColor(3);
 		
-		static const COLORCODES:Array = new Array(0xff0000, 0x0000ff, 0x00ff00, 0xffff00); 
+		private static const COLORCODES:Array = new Array(0xff0000, 0x0000ff, 0x00ff00, 0xffff00); 
 		
 		private var m_index:int;
 		
