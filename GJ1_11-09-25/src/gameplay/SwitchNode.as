@@ -38,7 +38,7 @@ package gameplay
 		private var m_isPushed: Boolean;
 		private var m_id: int;
 		
-		public function SwitchNode(switchx: int = 0, switchy: int  = 0) 
+		public function SwitchNode(switchx: int = 0, switchy: int = 0) 
 		{
 			m_id = nodesNumber;
 			nodesNumber++;

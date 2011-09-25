@@ -73,8 +73,9 @@ package gameplay
 			}
 		}
 		
-		public function receiveSheep(a_sheep:Sheep):void
+		public override function receiveSheep(a_sheep:Sheep):void
 		{
+			trace("receiveSheep");
 			var power:int = m_color_power[a_sheep.getColor().getIndex()][m_color.getIndex()];
 			increasePower(power);
 			soundswitch.play();
@@ -88,6 +89,7 @@ package gameplay
 		public function increasePower(a_power:int):void
 		{
 			m_power += a_power;
+			updateIndicator();
 		}
 		
 		public function getPower():int

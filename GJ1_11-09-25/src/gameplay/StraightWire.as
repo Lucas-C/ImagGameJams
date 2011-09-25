@@ -9,6 +9,8 @@ package gameplay
 	 */
 	public class StraightWire extends NetworkElement
 	{
+		private const STANDARDSTEP = 0.0001;
+		
 		/**
 		 * Ext1 boundary
 		 */
@@ -56,6 +58,11 @@ package gameplay
 			else
 				throw new Error("Non flat StraightWire");
 			this.setHitbox(Math.abs(posExt2.x - posExt1.x), Math.abs(posExt2.y - posExt1.y), x, y);
+		}
+		
+		override public function getProgressionStep():Number 
+		{
+			return STANDARDSTEP * Math.max(Math.abs(posExt1.x - posExt2.x), Math.abs(posExt1.y - posExt2.y));
 		}
 		
 		

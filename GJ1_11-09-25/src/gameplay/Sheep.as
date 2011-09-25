@@ -31,11 +31,14 @@ package gameplay
 		
 		override public function update():void 
 		{
-			m_progression+=STEP;
+			if (m_currentWire != null) {
+				m_progression += m_currentWire.getProgressionStep();
+			}
 			if (m_progression >= 1.0) {
 				if (m_currentWire != null) {
 					var m_precWire:NetworkElement = m_currentWire;
 					m_progression = 0;
+					m_currentWire.receiveSheep(this);
 					m_currentWire = m_currentWire.getNext(m_direction);
 					if (m_currentWire != null) {
 						m_direction = m_currentWire.getDir(m_precWire);
