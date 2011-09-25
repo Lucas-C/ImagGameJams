@@ -97,7 +97,7 @@ package gameplay
 				if (!m_isPushed) {
 					if (Input.mouseX >= this.x - halfWidth
 						&& Input.mouseX <= this.x + halfWidth
-						&& Input.mouseY >= halfHeight
+						&& Input.mouseY >= this.y - halfHeight
 						&& Input.mouseY <= this.y + halfHeight) {
 						m_isPushed = true;
 						turnSwitch();
