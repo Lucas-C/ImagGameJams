@@ -17,8 +17,10 @@ package gameplay
 		private var m_networkElement: NetworkElement;
 		private var m_image:Image;
 		
-		public function Farm() 
+		public function Farm(a_x:int , a_y:int) 
 		{
+			x = a_x;
+			y = a_y;
 			m_image = new Image(FARM);
 			graphic = m_image;
 		}
