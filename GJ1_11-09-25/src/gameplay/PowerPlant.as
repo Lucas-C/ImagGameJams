@@ -9,10 +9,10 @@ package gameplay
 		private var m_power:int;
 		private var m_min_power:int;
 		private var m_max_power:int;
-		private var m_color:int;
+		private var m_color:SheepColor;
 		private static var m_color_scores:Array = null;
 		
-		public function PowerPlant(a_color:Color, a_min_power:int, a_max_power:int) 
+		public function PowerPlant(a_color:SheepColor, a_min_power:int, a_max_power:int) 
 		{
 			m_power = 0;
 			m_min_power = a_min_power;
@@ -29,9 +29,20 @@ package gameplay
 			}
 		}
 		
-		public function recieveSheep(a_sheep:Sheep)
+		public function recieveSheep(a_sheep:Sheep):void
 		{
-			increasePower(a_sheep.getColor().getIndex);
+			var score:int = m_color_scores[a_sheep.getColor().getIndex()][m_color.getIndex()];
+			increasePower(score);
+		}
+		
+		public function increasePower(a_score:int):void
+		{
+			m_power += a_score;
+		}
+		
+		public function getPower():int
+		{
+			return m_power;
 		}
 	}
 

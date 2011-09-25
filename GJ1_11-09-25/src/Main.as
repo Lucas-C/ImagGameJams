@@ -1,6 +1,9 @@
 package 
 {
 	import gameplay.LevelData;
+	import gameplay.PowerPlant;
+	import gameplay.Sheep;
+	import gameplay.SheepColor;
 	import net.flashpunk.Engine;
 	import net.flashpunk.FP;
 	
