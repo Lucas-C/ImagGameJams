@@ -23,7 +23,7 @@ package gameplay
 		public var soundswitch:Sfx = new Sfx(ELECTRICITYSOUND);
 		
 		public var m_anim:Spritemap = new Spritemap(POWERPLANT, 64, 64);
-		private const POWERPLANTLAYER = 6;
+		private const POWERPLANTLAYER = 4;
 		
 		private var m_power:int;
 		private var m_power_indicator:Image;
@@ -91,6 +91,7 @@ package gameplay
 				var yellow:Array = new Array(10, -10, -20, 20);
 				m_color_power = new Array(red, blue, green, yellow);
 			}
+			setHitbox(m_anim.width, m_anim.height, x, y);
 		}
 		
 		public override function receiveSheep(a_sheep:Sheep):void
