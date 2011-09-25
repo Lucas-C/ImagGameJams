@@ -14,7 +14,7 @@ package gameplay
 	import net.flashpunk.Sfx;
 	import net.flashpunk.utils.Key;
 	
-	public class SwitchNode extends Entity implements NetworkElement 
+	public class SwitchNode extends NetworkElement 
 	{
 		public static const UP:int = 0;
 		public static const LEFT:int = 1;
