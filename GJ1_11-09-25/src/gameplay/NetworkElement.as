@@ -38,7 +38,7 @@ package gameplay
 		
 		override public function render():void 
 		{
-			x -= width / 2;
+			x -= halfWidth;
 			y -= halfHeight;
 			super.render();
 			x += halfWidth;
