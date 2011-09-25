@@ -31,7 +31,9 @@ package gameplay
 		
 		override public function update():void 
 		{
-			m_progression+=STEP;
+			if (m_currentWire != null) {
+				m_progression += m_currentWire.getProgressionStep();
+			}
 			if (m_progression >= 1.0) {
 				
 				if (m_currentWire != null) {
