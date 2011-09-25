@@ -17,7 +17,6 @@ package gameplay
 
 		public function init():void
 		{
-<<<<<<< HEAD
 			add(new StraightWire(new IntPoint(100,100), new IntPoint(100,200)));
 
 			//var pp:PowerPlant = new PowerPlant(SheepColor.RED, 40, 50);
@@ -25,9 +24,6 @@ package gameplay
 			//trace(pp.getPower());
 			//pp.recieveSheep(sh);
 			//trace(pp.getPower());
-			add (new SwitchNode);
-=======
-			var wire:StraightWire = new StraightWire(0, 0, 0, 1);
 			
 			pp.x = 300;
 			pp.y = 100;
@@ -44,7 +40,6 @@ package gameplay
 		override public function update():void
 		{
 			super.update();
->>>>>>> 8e64851cd372d114cb034c6ba6713b51971203e5
 		}
 	}
 }
