@@ -9,6 +9,7 @@ package gameplay
 	import net.flashpunk.Entity;
 	import net.flashpunk.graphics.Image;
 	import net.flashpunk.utils.Input;
+	import net.flashpunk.Sfx;
 	import net.flashpunk.utils.Key;
 	
 	public class SwitchNode extends Entity implements NetworkElement 
@@ -24,6 +25,9 @@ package gameplay
 		[Embed(source = '../../assets/switchright.png')] private const PICRIGHT:Class;
 		[Embed(source = '../../assets/switchup.png')] private const PICUP:Class;
 		[Embed(source = '../../assets/switchdown.png')] private const PICDOWN:Class;
+		
+		[Embed(source = '../../assets/turnswitch.mp3')] private const SOUNDSWITCH:Class;
+		public var soundswitch:Sfx = new Sfx(SOUNDSWITCH);
 		
 		private var m_picLeft : Image;
 		private var m_picRight : Image;
@@ -41,36 +45,44 @@ package gameplay
 			m_pictures[LEFT] = new Image(PICLEFT);
 			m_pictures[DOWN] = new Image(PICDOWN);
 			m_pictures[RIGHT] = new Image(PICRIGHT);
-			
-			graphic = m_pictures[UP];
+			x = 100;
+			y = 100;
+			setDirection(UP);
 		}
 		
 		public function turnSwitch(): void 
 		{
-			setDirection((m_direction + 1) % DIRECTIONS_NUMBER);
+			setDirection((getDirection() + 1) % DIRECTIONS_NUMBER);
+			soundswitch.play();
 		}
 		
 		public function setDirection(direction: int): void
 		{
 			m_direction = direction;
 			graphic = m_pictures[direction];
+			setHitbox(m_pictures[direction].width, m_pictures[direction].height, x, y);
 		}
 		
 		override public function update():void
 		{
 			if (Input.mouseDown) {
 				if (!m_isPushed) {
-					m_isPushed = true;
-					turnSwitch();
+					if (Input.mouseX >= this.x 
+						&& Input.mouseX <= this.x + this.width
+						&& Input.mouseY >= this.y
+						&& Input.mouseY <= this.y + this.height) {
+						m_isPushed = true;
+						turnSwitch();
+					}
 				}
 			}
-			
 			if (Input.mouseUp) {
 				m_isPushed = false;
 			}
-			
 		}
 		
+		public function getDirection(): int {
+			return m_direction;
+		}
 	}
-
 }
