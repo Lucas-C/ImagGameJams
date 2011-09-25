@@ -8,12 +8,10 @@ package
 	 */
 	public class MyWorld extends World
 	{
-		
 		public function MyWorld() 
 		{
 			add (new SwitchNode);
-		}
-		
+		}	
 	}
 
 }
