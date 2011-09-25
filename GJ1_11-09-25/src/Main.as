@@ -9,7 +9,7 @@ package
 		{
 			trace("Hello World!");
 			super(800, 500, 60, false);
-			FP.world = new MyWorld;
+			FP.world = new MyWorld;	
 		}	
 	}
 	
