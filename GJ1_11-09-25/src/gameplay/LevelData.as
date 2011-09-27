@@ -3,6 +3,8 @@ package gameplay
 	import net.flashpunk.World;
 	import net.flashpunk.Sfx;
 	import net.flashpunk.FP;
+	import screens.GameOver;
+	import screens.Victory;
 
 	/**
 	 * @author Lucas Cimon
@@ -22,11 +24,6 @@ package gameplay
 		public var music:Sfx = new Sfx(MUSIC);
 		
 		public function LevelData() 
-		{
-			
-		}
-
-		public function init():void
 		{
 			level_2();
 			music.loop();
