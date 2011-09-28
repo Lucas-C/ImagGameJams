@@ -12,7 +12,6 @@ package screens
 		public var m_previous:MenuItem;
 		public var m_next:MenuItem;
 		public var m_returnCode:int;
-		public var m_observer:MenuObserver;
 		
 		private var m_isSelected:Boolean = false;
 		

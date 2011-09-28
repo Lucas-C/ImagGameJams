@@ -15,7 +15,7 @@ package screens
 	 * ...
 	 * @author Kak0
 	 */
-	public class StartMenu extends World implements MenuObserver
+	public class StartMenu extends World
 	{
 		[Embed(source = '../../assets/menu_pointer.png')] private const POINTER:Class;
 		private var m_pointer:Entity;
@@ -41,20 +41,17 @@ package screens
 			var common_abs:int = difficulty.x + difficulty.textWidth / 4;
 			easy.x = common_abs;
 			easy.y = difficulty.y + difficulty.textHeight + 20;
-			easy.m_observer = this;
 			easy.select();
 			add(easy);
 			
 			var normal:MenuItem = new MenuItem("Normal", 30, 0x00EE00);
 			normal.x = common_abs;
 			normal.y = easy.y + easy.textHeight;
-			normal.m_observer = this;
 			add(normal);
 			
 			var hard:MenuItem = new MenuItem("Hard", 30, 0xEE0000);
 			hard.x = common_abs;
 			hard.y = normal.y + normal.textHeight;
-			hard.m_observer = this;
 			add(hard);
 			
 			// Linking menu items
@@ -100,15 +97,8 @@ package screens
 			}
 			else if (Input.check(Key.ENTER))
 			{
-				onMenuValidation(m_selectedItem.m_returnCode);
+				FP.world = new LevelData();
 			}
-		}
-		
-		/* INTERFACE screens.MenuObserver */
-		
-		public function onMenuValidation(returnCode:int):void 
-		{
-			FP.world = new LevelData();
 		}
 	}
 
