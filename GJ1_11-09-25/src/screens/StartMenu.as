@@ -18,8 +18,13 @@ package screens
 	public class StartMenu extends World
 	{
 		[Embed(source = '../../assets/menu_pointer.png')] private const POINTER:Class;
+		private var easy:MenuItem;
+		private var normal:MenuItem;
+		private var hard:MenuItem;
+		
 		private var m_pointer:Entity;
 		private var m_selectedItem:MenuItem;
+		
 		private var m_keyUpdateCooldown:int;
 		
 		public function StartMenu() 
@@ -37,19 +42,19 @@ package screens
 			add(difficulty);
 			
 			// Options
-			var easy:MenuItem = new MenuItem("Easy", 30, 0x0000EE);
+			easy = new MenuItem("Easy", 30, 0x0000EE);
 			var common_abs:int = difficulty.x + difficulty.textWidth / 4;
 			easy.x = common_abs;
 			easy.y = difficulty.y + difficulty.textHeight + 20;
-			easy.select();
+			easy.setSelected(true);
 			add(easy);
 			
-			var normal:MenuItem = new MenuItem("Normal", 30, 0x00EE00);
+			normal = new MenuItem("Normal", 30, 0x00EE00);
 			normal.x = common_abs;
 			normal.y = easy.y + easy.textHeight;
 			add(normal);
 			
-			var hard:MenuItem = new MenuItem("Hard", 30, 0xEE0000);
+			hard = new MenuItem("Hard", 30, 0xEE0000);
 			hard.x = common_abs;
 			hard.y = normal.y + normal.textHeight;
 			add(hard);
@@ -73,9 +78,45 @@ package screens
 			m_pointer.y = easy.y + (m_selectedItem.textHeight - 16)/ 2;
 		}
 		
+		private function updatePointer():void
+		{
+			m_pointer.y = m_selectedItem.y + (m_selectedItem.textHeight - 16)/ 2;
+		}
+		
+		private function selectItem(a_item:MenuItem)
+		{
+			m_selectedItem.setSelected(false);
+			m_selectedItem = a_item;
+			m_selectedItem.setSelected(true);
+			updatePointer();
+		}
+		
+		private function choiceValidated():void
+		{
+			FP.world = new LevelData();
+		}
+		
 		override public function update():void 
 		{
 			super.update();
+			
+			if (easy.isPointOnItem(Input.mouseX, Input.mouseY))
+			{
+				selectItem(easy);
+			}
+			else if (normal.isPointOnItem(Input.mouseX, Input.mouseY))
+			{
+				selectItem(normal);
+			}
+			else if (hard.isPointOnItem(Input.mouseX, Input.mouseY))
+			{
+				selectItem(hard);
+			}
+			
+			if (Input.mousePressed)
+			{
+				choiceValidated();
+			}
 			
 			if (m_keyUpdateCooldown > 0)
 			{
@@ -86,19 +127,23 @@ package screens
 			if (Input.check(Key.DOWN))
 			{
 				m_selectedItem = m_selectedItem.selectNext();
-				m_pointer.y = m_selectedItem.y + (m_selectedItem.textHeight - 16)/ 2;
 				m_keyUpdateCooldown = 10;
 			}
 			else if (Input.check(Key.UP))
 			{
 				m_selectedItem = m_selectedItem.selectPrevious();
-				m_pointer.y = m_selectedItem.y + (m_selectedItem.textHeight - 16)/ 2;
 				m_keyUpdateCooldown = 10;
 			}
 			else if (Input.check(Key.ENTER))
 			{
-				FP.world = new LevelData();
+				choiceValidated();
 			}
+			else
+			{
+				return;
+			}
+			
+			updatePointer();
 		}
 	}
 

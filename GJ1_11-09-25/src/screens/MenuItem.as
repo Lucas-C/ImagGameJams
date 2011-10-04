@@ -20,9 +20,9 @@ package screens
 			super(a_text, a_size, a_color, a_x, a_y);
 		}
 		
-		public function select():void
+		public function setSelected(a_selected:Boolean):void
 		{
-			m_isSelected = true;
+			m_isSelected = a_selected;
 		}
 		
 		public function selectNext():MenuItem
@@ -30,7 +30,7 @@ package screens
 			if (m_next != null)
 			{
 				m_isSelected = false;
-				m_next.select();
+				m_next.setSelected(true);
 			}
 			
 			return m_next;
@@ -41,10 +41,20 @@ package screens
 			if (m_previous != null)
 			{
 				m_isSelected = false;
-				m_previous.select();
+				m_previous.setSelected(true);
 			}
 			
 			return m_previous;
+		}
+		
+		public function isPointOnItem(a_x:int, a_y:int):Boolean
+		{
+			return (
+					a_x >= x 
+					&& a_x <= (x + textWidth) 
+					&& a_y >= y 
+					&& a_y <= (y + textHeight)
+					);
 		}
 	}
 }
