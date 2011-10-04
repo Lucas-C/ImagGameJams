@@ -46,7 +46,7 @@ package screens
 			var common_abs:int = difficulty.x + difficulty.textWidth / 4;
 			easy.x = common_abs;
 			easy.y = difficulty.y + difficulty.textHeight + 20;
-			easy.setSelected(true);
+			easy.isSelected = true;
 			add(easy);
 			
 			normal = new MenuItem("Normal", 30, 0x00EE00);
@@ -60,14 +60,14 @@ package screens
 			add(hard);
 			
 			// Linking menu items
-			easy.m_previous = hard;
-			easy.m_next = normal;
+			easy.previous = hard;
+			easy.next = normal;
 			
-			normal.m_previous = easy;
-			normal.m_next = hard;
+			normal.previous = easy;
+			normal.next = hard;
 			
-			hard.m_previous = normal;
-			hard.m_next = easy;
+			hard.previous = normal;
+			hard.next = easy;
 			
 			// Pointer
 			m_selectedItem = easy;
@@ -85,9 +85,9 @@ package screens
 		
 		private function selectItem(a_item:MenuItem)
 		{
-			m_selectedItem.setSelected(false);
+			m_selectedItem.isSelected = false;
 			m_selectedItem = a_item;
-			m_selectedItem.setSelected(true);
+			m_selectedItem.isSelected = true;
 			updatePointer();
 		}
 		
@@ -102,20 +102,27 @@ package screens
 			
 			if (easy.isPointOnItem(Input.mouseX, Input.mouseY))
 			{
-				selectItem(easy);
+				selectItem(easy);				
+				if (Input.mousePressed)
+				{
+					choiceValidated();
+				}
 			}
 			else if (normal.isPointOnItem(Input.mouseX, Input.mouseY))
 			{
-				selectItem(normal);
+				selectItem(normal);				
+				if (Input.mousePressed)
+				{
+					choiceValidated();
+				}
 			}
 			else if (hard.isPointOnItem(Input.mouseX, Input.mouseY))
 			{
-				selectItem(hard);
-			}
-			
-			if (Input.mousePressed)
-			{
-				choiceValidated();
+				selectItem(hard);				
+				if (Input.mousePressed)
+				{
+					choiceValidated();
+				}
 			}
 			
 			if (m_keyUpdateCooldown > 0)
