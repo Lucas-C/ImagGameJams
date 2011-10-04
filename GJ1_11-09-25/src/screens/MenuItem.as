@@ -98,7 +98,7 @@ package screens
 			return (
 					a_x >= x 
 					&& a_x <= (x + textWidth) 
-					&& a_y >= y 
+					&& a_y >= y
 					&& a_y <= (y + textHeight)
 					);
 		}

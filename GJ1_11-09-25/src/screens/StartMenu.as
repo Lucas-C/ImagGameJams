@@ -1,5 +1,6 @@
 package screens 
 {
+	import flash.geom.Point;
 	import flash.text.Font;
 	import flash.text.TextField;
 	import gameplay.Farm;
@@ -18,13 +19,12 @@ package screens
 	public class StartMenu extends World
 	{
 		[Embed(source = '../../assets/menu_pointer.png')] private const POINTER:Class;
-		private var easy:MenuItem;
-		private var normal:MenuItem;
-		private var hard:MenuItem;
+		private var m_items:Array;
 		
 		private var m_pointer:Entity;
 		private var m_selectedItem:MenuItem;
 		
+		private var m_lastMouseCoordinates:Point;
 		private var m_keyUpdateCooldown:int;
 		
 		public function StartMenu() 
@@ -42,19 +42,19 @@ package screens
 			add(difficulty);
 			
 			// Options
-			easy = new MenuItem("Easy", 30, 0x0000EE);
+			var easy:MenuItem = new MenuItem("Easy", 30, 0x0000EE);
 			var common_abs:int = difficulty.x + difficulty.textWidth / 4;
 			easy.x = common_abs;
 			easy.y = difficulty.y + difficulty.textHeight + 20;
 			easy.isSelected = true;
 			add(easy);
 			
-			normal = new MenuItem("Normal", 30, 0x00EE00);
+			var normal:MenuItem = new MenuItem("Normal", 30, 0x00EE00);
 			normal.x = common_abs;
 			normal.y = easy.y + easy.textHeight;
 			add(normal);
 			
-			hard = new MenuItem("Hard", 30, 0xEE0000);
+			var hard:MenuItem = new MenuItem("Hard", 30, 0xEE0000);
 			hard.x = common_abs;
 			hard.y = normal.y + normal.textHeight;
 			add(hard);
@@ -69,13 +69,19 @@ package screens
 			hard.previous = normal;
 			hard.next = easy;
 			
+			// Put all items into an array
+			m_items = new Array(easy, normal, hard);
+			
 			// Pointer
 			m_selectedItem = easy;
 			m_pointer = new Entity();
 			m_pointer.addGraphic(new Spritemap(POINTER, 16, 16));
 			add(m_pointer);
 			m_pointer.x = common_abs - 20;
-			m_pointer.y = easy.y + (m_selectedItem.textHeight - 16)/ 2;
+			m_pointer.y = easy.y + (m_selectedItem.textHeight - 16) / 2;
+			
+			// Other inits
+			m_lastMouseCoordinates = new Point();
 		}
 		
 		private function updatePointer():void
@@ -91,6 +97,20 @@ package screens
 			updatePointer();
 		}
 		
+		private function selectItemUnderMouse():Boolean
+		{
+			for each(var item:MenuItem in m_items)
+			{
+				if (item.isPointOnItem(Input.mouseX, Input.mouseY))
+				{
+					selectItem(item);
+					return true;
+				}
+			}
+			
+			return false;
+		}
+		
 		private function choiceValidated():void
 		{
 			FP.world = new LevelData();
@@ -100,37 +120,37 @@ package screens
 		{
 			super.update();
 			
-			if (easy.isPointOnItem(Input.mouseX, Input.mouseY))
+			// Managing mouse
+			
+			// If the user clicks on an item, we select it and validate the choice
+			if (Input.mousePressed && selectItemUnderMouse())
 			{
-				selectItem(easy);				
-				if (Input.mousePressed)
-				{
-					choiceValidated();
-				}
-			}
-			else if (normal.isPointOnItem(Input.mouseX, Input.mouseY))
-			{
-				selectItem(normal);				
-				if (Input.mousePressed)
-				{
-					choiceValidated();
-				}
-			}
-			else if (hard.isPointOnItem(Input.mouseX, Input.mouseY))
-			{
-				selectItem(hard);				
-				if (Input.mousePressed)
-				{
-					choiceValidated();
-				}
+				choiceValidated();
+				return;
 			}
 			
+			// Else, if the mouse moved, we select the item under the mouse
+			if (m_lastMouseCoordinates.x != Input.mouseX
+				|| m_lastMouseCoordinates.y != Input.mouseY)
+			{
+				selectItemUnderMouse();
+				m_lastMouseCoordinates.x = Input.mouseX;
+				m_lastMouseCoordinates.y = Input.mouseY;
+				return;
+			}
+			
+			// Managing keyboard
+			// Note that we only look at the keyboard events if the mouse stays still
+			
+			// Wait for the cooldown to finish
 			if (m_keyUpdateCooldown > 0)
 			{
 				m_keyUpdateCooldown--;
 				return;
 			}
 			
+			// If an arrow is pressed, we select the appropriate item
+			// If the ENTER key is pressed, we validate the choice
 			if (Input.check(Key.DOWN))
 			{
 				m_selectedItem = m_selectedItem.selectNext();
@@ -145,11 +165,12 @@ package screens
 			{
 				choiceValidated();
 			}
-			else
+			else // No interesting event, the pointer doesn't need to move
 			{
 				return;
 			}
 			
+			// Moves the pointer to its new position
 			updatePointer();
 		}
 	}
