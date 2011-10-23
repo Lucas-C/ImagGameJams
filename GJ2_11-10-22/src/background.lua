@@ -3,7 +3,7 @@ background.bleachers = {}
 background.track = {}
 background.track.pos_first = 180
 background.track.height = 70
-background.track.posX = {}
+background.track.offsetX = {}
 
 function background.loadElement(e, filename)
 	e.sprite = love.graphics.newImage(filename)
@@ -16,7 +16,7 @@ function background.load()
 	background.loadElement(background.bleachers, "assets/bleachers.png")
 	background.loadElement(background.track, "assets/track_empty.png")
 	for i = 0,6 do
-		background.track.posX[i] = math.random(800)
+		background.track.offsetX[i] = math.random(800)
 	end
 end
 
@@ -32,5 +32,5 @@ function background.draw()
 end
 
 function background.drawTrack(i)
-	background.drawElementHoriz(background.track, background.track.posX[i], background.track.pos_first + i * background.track.height)
+	background.drawElementHoriz(background.track, background.track.offsetX[i], background.track.pos_first + i * background.track.height)
 end
