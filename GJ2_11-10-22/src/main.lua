@@ -21,4 +21,14 @@ function love.update(dt)
   camera.x = camera.x + speedCamera * dt
 end
 
-
+function love.keypress(key)
+   if key == "up" then
+      player.line = player.line + 1
+   elseif key == "down" then
+      player.line = player.line - 1
+   elseif key == "left" then
+      player.speed = 10
+   elseif key == "right" then
+      player.speed = 20
+   end
+end
