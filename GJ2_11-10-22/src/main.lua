@@ -7,6 +7,8 @@ require("aff_obs")
 
 music = love.audio.newSource("assets/sounds/music.wav")
 
+pause = false;
+
 camera.x = 0
 camera.y = 0
 speedCamera = 200
@@ -24,27 +26,30 @@ function love.load()
 end
 
 function love.draw()
-  camera:set()
-  background.draw()
-  player.draw()
-  obstaclesEntreMinEtMax={}
-  for i = 0,5 do
-	background.drawTrack(i)
-	obstaclesEntreMinEtMax[i+1]=obstacles_entre_min_et_max_ligne_i(level,math.floor(camera.x/70),math.floor((camera.x)/70+1000/70),i+1)
-	affiche_obstacles_ligne(obstaclesEntreMinEtMax[i+1],i+1)
-	if (player.line == i) then
-		player.draw()
-	end
-  end
---   love.graphics.draw(test_sprite, 800, 240)
-  camera:unset()
-  hud:draw()
+   camera:set()
+   background.draw()
+   player.draw()
+   obstaclesEntreMinEtMax={}
+   for i = 0,5 do
+      background.drawTrack(i)
+      obstaclesEntreMinEtMax[i+1]=obstacles_entre_min_et_max_ligne_i(level,math.floor(camera.x/70),math.floor((camera.x)/70+1000/70),i+1)
+	  affiche_obstacles_ligne(obstaclesEntreMinEtMax[i+1],i+1)
+      if (player.line == i) then
+	      player.draw()
+      end
+   end
+
+   --   love.graphics.draw(test_sprite, 800, 240)
+   camera:unset()
+   hud:draw()
 end
 
 function love.update(dt)
-  camera.x = camera.x + speedCamera * dt
-  player:update(dt)
-  update_obstacles(obstaclesEntreMinEtMax,dt)
+   if not pause then
+      camera.x = camera.x + speedCamera * dt
+      player:update(dt)
+	  update_obstacles(obstaclesEntreMinEtMax,dt)
+   end
 end
 
 function love.keypressed(key)
@@ -59,8 +64,18 @@ function love.keypressed(key)
    elseif key == "right" then
       player:setSpeed("max")
    end
+   	
+   if key == "p" and not pause then
+      pause = true;
+   elseif key == "p" and pause then
+      pause = false;
+   end
+   
+   if key == "escape" then
+      love.event.push('q')
+   end
 
-   if key == " " and player.jumping == false and (love.timer.getMicroTime() - player.jumpTime) > 1 then
+   if key == " " and player.jumping == false and (love.timer.getMicroTime() - player.jumpTime) > 0.8 then
       player:startJumping()
    end
 end
