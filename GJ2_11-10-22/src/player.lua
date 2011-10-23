@@ -38,28 +38,29 @@ end
 
 function player:update(dt)
    updateAnimation(player.animation, dt)
+   if not player.dead then 
+	   -- jump management
+	   if (love.timer.getMicroTime() - player.jumpTime) > 0.4 and player.jumping then
+		  player:stopJumping()
+	   end
 
-   -- jump management
-   if (love.timer.getMicroTime() - player.jumpTime) > 0.4 and player.jumping then
-      player:stopJumping()
-   end
+	   player.y = 90 + player.line * 70
 
-   player.y = 90 + player.line * 70
+	   if player.jumping then
+		   player.y = player.y - 40
+		   setAnimationState(player.animation, "jump")
+	   end
 
-   if player.jumping then
-	   player.y = player.y - 40
-	   setAnimationState(player.animation, "jump")
-   end
+		player.x = player.speed * dt + player.x
 
-	player.x = player.speed * dt + player.x
-
-   if (player.x - camera.x) <= 0 then
-      player.x = camera.x
-      player.getSpeed("normal")
-   elseif (player.x - camera.x) >= (800 - getAnimWidth(player.animation)) then
-      player.x = camera.x + 800 - getAnimWidth(player.animation)
-      player.getSpeed("normal")
-   end
+	   if (player.x - camera.x) <= 0 then
+		  player.x = camera.x
+		  player.getSpeed("normal")
+	   elseif (player.x - camera.x) >= (800 - getAnimWidth(player.animation)) then
+		  player.x = camera.x + 800 - getAnimWidth(player.animation)
+		  player.getSpeed("normal")
+	   end
+	end
 end
 
 function player:draw()
