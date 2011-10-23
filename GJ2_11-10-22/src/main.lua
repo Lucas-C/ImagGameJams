@@ -20,8 +20,6 @@ for i =1,6 do
 obstaclesEntreMinEtMax[i]=nil
 end
 
-N_LINE = 6
-
 function love.load()
 -- 	test_sprite = love.graphics.newImage("assets/sand.png")
 	player.load()
@@ -106,7 +104,7 @@ function love.keypressed(key)
 	end
    if key == "up" and player.getLine() > 0 then
       player:setLine("up")
-   elseif key == "down" and player.getLine() < N_LINE - 1 then
+   elseif key == "down" and player.getLine() < ln - 1 then
       player:setLine("down")
    end
 
