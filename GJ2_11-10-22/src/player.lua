@@ -8,9 +8,20 @@ player.y = 50
 player.line = 0
 player.speed = PLAYER_NORMAL_SPEED
 player.sprite = nil
+player.jumping = false
+player.jumpTime = 0
 
 function player:update(dt)
-	player.y = 100 + player.line * 50
+   if (love.timer.getMicroTime() - player.jumpTime) > 0.3 then
+      player.jumping = false
+   end
+
+   if player.jumping then
+	   player.y = 100 + player.line * 50 - 50
+	else
+	   player.y = 100 + player.line * 50
+	end
+	
 	player.x = player.speed * dt + player.x
 	
    if (player.x - camera.x) <= 0 then
