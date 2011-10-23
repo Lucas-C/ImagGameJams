@@ -9,12 +9,14 @@ function obstacles_entre_min_et_max_ligne_i(level,min,max,i)
 	if level[i] ~= nil then
 		return getObstacles(level[i],min,max)
 	else
+		print("Aie")
 		return nil
+		
 	end
 end
 	
 function affiche_obstacles_ligne(obstacles,lineNumber)
-	local i=0
+	local i=1
 	while obstacles[i] ~= nil do
 		affiche_obstacle(obstacles[i],lineNumber)
 		i=i+1
