@@ -17,6 +17,7 @@ player.jumpSound = love.audio.newSource("assets/sounds/jump.wav")
 player.numCrosses = 0
 player.numSprings = 0
 player.numBaskets = 0
+player.dead = false
 
 function player:load()
 	player.animation = createAnimation()
@@ -113,4 +114,9 @@ end
 function player:stopJumping()
    player.jumping = false
    setAnimationState(player.animation, "normal")
+end
+
+function player:kill(animation)
+	player.dead = true
+	player.animation = animation
 end
