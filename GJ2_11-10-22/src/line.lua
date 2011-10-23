@@ -3,7 +3,7 @@
 
 -- Renvoie les obstacles entre min et max.
 function line:getObstacles(min, max)
-	local index = 0
+	local index = 1
 	local obstacles = {}
 	for i = min, max do
 		if line.i ~= nil then
