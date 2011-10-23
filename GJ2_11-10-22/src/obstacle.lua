@@ -35,7 +35,6 @@ function getNewObstacle(oType, position)
 		obstacle.image = love.graphics.newImage("assets/doinkdoink.png")
 	elseif obstacle.oType == "p" then
 		obstacle.anim = true
-		obstacle.objet = true
 		obstacle.yOffset = 0
 		obstacle.animation = createAnimation()
 		addPictureInAnimation(obstacle.animation, love.graphics.newImage("assets/punching_ball/pb0001.png"), "normal")
