@@ -9,12 +9,10 @@ function obstacles_entre_min_et_max_ligne_i(level,min,max,i)
 	if level[i] ~= nil then
 		return getObstacles(level[i],min,max)
 	else
-		print("Aie")
 		return nil
-		
 	end
 end
-	
+
 function affiche_obstacles_ligne(obstacles,lineNumber)
 	local i=1
 	while obstacles[i] ~= nil do
@@ -30,15 +28,15 @@ function update_obstacles(obstacles,dt)
 		updateAnimation(obstacle.animation,dt)
 		end
 	end
-	
-	
+
+
 end
 
 function affiche_obstacle(obstacle,lineNumber)
 	if obstacle.anim then
-	drawAnimation(obstacle.animation, obstacle.position*70, 80+(lineNumber)*70)
+		drawAnimation(obstacle.animation, obstacle.position * 70 + 35 - obstacle.image:getWidth() / 2, obstacle.yOffset + (lineNumber + 1) * 70)
 	else
-	love.graphics.draw(obstacle.image, obstacle.position*70,80+(lineNumber)*70)
+		love.graphics.draw(obstacle.image, obstacle.position * 70 + 35 - obstacle.image:getWidth() / 2, obstacle.yOffset + (lineNumber + 1) * 70)
 	end
 end
-	
+
