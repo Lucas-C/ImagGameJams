@@ -25,6 +25,7 @@ function player:load()
 	addPictureInAnimation(player.animation, love.graphics.newImage("assets/seriousjoe/seriousjoe3.png"), "normal")
 	addPictureInAnimation(player.animation, love.graphics.newImage("assets/seriousjoe/seriousjoe2.png"), "normal")
 	addPictureInAnimation(player.animation, love.graphics.newImage("assets/seriousjoe/seriousjoe1.png"), "jump")
+	addPictureInAnimation(player.animation, love.graphics.newImage("assets/seriousjoe/seriousjoe2.png"), "still")
 	
 	setAnimationState(player.animation, "normal")
 end
@@ -33,11 +34,11 @@ function player:update(dt)
    updateAnimation(player.animation, dt)
    
    -- jump management
-   if (love.timer.getMicroTime() - player.jumpTime) > 0.3 then
+   if (love.timer.getMicroTime() - player.jumpTime) > 0.3 and player.jumping then
       player:stopJumping()
    end
 
-   player.y = 100 + player.line * 70
+   player.y = 110 + player.line * 70
    
    if player.jumping then
 	   player.y = player.y - 40
@@ -63,10 +64,13 @@ function player:setSpeed(sType)
 
    if sType == "normal" then
       player.speed = PLAYER_NORMAL_SPEED
+      setAnimationState(player.animation, "normal")
    elseif sType == "max" then
       player.speed = PLAYER_MAX_SPEED
+      setAnimationState(player.animation, "normal")
    elseif sType == "min" then
       player.speed = PLAYER_MIN_SPEED
+      setAnimationState(player.animation, "still")
    end
    
    player.animation.frequency = player.speed / 50
