@@ -4,12 +4,10 @@ require("line")
 
 
 
-function affiche_obstacles(level,min,max)
-	local i=1
+function affiche_obstacles(level,min,max,i)
 	if level==nil then print("Je suis nul.") end
-	while level[i] ~= nil do
+	if level[i] ~= nil then
 		affiche_obstacles_line(level[i],min,max,i)
-		i=i+1
 	end
 	
 	
@@ -33,6 +31,6 @@ function affiche_obstacle(obstacle,lineNumber)
 		obstacle.sprite =
 	end
 --]]
-	love.graphics.draw(love.graphics.newImage("assets/seriousjoe/seriousjoe2.png"), obstacle.position*72,50+(lineNumber)*72)
+	love.graphics.draw(love.graphics.newImage("assets/hurdle.png"), obstacle.position*70,80+(lineNumber)*70)
 end
 	
