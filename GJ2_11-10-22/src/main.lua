@@ -30,18 +30,25 @@ function love.load()
 	love.audio.play(music)
 end
 
-function love.draw()
-	if (player.dead) then 
-		camera:set()
-		player.draw()
-		camera:unset()
-		return
-	end
+function love.deathDraw()
+	camera:set()
+	player.draw()
+	camera:unset()
+end
+
+function love.pauseDraw()
+	love.graphics.setColor(0, 0, 0, 150)
+   love.graphics.rectangle("fill", 0, 0, 800, 600)
    love.graphics.setColor(255, 255, 255, 255)
+   love.graphics.setFont(love.graphics.newFont(30))
+   love.graphics.print("Pause", 360, 270)
+end
+
+function love.mainDraw()
+	love.graphics.setColor(255, 255, 255, 255)
    camera:set()
    background.draw()
    hud.draw()
-   player.draw()
    for i = 0,5 do
       background.drawTrack(i)
       obstaclesEntreMinEtMax[i+1]=obstacles_entre_min_et_max_ligne_i(level,obstaclesEntreMinEtMax[i+1],math.floor(math.max(camera.x - 300, 0) / 70), math.floor((camera.x + 1000) / 70),i+1)
@@ -52,34 +59,42 @@ function love.draw()
       if (player.line == i) then
 	      player.draw()
       end
-
    end
+	camera:unset()
+end
 
-   --   love.graphics.draw(test_sprite, 800, 240)
-   camera:unset()
-   --hud:draw()
-   
-   if pause then
-      love.graphics.setColor(0, 0, 0, 150)
-      love.graphics.rectangle("fill", 0, 0, 800, 600)
-      love.graphics.setColor(255, 255, 255, 255)
-      love.graphics.setFont(love.graphics.newFont(30))
-      love.graphics.print("Pause", 360, 270)
-   end
+function love.draw()
+	if (player.dead) then 
+		love.deathDraw()
+		-- need to die after a while
+	elseif pause then
+		love.mainDraw()
+		love.pauseDraw()
+	else
+		love.mainDraw()
+	end
+end
+
+function love.deathUpdate(dt)
+	updateAnimation(player.animation, dt)
+	love.audio.stop(music)
+end
+
+function love.mainUpdate(dt)
+	if level[player.line+1] ~= nil then
+		checkCollisions(level[player.line+1],math.floor(camera.x/70),math.floor((camera.x)/70+800/70),player,obstaclesEntreMinEtMax[player.line+1])
+	end
+
+	camera.x = camera.x + speedCamera * dt
+	player:update(dt)
+	update_obstacles(obstaclesEntreMinEtMax,dt)
 end
 
 function love.update(dt)
 	if player.dead then
-		love.audio.stop(music)
-		updateAnimation(player.animation, dt)
+		love.deathUpdate(dt)
 	elseif not pause then
-		if level[player.line+1] ~= nil then
-			checkCollisions(level[player.line+1],math.floor(camera.x/70),math.floor((camera.x)/70+800/70),player,obstaclesEntreMinEtMax[player.line+1])
-		end
-
-		camera.x = camera.x + speedCamera * dt
-		player:update(dt)
-		update_obstacles(obstaclesEntreMinEtMax,dt)
+		love.mainUpdate(dt)
    end
 end
 
