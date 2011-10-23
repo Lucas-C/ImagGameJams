@@ -26,6 +26,7 @@ function love.load()
 end
 
 function love.draw()
+   love.graphics.setColor(255, 255, 255, 255)
    camera:set()
    background.draw()
    player.draw()
@@ -45,13 +46,27 @@ function love.draw()
    --   love.graphics.draw(test_sprite, 800, 240)
    camera:unset()
    hud:draw()
+   
+   if pause then
+      love.graphics.setColor(0, 0, 0, 150)
+      love.graphics.rectangle("fill", 0, 0, 800, 600)
+      love.graphics.setColor(255, 255, 255, 255)
+      love.graphics.setFont(love.graphics.newFont(30))
+      love.graphics.print("Pause", 360, 270)
+   end
 end
 
 function love.update(dt)
+	camera.x = camera.x + speedCamera * dt
+	player:update(dt)
    if not pause then
-      camera.x = camera.x + speedCamera * dt
-      player:update(dt)
-	  update_obstacles(obstaclesEntreMinEtMax,dt)
+		if level[player.line+1] ~= nil then
+			checkCollisions(level[player.line+1],math.floor(camera.x/70),math.floor((camera.x)/70+800/70),player)
+		end
+	
+		camera.x = camera.x + speedCamera * dt
+		player:update(dt)
+		update_obstacles(obstaclesEntreMinEtMax,dt)
    end
 end
 
