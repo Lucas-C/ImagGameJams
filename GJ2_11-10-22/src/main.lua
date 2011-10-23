@@ -7,21 +7,21 @@ camera.x = 0
 camera.y = 0
 speedCamera = 200
 
-hurdle_sprite = nil
-
 N_LINE = 6
 
 function love.load()
 	player.load()
-	hurdle_sprite = love.graphics.newImage("assets/hurdle.png")
 	background.load()
 end
 
 function love.draw()
   camera:set()
-  background.draw()
-  love.graphics.draw(hurdle_sprite, camera.x + 250, 150)
-  player.draw()
+  for i = 0,6 do
+	background.drawTrack(i)
+	if (player.line == i) then
+		player.draw()
+	end
+  end
   camera:unset()
 end
 
