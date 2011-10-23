@@ -11,13 +11,10 @@ index = index + 1
 end
 
 end
-
+return obstacles
 end
 
 -- Ajoute l'obstacle à la ligne 
 function line:addObstacle(obstacle)
-end
-
--- Lit un niveau dans un fichier.
-function line:readLevel(filename)
+line[obstacle.position] = obstacle
 end
