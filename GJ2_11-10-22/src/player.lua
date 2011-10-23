@@ -13,6 +13,7 @@ player.speed = PLAYER_NORMAL_SPEED
 player.animation = nil
 player.jumping = false
 player.jumpTime = 0
+player.jumpSound = love.audio.newSource("assets/jump.wav")
 
 function player:load()
 	player.animation = createAnimation()
@@ -91,4 +92,11 @@ end
 
 function player:getLine()
    return player.line;
+end
+
+function player:jump()
+	player.jumping = true;
+	player.jumpTime = love.timer.getMicroTime()
+	love.audio.stop(player.jumpSound)
+	love.audio.play(player.jumpSound)
 end
