@@ -29,7 +29,7 @@ end
 function love.keypressed(key)
    if key == "up" and player.getLine() > 0 then
       player:setLine("up")
-   elseif key == "down" and player.getLine() < N_LINE then
+   elseif key == "down" and player.getLine() < N_LINE - 1 then
       player:setLine("down")
    end
 
