@@ -22,15 +22,16 @@ function player:load()
 	addPictureInAnimation(player.animation, love.graphics.newImage("assets/seriousjoe/seriousjoe3.png"), "normal")
 	addPictureInAnimation(player.animation, love.graphics.newImage("assets/seriousjoe/seriousjoe2.png"), "normal")
 	addPictureInAnimation(player.animation, love.graphics.newImage("assets/seriousjoe/seriousjoe1.png"), "jump")
-	addPictureInAnimation(player.animation, love.graphics.newImage("assets/seriousjoe/seriousjoe2.png"), "still")
 	
 	setAnimationState(player.animation, "normal")
 end
 
 function player:update(dt)
    updateAnimation(player.animation, dt)
+   
+   -- jump management
    if (love.timer.getMicroTime() - player.jumpTime) > 0.3 then
-      player.jumping = false
+      player::stopJumping()
    end
 
    player.y = 130 + player.line * 70
@@ -38,8 +39,6 @@ function player:update(dt)
    if player.jumping then
 	   player.y = player.y - 40
 	   setAnimationState(player.animation, "jump")
-   else
-      setAnimationState(player.animation, "normal")
    end
 	
 	player.x = player.speed * dt + player.x
@@ -97,9 +96,14 @@ function player:getLine()
    return player.line;
 end
 
-function player:jump()
+function player:startJumping()
 	player.jumping = true;
 	player.jumpTime = love.timer.getMicroTime()
 	love.audio.stop(player.jumpSound)
 	love.audio.play(player.jumpSound)
+end
+
+function player:stopJumping()
+   player.jumping = false
+   setAnimationState(player.animation, "normal")
 end
