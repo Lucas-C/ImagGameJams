@@ -1,3 +1,6 @@
-2
-   h h h h pp p h h p hp hp hp hp p ph p ph p hp ph ph ph ph ph ph ph ph ph
-   h h h h pp p h h p hp hp hp hp p ph p ph p hp ph ph ph ph ph ph ph ph ph
+5
+w        w        w        w        w        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h
+h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h
+h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h
+h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h
+--s--    --s--    --s--    --s--    --s--    --s--    --s--    --s--    h        h        h        h        h        h        h        h        h        h      h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h        h

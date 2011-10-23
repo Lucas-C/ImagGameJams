@@ -36,6 +36,7 @@ function love.draw()
    player.draw()
    for i = 0,5 do
       background.drawTrack(i)
+      obstaclesEntreMinEtMax[i+1]=obstacles_entre_min_et_max_ligne_i(level,obstaclesEntreMinEtMax[i+1],math.floor(math.max(camera.x - 300, 0) / 70), math.floor((camera.x + 1000) / 70),i+1)
       obstaclesEntreMinEtMax[i+1]=obstacles_entre_min_et_max_ligne_i(level,obstaclesEntreMinEtMax[i+1],math.floor(camera.x/70),math.floor((camera.x)/70+1000/70),i+1)
 	  if obstaclesEntreMinEtMax[i+1] ~= nil then
 	  affiche_obstacles_ligne(obstaclesEntreMinEtMax[i+1],i+1)
@@ -43,13 +44,13 @@ function love.draw()
       if (player.line == i) then
 	      player.draw()
       end
-	  
+
    end
 
    --   love.graphics.draw(test_sprite, 800, 240)
    camera:unset()
    hud:draw()
-   
+
    if pause then
       love.graphics.setColor(0, 0, 0, 150)
       love.graphics.rectangle("fill", 0, 0, 800, 600)
@@ -67,7 +68,7 @@ function love.update(dt)
 		if level[player.line+1] ~= nil then
 			checkCollisions(level[player.line+1],math.floor(camera.x/70),math.floor((camera.x)/70+800/70),player,obstaclesEntreMinEtMax[player.line+1])
 		end
-	
+
 		camera.x = camera.x + speedCamera * dt
 		player:update(dt)
 		update_obstacles(obstaclesEntreMinEtMax,dt)
@@ -86,13 +87,13 @@ function love.keypressed(key)
    elseif key == "right" then
       player:setSpeed("max")
    end
-   	
+
    if key == "p" and not pause then
       pause = true;
    elseif key == "p" and pause then
       pause = false;
    end
-   
+
    if key == "escape" then
       love.event.push('q')
    end
