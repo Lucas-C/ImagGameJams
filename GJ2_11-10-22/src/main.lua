@@ -4,6 +4,7 @@ require("player")
 require("background")
 require("hud")
 require("aff_obs")
+require("use_obj")
 
 music = love.audio.newSource("assets/sounds/music.wav")
 
@@ -16,6 +17,7 @@ camera.y = 0
 speedCamera = 200
 level={}
 obstaclesEntreMinEtMax = {}
+itemselected = nil
 for i =1,6 do
 obstaclesEntreMinEtMax[i]=nil
 end
@@ -89,7 +91,7 @@ end
 
 function love.mainUpdate(dt)
 	if level[player.line+1] ~= nil then
-		checkCollisions(level[player.line+1],math.floor(camera.x/70),math.floor((camera.x)/70+800/70),player,obstaclesEntreMinEtMax[player.line+1])
+		checkCollisions(obstaclesEntreMinEtMax[player.line+1])
 	end
 
 	camera.x = camera.x + speedCamera * dt
@@ -138,6 +140,9 @@ function love.keypressed(key)
    elseif key == "p" and pause then
       pause = false;
    end
+   
+   if key == "z" or key == "x" or key == "c" then
+		select_objet(key) end
 
    if key == " " and player.jumping == false and (love.timer.getMicroTime() - player.jumpTime) > 0.6 then
       player:startJumping()
@@ -163,9 +168,13 @@ function initNextLevel()
 	for i =1,6 do
 		obstaclesEntreMinEtMax[i]=nil
 	end
+	love.audio.rewind(music)
 end
 
 function restart()
+	player.numCrosses = 0
+	player.numSprings = 0
+	player.numBaskets = 0
 	nextLevelIndex = 1
 	print("levels/"..nextLevelIndex)
 	level = importLevel("levels/"..nextLevelIndex..".lvl")
@@ -175,4 +184,5 @@ function restart()
 	for i =1,6 do
 		obstaclesEntreMinEtMax[i]=nil
 	end
+	love.audio.play(music)
 end
