@@ -3,17 +3,19 @@
 -- Renvoie les obstacles entre min et max.
 function getObstacles(line,obstaclesPrec,min, max)
 	local index1 = 1
+	local index2 = 1
 	local obstacles = {}
 	if obstaclesPrec ~= nil then 
-	local n= table.getn(obstaclesPrec)
+	--local n= table.getn(obstaclesPrec)
 	local maxPos = -1
-	for index2=1,n do
+	while obstaclesPrec[index2] ~= nil do
 		if obstaclesPrec[index2].position >= (min) then
 		obstacles[index1] = obstaclesPrec[index2]
 		index1=index1+1
 		end
 		if obstaclesPrec[index2].position > maxPos
 		then maxPos = obstaclesPrec[index2].position end
+		index2 = index2+1
 	end
 	else
 	maxPos=min end
@@ -27,9 +29,9 @@ function getObstacles(line,obstaclesPrec,min, max)
 	return obstacles
 end
 
-function checkCollisions(line, min, max, player)
-	obstacles = getObstacles(line, min, max)
+function checkCollisions(line, min, max, player, obstacles)
 	index = 1
+	if obstacles == nil then return end
 	while obstacles[index] ~= nil do
 		if collideWith(obstacles[index], player) then
 			applyCollision(obstacles[index], player)
