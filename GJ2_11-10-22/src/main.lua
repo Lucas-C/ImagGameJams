@@ -15,6 +15,7 @@ level={}
 N_LINE = 6
 
 function love.load()
+-- 	test_sprite = love.graphics.newImage("assets/sand.png")
 	player.load()
 	background.load()
 	level=importLevel("test.txt")
@@ -25,13 +26,14 @@ function love.draw()
   camera:set()
   background.draw()
   player.draw()
-  for i = 0,6 do
+  for i = 0,5 do
 	background.drawTrack(i)
 	affiche_obstacles(level,math.floor(camera.x/70),math.floor((camera.x)/70+1000/70),i+1)
 	if (player.line == i) then
 		player.draw()
 	end
   end
+--   love.graphics.draw(test_sprite, 800, 240)
   camera:unset()
   hud:draw()
 end

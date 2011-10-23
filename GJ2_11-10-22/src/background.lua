@@ -15,7 +15,7 @@ end
 function background.load()
 	background.loadElement(background.bleachers, "assets/bleachers.png")
 	background.loadElement(background.track, "assets/track_empty.png")
-	for i = 0,6 do
+	for i = 0,5 do
 		background.track.offsetX[i] = math.random(800)
 	end
 end
