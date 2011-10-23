@@ -16,10 +16,10 @@ function player:update(dt)
       player.jumping = false
    end
 
+   player.y = 130 + player.line * 70
+   
    if player.jumping then
-	   player.y = 100 + player.line * 50 - 50
-	else
-	   player.y = 100 + player.line * 50
+	   player.y = player.y - 40
 	end
 	
 	player.x = player.speed * dt + player.x
