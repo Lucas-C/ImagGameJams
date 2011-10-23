@@ -4,33 +4,41 @@ require("line")
 
 
 
-function affiche_obstacles(level,min,max,i)
+function obstacles_entre_min_et_max_ligne_i(level,min,max,i)
 	if level==nil then print("Je suis nul.") end
 	if level[i] ~= nil then
-		affiche_obstacles_line(level[i],min,max,i)
+		return getObstacles(level[i],min,max)
+	else
+		print("Aie")
+		return nil
+		
 	end
-	
-	
 end
 	
-function affiche_obstacles_line(line,min, max,lineNumber)
-	local obstacles = {}
+function affiche_obstacles_ligne(obstacles,lineNumber)
 	local i=1
-	
-	obstacles = getObstacles(line,min,max)
 	while obstacles[i] ~= nil do
 		affiche_obstacle(obstacles[i],lineNumber)
 		i=i+1
 	end
 end
 
-function affiche_obstacle(obstacle,lineNumber)
---[[
-	local obstacle.sprite = nil
-	if obstacle.oType = "h" then
-		obstacle.sprite =
+function update_obstacles(obstacles,dt)
+	local i=0
+	while obstacles[i] ~= nil do
+		if obstacle.anim then
+		updateAnimation(obstacle.animation,dt)
+		end
 	end
---]]
-	love.graphics.draw(love.graphics.newImage("assets/hurdle.png"), obstacle.position*70,80+(lineNumber)*70)
+	
+	
+end
+
+function affiche_obstacle(obstacle,lineNumber)
+	if obstacle.anim then
+	drawAnimation(obstacle.animation, obstacle.position*70, 80+(lineNumber)*70)
+	else
+	love.graphics.draw(obstacle.image, obstacle.position*70,80+(lineNumber)*70)
+	end
 end
 	
