@@ -11,6 +11,7 @@ camera.x = 0
 camera.y = 0
 speedCamera = 200
 level={}
+obstaclesEntreMinEtMax = {}
 
 N_LINE = 6
 
@@ -26,9 +27,11 @@ function love.draw()
   camera:set()
   background.draw()
   player.draw()
+  obstaclesEntreMinEtMax={}
   for i = 0,5 do
 	background.drawTrack(i)
-	affiche_obstacles(level,math.floor(camera.x/70),math.floor((camera.x)/70+1000/70),i+1)
+	obstaclesEntreMinEtMax[i+1]=obstacles_entre_min_et_max_ligne_i(level,math.floor(camera.x/70),math.floor((camera.x)/70+1000/70),i+1)
+	affiche_obstacles_ligne(obstaclesEntreMinEtMax[i+1],i+1)
 	if (player.line == i) then
 		player.draw()
 	end
@@ -41,6 +44,7 @@ end
 function love.update(dt)
   camera.x = camera.x + speedCamera * dt
   player:update(dt)
+  update_obstacles(obstaclesEntreMinEtMax,dt)
 end
 
 function love.keypressed(key)
