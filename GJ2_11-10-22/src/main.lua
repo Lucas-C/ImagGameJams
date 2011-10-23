@@ -7,7 +7,7 @@ camera.y = 0
 speedCamera = 100
 
 function love.load()
-player.sprite = love.graphics.rectangle( "fill", 0, 0, 20, 20 )
+	player.sprite = love.graphics.newImage("assets/Guillaume_masterpiece.png")
 end
 
 function love.draw()
