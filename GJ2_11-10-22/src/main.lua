@@ -12,6 +12,7 @@ speedCamera = 200
 N_LINE = 6
 
 function love.load()
+-- 	test_sprite = love.graphics.newImage("assets/sand.png")
 	player.load()
 	background.load()
 	love.audio.play(music)
@@ -26,6 +27,7 @@ function love.draw()
 		player.draw()
 	end
   end
+--   love.graphics.draw(test_sprite, 800, 240)
   camera:unset()
 end
 
