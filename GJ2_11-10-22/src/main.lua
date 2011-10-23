@@ -25,6 +25,7 @@ function love.load()
 end
 
 function love.draw()
+   love.graphics.setColor(255, 255, 255, 255)
    camera:set()
    background.draw()
    player.draw()
@@ -39,6 +40,14 @@ function love.draw()
    --   love.graphics.draw(test_sprite, 800, 240)
    camera:unset()
    hud:draw()
+   
+   if pause then
+      love.graphics.setColor(0, 0, 0, 150)
+      love.graphics.rectangle("fill", 0, 0, 800, 600)
+      love.graphics.setColor(255, 255, 255, 255)
+      love.graphics.setFont(love.graphics.newFont(30))
+      love.graphics.print("Pause", 360, 270)
+   end
 end
 
 function love.update(dt)
