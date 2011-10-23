@@ -6,6 +6,7 @@ require("line")
 
 function obstacles_entre_min_et_max_ligne_i(level,obstaclesPrec,min,max,i)
 	if level==nil then print("Je suis nul.") end
+	
 	if level[i] ~= nil then
 		return getObstacles(level[i],obstaclesPrec,min,max)
 	else
