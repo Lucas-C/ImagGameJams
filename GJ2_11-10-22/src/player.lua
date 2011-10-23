@@ -13,13 +13,17 @@ player.speed = PLAYER_NORMAL_SPEED
 player.animation = nil
 player.jumping = false
 player.jumpTime = 0
+player.jumpSound = love.audio.newSource("assets/jump.wav")
 
 function player:load()
 	player.animation = createAnimation()
-	addPictureInAnimation(player.animation, love.graphics.newImage("assets/seriousjoe/seriousjoe1.png"))
-	addPictureInAnimation(player.animation, love.graphics.newImage("assets/seriousjoe/seriousjoe2.png"))
-	addPictureInAnimation(player.animation, love.graphics.newImage("assets/seriousjoe/seriousjoe3.png"))
-	addPictureInAnimation(player.animation, love.graphics.newImage("assets/seriousjoe/seriousjoe2.png"))
+	addPictureInAnimation(player.animation, love.graphics.newImage("assets/seriousjoe/seriousjoe1.png"), "normal")
+	addPictureInAnimation(player.animation, love.graphics.newImage("assets/seriousjoe/seriousjoe2.png"), "normal")
+	addPictureInAnimation(player.animation, love.graphics.newImage("assets/seriousjoe/seriousjoe3.png"), "normal")
+	addPictureInAnimation(player.animation, love.graphics.newImage("assets/seriousjoe/seriousjoe2.png"), "normal")
+	addPictureInAnimation(player.animation, love.graphics.newImage("assets/seriousjoe/seriousjoe1.png"), "jump")
+	
+	setAnimationState(player.animation, "normal")
 end
 
 function player:update(dt)
@@ -32,9 +36,14 @@ function player:update(dt)
    
    if player.jumping then
 	   player.y = player.y - 40
-	end
+	   setAnimationState(player.animation, "jump")
+   else
+       setAnimationState(player.animation, "normal")
+   end
 	
 	player.x = player.speed * dt + player.x
+	
+	print(player.x)
 	
    if (player.x - camera.x) <= 0 then
       player.x = camera.x
@@ -85,4 +94,11 @@ end
 
 function player:getLine()
    return player.line;
+end
+
+function player:jump()
+	player.jumping = true;
+	player.jumpTime = love.timer.getMicroTime()
+	love.audio.stop(player.jumpSound)
+	love.audio.play(player.jumpSound)
 end
