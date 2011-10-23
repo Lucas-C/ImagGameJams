@@ -7,16 +7,20 @@ camera.x = 0
 camera.y = 0
 speedCamera = 200
 
+hurdle_sprite = nil
+
 N_LINE = 6
 
 function love.load()
 	player.load()
+	hurdle_sprite = love.graphics.newImage("assets/hurdle.png")
 	background.load()
 end
 
 function love.draw()
   camera:set()
   background.draw()
+  love.graphics.draw(hurdle_sprite, camera.x + 200, 250)
   player.draw()
   camera:unset()
 end
@@ -38,7 +42,7 @@ function love.keypressed(key)
    elseif key == "right" then
       player:setSpeed("max")
    end
-   
+
    if key == " " and player.jumping == false then
       player.jumping = true;
       player.jumpTime = love.timer.getMicroTime()

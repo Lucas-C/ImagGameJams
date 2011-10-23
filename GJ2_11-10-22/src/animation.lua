@@ -7,10 +7,6 @@ function createAnimation()
 	res.pictures = {}
 	res.frame = 0
 	res.frequency = 3
-	addPictureInAnimation(res,  love.graphics.newImage("assets/seriousjoe/seriousjoe1.png"))
-	addPictureInAnimation(res,  love.graphics.newImage("assets/seriousjoe/seriousjoe2.png"))
-	addPictureInAnimation(res,  love.graphics.newImage("assets/seriousjoe/seriousjoe3.png"))
-	addPictureInAnimation(res,  love.graphics.newImage("assets/seriousjoe/seriousjoe2.png"))
 	return res
 end
 
