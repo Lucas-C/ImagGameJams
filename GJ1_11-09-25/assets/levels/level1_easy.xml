@@ -44,4 +44,16 @@
 		<EXT type="POWERPLANT" id="3"/>
 	<WIRE />
 	
+	<SWITCH-WIRE id_switch="0">
+		<CONNECTION id_wire="0" dir="LEFT" />
+		<CONNECTION id_wire="1" dir="RIGHT" />
+	</SWITCH-WIRE>
+	<SWITCH-WIRE id_switch="1">
+		<CONNECTION id_wire="2" dir="UP" />
+		<CONNECTION id_wire="5" dir="DOWN" />
+	</SWITCH-WIRE>
+	<SWITCH-WIRE id_switch="2">
+		<CONNECTION id_wire="6" dir="LEFT" />
+		<CONNECTION id_wire="7" dir="RIGHT" />
+	</SWITCH-WIRE>
 </LEVEL>

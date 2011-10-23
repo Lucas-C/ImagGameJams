@@ -75,6 +75,7 @@ package gameplay
 					pop_delay_2 = 360;
 					pop_rate = 180;
 				}
+				break;
 				
 				case DIFFICULTY_NORMAL:
 				{
@@ -85,6 +86,7 @@ package gameplay
 					pop_delay_2 = 240;
 					pop_rate = 120;
 				}
+				break;
 				
 				case DIFFICULTY_HARD:
 				{
@@ -95,6 +97,7 @@ package gameplay
 					pop_delay_2 = 180;
 					pop_rate = 120;
 				}
+				break;
 			}
 			
 			// Powerplants
