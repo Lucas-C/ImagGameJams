@@ -29,6 +29,7 @@ N_LINE = 6
 
 function love.load()
 -- 	test_sprite = love.graphics.newImage("assets/sand.png")
+	loadAnims()
 	player.load()
 	background.load()
 	--level=importLevel("levels/002.txt")
@@ -112,7 +113,8 @@ function love.update(dt)
 end
 
 function love.keypressed(key)
-   if key == "escape" then
+   if key == "escape" or key == "a" then -- QWERTY: 'q'
+--       credits.draw()
       love.event.push('q')
    end
 	if key == "r" and player.dead then

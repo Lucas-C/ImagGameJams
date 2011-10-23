@@ -1,3 +1,16 @@
+obstacleAnim = {}
+
+function loadAnims()
+	-- Crosse-sand
+	obstacleAnim.cross_sand = createAnimation()
+	for i = 1,8 do
+		addPictureInAnimation(obstacleAnim.cross_sand, love.graphics.newImage("assets/cross_sand/cs000"..i..".png"), "normal")
+	end
+	setAnimationState(obstacleAnim.cross_sand, "normal")
+	setAnimationFrequency(obstacleAnim.cross_sand, 0.12)
+	obstacleAnim.cross_sand.yOffset = -160
+end
+
 function getNewObstacle(oType, position)
 	local obstacle = {}
 	obstacle.oType = oType
@@ -38,7 +51,7 @@ function getNewObstacle(oType, position)
 		obstacle.image = love.graphics.newImage("assets/doinkdoink.png")
 	elseif obstacle.oType == "p" then
 		obstacle.anim = true
-		obstacle.yOffset = 0
+		obstacle.yOffset = -40
 		obstacle.animation = createAnimation()
 		addPictureInAnimation(obstacle.animation, love.graphics.newImage("assets/punching_ball/pb0001.png"), "normal")
 		addPictureInAnimation(obstacle.animation, love.graphics.newImage("assets/punching_ball/pb0002.png"), "normal")
@@ -64,11 +77,11 @@ function collideWith(obstacle)
 		return obstacle.position * 70 - 175  < player.x
 		and obstacle.position * 70 + 150 > player.x
 	elseif obstacle.oType == "p" then
-		return obstacle.position * 70 - 175  < player.x
-		and obstacle.position * 70 + 150 > player.x
-	elseif obstacle.oType == "C" then
 		return obstacle.position * 70 - 15  < player.x
 		and obstacle.position * 70 + 15 > player.x
+	elseif obstacle.oType == "C" then
+		return obstacle.position * 70 - 25  < player.x
+		and obstacle.position * 70 + 25 > player.x
 		and not player.jumping
 	elseif obstacle.oType == "B" then
 		return obstacle.position * 70 - 20  < player.x
@@ -84,25 +97,32 @@ end
 
 function applyCollision(obstacle)
 	if obstacle.actif then
-		print(itemselected)
 		if (obstacle.oType == "p" or obstacle.oType == "w" or obstacle.oType == "s") then
 			if usableWith(obstacle.oType,itemselected) then
-			if itemselected == "C" then
-			if player.numCrosses ~= 0 then
-				player.numCrosses = player.numCrosses - 1
-				obstacle.actif = false
-			end
-			elseif itemselected == "D" then
-			if player.numSprings ~= 0 then
-				player.numSprings = player.numSprings - 1
-				obstacle.actif = false
-			end
-			elseif itemselected == "B" then
-			if player.numSprings ~= 0 then
-				player.numBaskets = player.numBaskets - 1
-				obstacle.actif = false
-			end
-			end
+				if itemselected == "C" then
+					if player.numCrosses ~= 0 then
+						player.numCrosses = player.numCrosses - 1
+						obstacle.actif = false
+						if (obstacle.oType == "s") then
+							player.useObjectAnim = obstacleAnim.cross_sand
+							player:setSpeed("normal")
+							player.useObjectPos.x = obstacle.position * 70 + 35 - getAnimWidth(player.useObjectAnim) / 2
+							player.useObjectPos.y = 180 + player.line * 70
+						else
+							print("TODO")
+						end
+					end
+				elseif itemselected == "D" then
+					if player.numSprings ~= 0 then
+						player.numSprings = player.numSprings - 1
+						obstacle.actif = false
+					end
+				elseif itemselected == "B" then
+					if player.numSprings ~= 0 then
+						player.numBaskets = player.numBaskets - 1
+						obstacle.actif = false
+					end
+				end
 			end
 			if obstacle.actif then
 			player:kill(getDeathCollision(obstacle), getDeathSound(obstacle))
@@ -135,7 +155,7 @@ function applyCollision(obstacle)
 		elseif  obstacle.oType == "A" then
 			if player.jumping then
 				player:win()
-			else 
+			else
 				player:kill(getDeathCollision(obstacle), getDeathSound(obstacle))
 			end
 		end

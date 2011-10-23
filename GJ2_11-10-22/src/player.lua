@@ -22,6 +22,8 @@ player.numSprings = 0
 player.numBaskets = 0
 player.dead = false
 player.musicOver = love.audio.newSource("assets/sounds/loose.wav")
+player.useObjectAnim = nil
+player.useObjectPos = {}
 
 
 function player:load()
@@ -38,7 +40,7 @@ end
 
 function player:update(dt)
    updateAnimation(player.animation, dt)
-   if not player.dead then 
+   if not player.dead then
 	   -- jump management
 	   if (love.timer.getMicroTime() - player.jumpTime) > 0.4 and player.jumping then
 		  player:stopJumping()
@@ -64,10 +66,22 @@ function player:update(dt)
 end
 
 function player:draw()
-	drawAnimation(player.animation, player.x, player.y)
+	if (player.useObjectAnim) then
+		drawAnimation(player.useObjectAnim, player.useObjectPos.x, player.useObjectPos.y)
+		updateAnimation(player.useObjectAnim, 1)
+		if (player.useObjectAnim.frame > table.getn(player.useObjectAnim.pictures.normal)) then
+			player.useObjectAnim.frame = 0
+			player.useObjectAnim = nil
+		end
+	else
+		drawAnimation(player.animation, player.x, player.y)
+	end
 end
 
 function player:setSpeed(sType)
+	if (player.useObjectAnim) then -- No qpeed change during object use
+		return
+	end
 
    if sType == "normal" then
       player.speed = PLAYER_NORMAL_SPEED
@@ -133,4 +147,4 @@ function player:win()
 	love.audio.play(player.victorySound)
 	player.won = true
 end
-	
+

@@ -25,7 +25,6 @@ end
 function update_obstacles(obstacles,dt)
 	local i=1
 
-
 	while obstacles[i] ~= nil do
 		local j=1
 		while obstacles[i][j] ~= nil do
