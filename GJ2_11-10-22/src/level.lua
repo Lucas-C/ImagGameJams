@@ -21,9 +21,14 @@ function level:importLevel(filename)
 	local sums = {}
 	for i = d+1, #contents do
 		local c = contents:sub(i, i)
+		local isBlankLine = false
 		if c == "\n" then
-			cl = (cl + 1) % ln
+			if not isBlankLine then
+				cl = (cl + 1) % ln
+				isBlankLine = true
+			end
 		else 
+			isBlankLine = false
 			sums[cl+1] = sums[cl+1] + 1
 			if c == "h" then
 				obstacle:getNew("h", sums[cl+1])
