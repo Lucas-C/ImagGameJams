@@ -42,19 +42,23 @@ package screens
 			add(difficulty);
 			
 			// Options
-			var easy:MenuItem = new MenuItem("Easy", 30, 0x0000EE);
+			var easy:MenuItem = new MenuItem(	LevelData.DIFFICULTY_EASY,
+												"Easy", 30, 0x0000EE
+											);
 			var common_abs:int = difficulty.x + difficulty.textWidth / 4;
 			easy.x = common_abs;
 			easy.y = difficulty.y + difficulty.textHeight + 20;
 			easy.isSelected = true;
 			add(easy);
 			
-			var normal:MenuItem = new MenuItem("Normal", 30, 0x00EE00);
+			var normal:MenuItem = new MenuItem(	LevelData.DIFFICULTY_NORMAL,
+												"Normal", 30, 0x00EE00);
 			normal.x = common_abs;
 			normal.y = easy.y + easy.textHeight;
 			add(normal);
 			
-			var hard:MenuItem = new MenuItem("Hard", 30, 0xEE0000);
+			var hard:MenuItem = new MenuItem(	LevelData.DIFFICULTY_HARD,
+												"Hard", 30, 0xEE0000);
 			hard.x = common_abs;
 			hard.y = normal.y + normal.textHeight;
 			add(hard);
@@ -113,7 +117,7 @@ package screens
 		
 		private function choiceValidated():void
 		{
-			FP.world = new LevelData();
+			FP.world = new LevelData(m_selectedItem.returnCode);
 		}
 		
 		override public function update():void 

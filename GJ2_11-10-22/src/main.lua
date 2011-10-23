@@ -91,16 +91,19 @@ function love.deathUpdate(dt)
 end
 
 function love.mainUpdate(dt)
-	if level[player.line+1] ~= nil then
-		checkCollisions(obstaclesEntreMinEtMax[player.line+1])
-	end
+	if not player.won then
+		if level[player.line+1] ~= nil then
+			checkCollisions(obstaclesEntreMinEtMax[player.line+1])
+		end
 
-	camera.x = camera.x + speedCamera * dt
-	player:update(dt)
-	update_obstacles(obstaclesEntreMinEtMax,dt)
-	if player.won then
+		camera.x = camera.x + speedCamera * dt
+		player:update(dt)
+		update_obstacles(obstaclesEntreMinEtMax,dt)
+	elseif player.victorySound:isStopped() then
 		player.won = false;
 		initNextLevel();
+	else
+		love.audio.stop(music)
 	end
 end
 
@@ -170,7 +173,7 @@ function initNextLevel()
 	for i =1,6 do
 		obstaclesEntreMinEtMax[i]=nil
 	end
-	love.audio.rewind(music)
+	love.audio.play(music)
 end
 
 function restart()
@@ -183,5 +186,6 @@ function restart()
 	for i =1,6 do
 		obstaclesEntreMinEtMax[i]=nil
 	end
+	love.audio.stop(player.musicOver)
 	love.audio.play(music)
 end

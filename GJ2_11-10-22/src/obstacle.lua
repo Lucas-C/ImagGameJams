@@ -7,7 +7,7 @@ function loadAnims()
 		addPictureInAnimation(obstacleAnim.cross_sand, love.graphics.newImage("assets/cross_sand/cs000"..i..".png"), "normal")
 	end
 	setAnimationState(obstacleAnim.cross_sand, "normal")
-	setAnimationFrequency(obstacleAnim.cross_sand, 0.12)
+	setAnimationFrequency(obstacleAnim.cross_sand, 0.15)
 	obstacleAnim.cross_sand.yOffset = -160
 end
 
@@ -103,17 +103,23 @@ function applyCollision(obstacle)
 					if player.numCrosses ~= 0 then
 						player.numCrosses = player.numCrosses - 1
 						obstacle.actif = false
-						if (obstacle.oType == "s") then
+						local sound
+						if obstacle.oType == "s" then
 							player.useObjectAnim = obstacleAnim.cross_sand
 							player:setSpeed("normal")
 							player.useObjectPos.x = obstacle.position * 70 + 35 - getAnimWidth(player.useObjectAnim) / 2
 							player.useObjectPos.y = 180 + player.line * 70
+							sound = love.audio.newSource("assets/sounds/highjump.wav")
 						else
-							print("TODO")
+							print("TODO: animation")
+							sound = love.audio.newSource("assets/sounds/break.wav")
 						end
+						love.audio.play(sound)
 					end
 				elseif itemselected == "D" then
 					if player.numSprings ~= 0 then
+						local sound = love.audio.newSource("assets/sounds/boing.wav")
+						love.audio.play(sound)
 						player.numSprings = player.numSprings - 1
 						obstacle.actif = false
 					end
@@ -192,7 +198,7 @@ function getDeathCollision(obstacle)
 		for i = 1, 9 do
 			addPictureInAnimation(res, love.graphics.newImage("assets/death_unheaded/unheaded000"..i..".png"), "normal")
 		end
-		for i = 10, 13 do
+		for i = 10,10 do
 			addPictureInAnimation(res, love.graphics.newImage("assets/death_unheaded/unheaded00"..i..".png"), "normal")
 		end
 	end

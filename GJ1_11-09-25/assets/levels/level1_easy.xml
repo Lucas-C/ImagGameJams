@@ -1,0 +1,59 @@
+<LEVEL>
+	<FARM id="0" abs="40" ord="140" pop_delay="" pop_rate="" />
+	<FARM id="1" abs="340" ord="140" pop_delay="" pop_rate="" />
+
+	<POWERPLANT id="0" abs="40" ord="40" color="RED" min_power="80" max_power="100" />
+	<POWERPLANT id="1" abs="340" ord="40" color="YELLOW" min_power="80" max_power="100" />
+	<POWERPLANT id="2" abs="40" ord="240" color="BLUE" min_power="80" max_power="100" />
+	<POWERPLANT id="3" abs="340" ord="240" color="GREEN" min_power="80" max_power="100" />
+	
+	<SWITCH id="0" abs="190" ord="40" />
+	<SWITCH id="1" abs="190" ord="140" />
+	<SWITCH id="2" abs="190" ord="240" />
+	
+	<WIRE id="0">
+		<EXT type="POWERPLANT" id="0"/>
+		<EXT type="SWITCH" id="0"/>
+	<WIRE />
+	<WIRE id="1">
+		<EXT type="SWITCH" id="0"/>
+		<EXT type="POWERPLANT" id="1"/>
+	<WIRE />
+	<WIRE id="2">
+		<EXT type="SWITCH" id="0"/>
+		<EXT type="SWITCH" id="1"/>
+	<WIRE />
+	<WIRE id="3">
+		<EXT type="FARM" id="0"/>
+		<EXT type="SWITCH" id="1"/>
+	<WIRE />
+	<WIRE id="4">
+		<EXT type="SWITCH" id="1"/>
+		<EXT type="FARM" id="1"/>
+	<WIRE />
+	<WIRE id="5">
+		<EXT type="SWITCH" id="1"/>
+		<EXT type="SWITCH" id="2"/>
+	<WIRE />
+	<WIRE id="6">
+		<EXT type="POWERPLANT" id="2"/>
+		<EXT type="SWITCH" id="2"/>
+	<WIRE />
+	<WIRE id="7">
+		<EXT type="SWITCH" id="2"/>
+		<EXT type="POWERPLANT" id="3"/>
+	<WIRE />
+	
+	<SWITCH-WIRE id_switch="0">
+		<CONNECTION id_wire="0" dir="LEFT" />
+		<CONNECTION id_wire="1" dir="RIGHT" />
+	</SWITCH-WIRE>
+	<SWITCH-WIRE id_switch="1">
+		<CONNECTION id_wire="2" dir="UP" />
+		<CONNECTION id_wire="5" dir="DOWN" />
+	</SWITCH-WIRE>
+	<SWITCH-WIRE id_switch="2">
+		<CONNECTION id_wire="6" dir="LEFT" />
+		<CONNECTION id_wire="7" dir="RIGHT" />
+	</SWITCH-WIRE>
+</LEVEL>
