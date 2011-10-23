@@ -140,7 +140,7 @@ function love.keypressed(key)
    elseif key == "p" and pause then
       pause = false;
    end
-   
+
    if key == "z" or key == "x" or key == "c" then
 		select_objet(key) end
 
@@ -175,10 +175,7 @@ function restart()
 	player.numCrosses = 0
 	player.numSprings = 0
 	player.numBaskets = 0
-	nextLevelIndex = 1
-	print("levels/"..nextLevelIndex)
-	level = importLevel("levels/"..nextLevelIndex..".lvl")
-	nextLevelIndex = 2
+	level = importLevel("levels/"..(nextLevelIndex - 1)..".lvl")
 	camera.x = 0
 	player.x = 0
 	for i =1,6 do
