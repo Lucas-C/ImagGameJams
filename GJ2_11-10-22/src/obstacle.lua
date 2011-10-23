@@ -63,6 +63,9 @@ function collideWith(obstacle)
 	elseif obstacle.oType == "s" then
 		return obstacle.position * 70 - 175  < player.x
 		and obstacle.position * 70 + 150 > player.x
+	elseif obstacle.oType == "p" then
+		return obstacle.position * 70 - 175  < player.x
+		and obstacle.position * 70 + 150 > player.x
 	elseif obstacle.oType == "C" then
 		return obstacle.position * 70 - 15  < player.x
 		and obstacle.position * 70 + 15 > player.x
@@ -81,7 +84,7 @@ end
 
 function applyCollision(obstacle)
 	if obstacle.actif then
-		if (obstacle.oType == "h" or obstacle.oType == "w" or obstacle.oType == "s") then
+		if (obstacle.oType == "p" or obstacle.oType == "w" or obstacle.oType == "s") then
 			if usableWith(obstacle.oType,itemselected) then
 			if itemselected == "C" then
 			if player.numCrosses ~= 0 then
@@ -100,6 +103,10 @@ function applyCollision(obstacle)
 			end
 			end
 			end
+			if obstacle.actif then
+			player:kill(getDeathCollision(obstacle), getDeathSound(obstacle))
+			end
+		elseif obstacle.oType == "h" then
 			if obstacle.actif then
 			player:kill(getDeathCollision(obstacle), getDeathSound(obstacle))
 			end
