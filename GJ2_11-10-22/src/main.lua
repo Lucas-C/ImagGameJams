@@ -29,7 +29,8 @@ function love.load()
 -- 	test_sprite = love.graphics.newImage("assets/sand.png")
 	player.load()
 	background.load()
-	level=importLevel("levels/002.txt")
+	--level=importLevel("levels/002.txt")
+	initNextLevel()
 	love.audio.play(music)
 end
 
@@ -91,6 +92,10 @@ function love.mainUpdate(dt)
 	camera.x = camera.x + speedCamera * dt
 	player:update(dt)
 	update_obstacles(obstaclesEntreMinEtMax,dt)
+	if player.won then
+		player.won = false;
+		initNextLevel();
+	end	
 end
 
 function love.update(dt)
@@ -128,7 +133,7 @@ function love.keypressed(key)
 
 
 
-   if key == " " and player.jumping == false and (love.timer.getMicroTime() - player.jumpTime) > 0.8 then
+   if key == " " and player.jumping == false and (love.timer.getMicroTime() - player.jumpTime) > 0.6 then
       player:startJumping()
    end
 end
@@ -144,7 +149,8 @@ function love.keyreleased(key)
 end
 
 function initNextLevel()
-	level = importLevel("levels/"..nextLevelIndex)
+	print("levels/"..nextLevelIndex)
+	level = importLevel("levels/"..nextLevelIndex..".lvl")
 	nextLevelIndex = nextLevelIndex + 1
 	camera.x = 0
 	player.x = 0
