@@ -11,10 +11,12 @@ player.y = 90
 player.line = 0
 player.speed = PLAYER_NORMAL_SPEED
 player.animation = nil
+player.won = false
 player.jumping = false
 player.jumpTime = 0
 player.jumpSound = love.audio.newSource("assets/sounds/jump.wav")
-player.deathSound = love.audio.newSource("assets/sounds/hurt.wav")
+player.deathSound = love.audio.newSource("assets/sounds/get.wav")
+player.victorySound = love.audio.newSource("assets/sounds/victory.wav")
 player.numCrosses = 0
 player.numSprings = 0
 player.numBaskets = 0
@@ -118,8 +120,14 @@ function player:stopJumping()
 end
 
 function player:kill(animation)
-	-- player.dead = true
-	-- player.animation = animation
-	-- love.audio.play(player.deathSound)
+	player.dead = true
+	player.animation = animation
+	love.audio.play(player.deathSound)
 	
 end
+
+function player:win()
+	love.audio.play(player.victorySound)
+	player.won = true
+end
+	
