@@ -6,7 +6,7 @@ require("line")
 
 function obstacles_entre_min_et_max_ligne_i(level,obstaclesPrec,min,max,i)
 	if level==nil then print("Je suis nul.") end
-	
+
 	if level[i] ~= nil then
 		return getObstacles(level[i],obstaclesPrec,min,max)
 	else
@@ -41,7 +41,7 @@ end
 function affiche_obstacle(obstacle,lineNumber)
 	if obstacle.actif or (not obstacle.actif and not obstacle.objet) then
 	if obstacle.anim then
-		drawAnimation(obstacle.animation, obstacle.position * 70 + 35 - obstacle.image:getWidth() / 2, obstacle.yOffset + (lineNumber + 1) * 70)
+		drawAnimation(obstacle.animation, obstacle.position * 70 + 35 - getAnimWidth(obstacle.animation) / 2, obstacle.yOffset + (lineNumber + 1) * 70)
 	elseif obstacle.image ~= nil then
 		love.graphics.draw(obstacle.image, obstacle.position * 70 + 35 - obstacle.image:getWidth() / 2, obstacle.yOffset + (lineNumber + 1) * 70)
 	end

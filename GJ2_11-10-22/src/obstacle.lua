@@ -51,28 +51,29 @@ end
 
 function collideWith(obstacle, player)
 	if obstacle.oType == "A" then
-		return (obstacle.position) * 70 < player.x
+		return obstacle.position * 70 - 50 < player.x
 		and obstacle.position * 70 + 50 > player.x
+		and not player.jumping
 	elseif obstacle.oType == "h" then
-		return (obstacle.position) * 70 - 10 < player.x
-		and obstacle.position * 70 + 40 > player.x
+		return obstacle.position * 70 - 25 < player.x
+		and obstacle.position * 70 + 25 > player.x
 		and not player.jumping
 	elseif obstacle.oType == "w" then
-		return (obstacle.position) * 70  < player.x
-		and obstacle.position * 70 + 50 > player.x
+		return obstacle.position * 70 - 30  < player.x
+		and obstacle.position * 70 + 30 > player.x
 	elseif obstacle.oType == "s" then
-		return (obstacle.position) * 70 - 175  < player.x
+		return obstacle.position * 70 - 175  < player.x
 		and obstacle.position * 70 + 150 > player.x
 	elseif obstacle.oType == "C" then
-		return (obstacle.position) * 70 - 15  < player.x
+		return obstacle.position * 70 - 15  < player.x
 		and obstacle.position * 70 + 15 > player.x
 		and not player.jumping
 	elseif obstacle.oType == "B" then
-		return (obstacle.position) * 70 - 20  < player.x
+		return obstacle.position * 70 - 20  < player.x
 		and obstacle.position * 70 + 20 > player.x
 		and not player.jumping
 	elseif obstacle.oType == "D" then
-		return (obstacle.position) * 70 - 30 < player.x
+		return obstacle.position * 70 - 30 < player.x
 		and obstacle.position * 70 + 20 > player.x
 		and not player.jumping
 	else return false
