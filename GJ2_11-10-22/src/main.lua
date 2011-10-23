@@ -40,6 +40,7 @@ function love.draw()
    love.graphics.setColor(255, 255, 255, 255)
    camera:set()
    background.draw()
+   hud.draw()
    player.draw()
    for i = 0,5 do
       background.drawTrack(i)
@@ -56,8 +57,8 @@ function love.draw()
 
    --   love.graphics.draw(test_sprite, 800, 240)
    camera:unset()
-   hud:draw()
-
+   --hud:draw()
+   
    if pause then
       love.graphics.setColor(0, 0, 0, 150)
       love.graphics.rectangle("fill", 0, 0, 800, 600)
@@ -68,7 +69,7 @@ function love.draw()
 end
 
 function love.update(dt)
-	if not pause  or not player.dead then
+	if not pause and not player.dead then
 		camera.x = camera.x + speedCamera * dt
 		player:update(dt)
 
