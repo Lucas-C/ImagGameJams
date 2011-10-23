@@ -4,7 +4,12 @@ hud = {}
 hud.picSpring = love.graphics.newImage("assets/crosse.png")
 hud.picCross = love.graphics.newImage("assets/crosse.png")
 hud.picBasket = love.graphics.newImage("assets/crosse.png")
- 
+-- Image des Nombres
+hud.picNombre = {}
+for i = 0, 9 do
+	hud.picNombre[i + 1] = love.graphics.newImage("assets/fonts/num_" .. i .. ".png")
+end
+
 hud.OFFSETX = 10
 hud.SPRINGX = 0
 hud.SPRINGY = 0
