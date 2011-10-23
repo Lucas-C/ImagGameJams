@@ -2,6 +2,8 @@ function getNewObstacle(oType, position)
 	local obstacle = {}
 	obstacle.oType = oType
 	obstacle.position = position
+	obstacle.actif = true
+	obstacle.objet = false
 
 	if obstacle.oType == "h" then
 		obstacle.anim = false
@@ -18,18 +20,22 @@ function getNewObstacle(oType, position)
 		obstacle.image = love.graphics.newImage("assets/sand.png")
 	elseif obstacle.oType == "B" then
 		obstacle.anim = false
+		obstacle.objet = true
 		obstacle.yOffset = 30
 		obstacle.image = love.graphics.newImage("assets/baskets.png")
 	elseif obstacle.oType == "C" then
 		obstacle.anim = false
+		obstacle.objet = true
 		obstacle.yOffset = 0
 		obstacle.image = love.graphics.newImage("assets/crosse.png")
 	elseif obstacle.oType == "D" then
 		obstacle.anim = false
+		obstacle.objet = true
 		obstacle.yOffset = 20
 		obstacle.image = love.graphics.newImage("assets/doinkdoink.png")
 	elseif obstacle.oType == "p" then
 		obstacle.anim = true
+		obstacle.objet = true
 		obstacle.yOffset = 0
 		obstacle.animation = createAnimation()
 		addPictureInAnimation(obstacle.animation, love.graphics.newImage("assets/punching_ball/pb0001.png"), "normal")
@@ -57,7 +63,7 @@ function collideWith(obstacle, player)
 end
 
 function applyCollision(obstacle, player)
-	if (obstacle.actif == nil or obstacle.actif == true) then
+	if obstacle.actif then
 		player:kill(getDeathCollision(obstacle))
 		obstacle.actif = false
 	end
