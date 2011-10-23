@@ -6,7 +6,7 @@ require("hud")
 require("aff_obs")
 
 music = love.audio.newSource("assets/sounds/music.wav")
-music = love.audio.newSource("assets/sounds/music.wav")
+
 music:setLooping(true)
 
 pause = false;
@@ -75,6 +75,7 @@ end
 
 function love.deathUpdate(dt)
 	updateAnimation(player.animation, dt)
+	love.audio.stop(music)
 end
 
 function love.mainUpdate(dt)
