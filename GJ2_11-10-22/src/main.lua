@@ -58,9 +58,10 @@ function love.draw()
 end
 
 function love.update(dt)
-	camera.x = camera.x + speedCamera * dt
-	player:update(dt)
-   if not pause then
+	if not pause then
+		camera.x = camera.x + speedCamera * dt
+		player:update(dt)
+
 		if level[player.line+1] ~= nil then
 			checkCollisions(level[player.line+1],math.floor(camera.x/70),math.floor((camera.x)/70+800/70),player)
 		end
