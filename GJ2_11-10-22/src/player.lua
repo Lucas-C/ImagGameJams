@@ -1,3 +1,6 @@
+require("animation")
+
+
 PLAYER_MIN_SPEED = 0
 PLAYER_NORMAL_SPEED = 200
 PLAYER_MAX_SPEED = 400
@@ -11,7 +14,12 @@ player.sprite = nil
 player.jumping = false
 player.jumpTime = 0
 
+function player:load()
+	player.sprite = createAnimation()
+end
+
 function player:update(dt)
+   updateAnimation(player.sprite, dt)
    if (love.timer.getMicroTime() - player.jumpTime) > 0.3 then
       player.jumping = false
    end
@@ -27,14 +35,14 @@ function player:update(dt)
    if (player.x - camera.x) <= 0 then
       player.x = camera.x
       player.getSpeed("normal")
-   elseif (player.x - camera.x) >= (800 - player.sprite:getWidth()) then
-      player.x = camera.x + 800 - player.sprite:getWidth()
+   elseif (player.x - camera.x) >= (800 - getAnimWidth(player.sprite)) then
+      player.x = camera.x + 800 - getAnimWidth(player.sprite)
       player.getSpeed("normal")
    end
 end
 
 function player:draw()
-	love.graphics.draw(player.sprite, player.x, player.y, 0, 1, 1, 0, 0)
+	drawAnimation(player.sprite, player.x, player.y)
 end
 
 function player:setSpeed(sType)
