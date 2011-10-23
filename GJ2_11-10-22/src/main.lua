@@ -2,9 +2,10 @@
 require("camera")
 require("player")
 require("background")
+require("hud")
 require("aff_obs")
 
-music = love.audio.newSource("assets/music.wav")
+music = love.audio.newSource("assets/sounds/music.wav")
 
 camera.x = 0
 camera.y = 0
@@ -14,6 +15,7 @@ level={}
 N_LINE = 6
 
 function love.load()
+-- 	test_sprite = love.graphics.newImage("assets/sand.png")
 	player.load()
 	background.load()
 	level=importLevel("test.txt")
@@ -24,14 +26,16 @@ function love.draw()
   camera:set()
   background.draw()
   player.draw()
-  for i = 0,6 do
+  for i = 0,5 do
 	background.drawTrack(i)
 	affiche_obstacles(level,math.floor(camera.x/72),math.floor((camera.x)/72+800/72),i+1)
 	if (player.line == i) then
 		player.draw()
 	end
   end
+--   love.graphics.draw(test_sprite, 800, 240)
   camera:unset()
+  hud:draw()
 end
 
 function love.update(dt)
@@ -53,7 +57,7 @@ function love.keypressed(key)
    end
 
    if key == " " and player.jumping == false then
-      player:jump()
+      player:startJumping()
    end
 end
 
