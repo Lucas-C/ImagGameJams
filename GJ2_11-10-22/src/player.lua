@@ -2,7 +2,7 @@ require("animation")
 
 
 PLAYER_MIN_SPEED = 0
-PLAYER_NORMAL_SPEED = 200
+PLAYER_NORMAL_SPEED = 250
 PLAYER_MAX_SPEED = 400
 
 player = {}
