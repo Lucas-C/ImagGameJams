@@ -11,84 +11,31 @@ package gameplay
 	 */
 	public class LevelData extends World
 	{
-		private var frame:Number;
-		private var pp:PowerPlant = new PowerPlant(SheepColor.RED, 40, 50);
+		public static const DIFFICULTY_EASY:int = 0;
+		public static const DIFFICULTY_NORMAL:int = 1;
+		public static const DIFFICULTY_HARD:int = 2;
+		private var m_diffculty:int;
 		
-		private var power_1:PowerPlant;
-		private var power_2:PowerPlant;
-		private var power_3:PowerPlant;
-		private var power_4:PowerPlant;
+		private var m_powerplants:Array = new Array;
+		private var m_farms:Array = new Array;
+		private var m_switches:Array = new Array;
+		private var m_wires:Array = new Array;
+		
 		private var initialized:Boolean = false;
 		
 		[Embed(source = '../../assets/music.mp3')] private const MUSIC:Class;
 		public var music:Sfx = new Sfx(MUSIC);
 		
-		public function LevelData() 
+		public function LevelData(a_difficulty:int) 
 		{
-			level_2();
+			m_diffculty = a_difficulty;
+			create_level();
 			music.loop();
 		}
 		
-		private function level_1():void
+		private function create_level():void
 		{
-			var powerplant_ord:int = 150;
-			var farm_abs:int = 200;
-			var switch_ord:int = 100;
-			
-			var farm:Farm = new Farm(farm_abs, 20);
-			add(farm);
-			
-			var power1:PowerPlant = new PowerPlant(SheepColor.RED, 30, 60);
-			power1.x = 60;
-			
-			var power2:PowerPlant = new PowerPlant(SheepColor.BLUE, 40, 80);
-			power2.x = power1.x + 200;
-			power1.y = power2.y = powerplant_ord;
-			
-			add(power1);
-			add(power2);
-			
-			var switchnode:SwitchNode = new SwitchNode(farm_abs, switch_ord);
-			add(switchnode);
-			
-			var wire_farm_switch:StraightWire = new StraightWire(new IntPoint(farm.x, farm.y), new IntPoint(switchnode.x, switchnode.y));
-			add(wire_farm_switch);
-			
-			var inter_point_1:IntPoint = new IntPoint(power1.x, switch_ord);
-			var wire_switch_power1_1:StraightWire = new StraightWire(new IntPoint(switchnode.x, switchnode.y), inter_point_1);
-			add(wire_switch_power1_1);
-			var wire_switch_power1_2:StraightWire = new StraightWire(inter_point_1, new IntPoint(power1.x, power1.y));
-			add(wire_switch_power1_2);
-			
-			var inter_point_2:IntPoint = new IntPoint(power2.x, switch_ord);
-			var wire_switch_power2_1:StraightWire = new StraightWire(new IntPoint(switchnode.x, switchnode.y), inter_point_2);
-			add(wire_switch_power2_1);
-			var wire_switch_power2_2:StraightWire = new StraightWire(inter_point_2, new IntPoint(power2.x, power2.y));
-			add(wire_switch_power2_2);
-			
-			farm.networkElement = wire_farm_switch;
-			wire_farm_switch.ext1 = farm;
-			wire_farm_switch.ext2 = switchnode;
-			
-			wire_switch_power1_1.ext2 = switchnode;
-			wire_switch_power1_1.ext1 = wire_switch_power1_2;
-			
-			wire_switch_power1_2.ext1 = wire_switch_power1_1;
-			wire_switch_power1_2.ext2 = power1;
-			
-			wire_switch_power2_1.ext1 = switchnode;
-			wire_switch_power2_1.ext2 = wire_switch_power2_2;
-			
-			wire_switch_power2_2.ext1 = wire_switch_power2_1;
-			wire_switch_power2_2.ext2 = power2;
-			
-			switchnode.addStraightWire(wire_switch_power1_1, SwitchNode.LEFT);
-			switchnode.addStraightWire(wire_switch_power2_1, SwitchNode.RIGHT);
-			
-		}
-		
-		private function level_2():void
-		{
+			// Places
 			var ord_1:int = 40;
 			var ord_2:int = 140;
 			var ord_3:int = 240;
@@ -109,99 +56,166 @@ package gameplay
 			var point_32:IntPoint = new IntPoint(abs_3, ord_2);
 			var point_33:IntPoint = new IntPoint(abs_3, ord_3);
 			
+			// Difficulty changes
+			
+			var color_2:SheepColor;
+			var color_3:SheepColor;
+			var pop_delay_1:int;
+			var pop_delay_2:int;
+			var pop_rate:int;
+			
+			switch(m_diffculty)
+			{
+				case DIFFICULTY_EASY:
+				{
+					color_2 = SheepColor.BLUE;
+					color_3 = SheepColor.YELLOW;
+					
+					pop_delay_1 = 240;
+					pop_delay_2 = 360;
+					pop_rate = 180;
+				}
+				
+				case DIFFICULTY_NORMAL:
+				{
+					color_2 = SheepColor.BLUE;
+					color_3 = SheepColor.YELLOW;
+					
+					pop_delay_1 = 180;
+					pop_delay_2 = 240;
+					pop_rate = 120;
+				}
+				
+				case DIFFICULTY_HARD:
+				{
+					color_2 = SheepColor.YELLOW;
+					color_3 = SheepColor.BLUE;
+					
+					pop_delay_1 = 120;
+					pop_delay_2 = 180;
+					pop_rate = 120;
+				}
+			}
+			
 			// Powerplants
-			power_1 = new PowerPlant(SheepColor.RED, 80, 100);
-			power_1.x = abs_1;
-			power_1.y = ord_1;
-			add(power_1);
+			m_powerplants[0] = new PowerPlant(SheepColor.RED, 80, 100);
+			m_powerplants[0].x = abs_1;
+			m_powerplants[0].y = ord_1;
+			add(m_powerplants[0]);
 			
-			power_2 = new PowerPlant(SheepColor.BLUE, 80, 100);
-			power_2.x = abs_1;
-			power_2.y = ord_3;
-			add(power_2);
+			m_powerplants[1] = new PowerPlant(color_2, 80, 100);
+			m_powerplants[1].x = abs_1;
+			m_powerplants[1].y = ord_3;
+			add(m_powerplants[1]);
 			
-			power_3 = new PowerPlant(SheepColor.YELLOW, 80, 100);
-			power_3.x = abs_3;
-			power_3.y = ord_1;
-			add(power_3);
+			m_powerplants[2] = new PowerPlant(color_3, 80, 100);
+			m_powerplants[2].x = abs_3;
+			m_powerplants[2].y = ord_1;
+			add(m_powerplants[2]);
 			
-			power_4 = new PowerPlant(SheepColor.GREEN, 80, 100);
-			power_4.x = abs_3;
-			power_4.y = ord_3;
-			add(power_4);
+			m_powerplants[3] = new PowerPlant(SheepColor.GREEN, 80, 100);
+			m_powerplants[3].x = abs_3;
+			m_powerplants[3].y = ord_3;
+			add(m_powerplants[3]);
 			
 			// Farms
-			var farm_1:Farm = new Farm(abs_1, ord_2, 240, 180);
-			add(farm_1);
+			m_farms[0] = new Farm(abs_1, ord_2, pop_delay_1, pop_rate);
+			add(m_farms[0]);
 			
-			var farm_2:Farm = new Farm(abs_3, ord_2, 360, 180);
-			add(farm_2);
+			m_farms[1] = new Farm(abs_3, ord_2, pop_delay_2, pop_rate);
+			add(m_farms[1]);
 			
 			// Switches
-			var switch_1:SwitchNode = new SwitchNode(abs_2, ord_1);
-			add(switch_1);
+			m_switches[0] = new SwitchNode(abs_2, ord_1);
+			add(m_switches[0]);
 			
-			var switch_2:SwitchNode = new SwitchNode(abs_2, ord_2);
-			add(switch_2);
+			m_switches[1] = new SwitchNode(abs_2, ord_2);
+			add(m_switches[1]);
 			
-			var switch_3:SwitchNode = new SwitchNode(abs_2, ord_3);
-			add(switch_3);
+			m_switches[2] = new SwitchNode(abs_2, ord_3);
+			add(m_switches[2]);
 			
 			// Wires
-			var wire_1:StraightWire = new StraightWire(point_11, point_21);
-			wire_1.ext1 = power_1;
-			wire_1.ext2 = switch_1;
-			add(wire_1);
+			m_wires[0] = new StraightWire(point_11, point_21);
+			m_wires[0].ext1 = m_powerplants[0];
+			m_wires[0].ext2 = m_switches[0];
+			add(m_wires[0]);
 			
-			var wire_2:StraightWire = new StraightWire(point_21, point_31);
-			wire_2.ext1 = switch_1;
-			wire_2.ext2 = power_3;
-			add(wire_2);
+			m_wires[1] = new StraightWire(point_21, point_31);
+			m_wires[1].ext1 = m_switches[0];
+			m_wires[1].ext2 = m_powerplants[2];
+			add(m_wires[1]);
 			
-			var wire_3:StraightWire = new StraightWire(point_21, point_22);
-			wire_3.ext1 = switch_1;
-			wire_3.ext2 = switch_2;
-			add(wire_3);
+			m_wires[2] = new StraightWire(point_21, point_22);
+			m_wires[2].ext1 = m_switches[0];
+			m_wires[2].ext2 = m_switches[1];
+			add(m_wires[2]);
 						
-			var wire_4:StraightWire = new StraightWire(point_12, point_22);
-			wire_4.ext1 = farm_1;
-			wire_4.ext2 = switch_2;
-			add(wire_4);
+			m_wires[3] = new StraightWire(point_12, point_22);
+			m_wires[3].ext1 = m_farms[0];
+			m_wires[3].ext2 = m_switches[1];
+			add(m_wires[3]);
 			
-			var wire_5:StraightWire = new StraightWire(point_22, point_32);
-			wire_5.ext1 = switch_2;
-			wire_5.ext2 = farm_2;
-			add(wire_5);
+			m_wires[4] = new StraightWire(point_22, point_32);
+			m_wires[4].ext1 = m_switches[1];
+			m_wires[4].ext2 = m_farms[1];
+			add(m_wires[4]);
 			
-			var wire_6:StraightWire = new StraightWire(point_22, point_23);
-			wire_6.ext1 = switch_2;
-			wire_6.ext2 = switch_3;
-			add(wire_6);
+			m_wires[5] = new StraightWire(point_22, point_23);
+			m_wires[5].ext1 = m_switches[1];
+			m_wires[5].ext2 = m_switches[2];
+			add(m_wires[5]);
 			
-			var wire_7:StraightWire = new StraightWire(point_13, point_23);
-			wire_7.ext1 = power_2;
-			wire_7.ext2 = switch_3;
-			add(wire_7);
+			m_wires[6] = new StraightWire(point_13, point_23);
+			m_wires[6].ext1 = m_powerplants[1];
+			m_wires[6].ext2 = m_switches[2];
+			add(m_wires[6]);
 			
-			var wire_8:StraightWire = new StraightWire(point_23, point_33);
-			wire_8.ext1 = switch_3;
-			wire_8.ext2 = power_4;
-			add(wire_8);
+			m_wires[7] = new StraightWire(point_23, point_33);
+			m_wires[7].ext1 = m_switches[2];
+			m_wires[7].ext2 = m_powerplants[3];
+			add(m_wires[7]);
 			
 			// Connecting Wires to Farms and Switches
-			farm_1.networkElement = wire_4;
-			farm_2.networkElement = wire_5;
+			m_farms[0].networkElement = m_wires[3];
+			m_farms[1].networkElement = m_wires[4];
 			
-			switch_1.addStraightWire(wire_1, SwitchNode.LEFT);
-			switch_1.addStraightWire(wire_2, SwitchNode.RIGHT);
+			m_switches[0].addStraightWire(m_wires[0], SwitchNode.LEFT);
+			m_switches[0].addStraightWire(m_wires[1], SwitchNode.RIGHT);
 			
-			switch_2.addStraightWire(wire_3, SwitchNode.UP);
-			switch_2.addStraightWire(wire_6, SwitchNode.DOWN);
+			m_switches[1].addStraightWire(m_wires[2], SwitchNode.UP);
+			m_switches[1].addStraightWire(m_wires[5], SwitchNode.DOWN);
 			
-			switch_3.addStraightWire(wire_7, SwitchNode.LEFT);
-			switch_3.addStraightWire(wire_8, SwitchNode.RIGHT);
+			m_switches[2].addStraightWire(m_wires[6], SwitchNode.LEFT);
+			m_switches[2].addStraightWire(m_wires[7], SwitchNode.RIGHT);
 			
 			initialized = true;
+		}
+		
+		private function allPowered():Boolean
+		{
+			for each(var pp:PowerPlant in m_powerplants)
+			{
+				if (!pp.isPowered())
+				{
+					return false;
+				}
+			}
+			
+			return true;
+		}
+		
+		private function allUnpowered():Boolean
+		{
+			for each(var pp:PowerPlant in m_powerplants)
+			{
+				if (!pp.hasNoPower())
+				{
+					return false;
+				}
+			}
+			
+			return true;
 		}
 		
 		override public function update():void
@@ -213,17 +227,15 @@ package gameplay
 			}
 			
 			// Victory test
-			if (power_1.isPowered() && power_2.isPowered() && power_3.isPowered() && power_4.isPowered())
+			if (allPowered())
 			{
-				var victory:Victory = new Victory;
-				FP.world = victory;
+				FP.world =  new Victory;
 			}
 			
 			// Defeat test
-			if (power_1.hasNoPower() || power_2.hasNoPower() || power_3.hasNoPower() || power_4.hasNoPower())
+			if (allUnpowered())
 			{
-				var gameover:GameOver = new GameOver;
-				FP.world = gameover;
+				FP.world = new GameOver;
 			}
 		}
 	}

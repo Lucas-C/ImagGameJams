@@ -14,11 +14,11 @@ package screens
 	
 		private var m_text:Text;
 		
-		public function TextEntity(a_text:String, a_size:int, a_color:int, a_x:int = 0, a_y:int = 0)
+		public function TextEntity(a_text:String, a_size:int, a_color:int)
 		{
 			Text.font = "electrox";
 			Text.size = a_size;
-			m_text = new Text(a_text, a_x, a_y);
+			m_text = new Text(a_text);
 			m_text.color = a_color;
 			graphic = m_text;
 		}

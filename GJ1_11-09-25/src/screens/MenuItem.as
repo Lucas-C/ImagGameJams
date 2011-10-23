@@ -14,9 +14,10 @@ package screens
 		private var m_returnCode:int;
 		private var m_isSelected:Boolean = false;
 		
-		public function MenuItem(a_text:String, a_size:int, a_color:int, a_x:int = 0, a_y:int = 0) 
+		public function MenuItem(a_returnCode:int, a_text:String, a_size:int, a_color:int) 
 		{
-			super(a_text, a_size, a_color, a_x, a_y);
+			super(a_text, a_size, a_color);
+			returnCode = a_returnCode;
 		}
 		
 		// --------------------------------------------------------------------
