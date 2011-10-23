@@ -15,7 +15,6 @@ end
 function love.draw()
   camera:set()
   fond.draw()
-  
   player.draw()
   camera:unset()
 end
