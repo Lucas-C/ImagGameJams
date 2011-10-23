@@ -82,7 +82,27 @@ end
 function applyCollision(obstacle)
 	if (obstacle.actif == nil or obstacle.actif == true) then
 		if (obstacle.oType == "h" or obstacle.oType == "w" or obstacle.oType == "s") then
+			if usableWith(obstacle.oType,object) then
+			if itemselected == "C" then
+			if player.numCrosses ~= 0 then
+				player.numCrosses = player.numCrosses - 1
+				obstacle.actif = false
+			end
+			elseif itemselected == "D" then
+			if player.numSprings ~= 0 then
+				player.numSprings = player.numSprings - 1
+				obstacle.actif = false
+			end
+			elseif itemselected == "B" then
+			if player.numSprings ~= 0 then
+				player.numBaskets = player.numBaskets - 1
+				obstacle.actif = false
+			end
+			end
+			end
+			if obstacle.actif then
 			player:kill(getDeathCollision(obstacle), getDeathSound(obstacle))
+			end
 		elseif 	obstacle.oType == "B" then
 			local sound = love.audio.newSource("assets/sounds/get.wav", "static")
 			love.audio.play(sound)

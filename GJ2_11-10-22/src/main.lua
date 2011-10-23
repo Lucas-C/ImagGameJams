@@ -4,6 +4,7 @@ require("player")
 require("background")
 require("hud")
 require("aff_obs")
+require("use_obj")
 
 music = love.audio.newSource("assets/sounds/music.wav")
 
@@ -16,6 +17,7 @@ camera.y = 0
 speedCamera = 200
 level={}
 obstaclesEntreMinEtMax = {}
+itemselected = nil
 for i =1,6 do
 obstaclesEntreMinEtMax[i]=nil
 end
