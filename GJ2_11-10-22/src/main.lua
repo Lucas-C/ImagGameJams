@@ -8,7 +8,7 @@ speedCamera = 100
 positionFond = 1
 
 function love.load()
-	player.sprite = love.graphics.newImage("assets/Guillaume_masterpiece.png")
+	player.sprite = love.graphics.newImage("assets/seriousjoe.png")
 end
 
 function love.draw()
