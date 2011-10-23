@@ -90,45 +90,16 @@ function applyCollision(obstacle)
 			if itemselected == "C" then
 			if player.numCrosses ~= 0 then
 				player.numCrosses = player.numCrosses - 1
-				
-		obstacle.anim = true
-		obstacle.yOffset = 0
-		obstacle.animation = createAnimation()
-		for nb=1,8 do
-		addPictureInAnimation(obstacle.animation, love.graphics.newImage("assets/crosse_sand/cs000"..nb..".png"), "normal")
-		end
-		setAnimationState(obstacle.animation, "normal")
-				
 				obstacle.actif = false
 			end
 			elseif itemselected == "D" then
 			if player.numSprings ~= 0 then
 				player.numSprings = player.numSprings - 1
-		
-		obstacle.anim = true
-		obstacle.yOffset = 0
-		obstacle.animation = createAnimation()
-		addPictureInAnimation(obstacle.animation, love.graphics.newImage("assets/punching_ball/pb0001.png"), "normal")
-		addPictureInAnimation(obstacle.animation, love.graphics.newImage("assets/punching_ball/pb0002.png"), "normal")
-		addPictureInAnimation(obstacle.animation, love.graphics.newImage("assets/punching_ball/pb0003.png"), "normal")
-		addPictureInAnimation(obstacle.animation, love.graphics.newImage("assets/punching_ball/pb0002.png"), "normal")
-		setAnimationState(obstacle.animation, "normal")
-				
 				obstacle.actif = false
 			end
 			elseif itemselected == "B" then
 			if player.numSprings ~= 0 then
-				player.numBaskets = player.numBaskets - 1
-		
-		obstacle.anim = true
-		obstacle.yOffset = 0
-		obstacle.animation = createAnimation()
-		addPictureInAnimation(obstacle.animation, love.graphics.newImage("assets/punching_ball/pb0001.png"), "normal")
-		addPictureInAnimation(obstacle.animation, love.graphics.newImage("assets/punching_ball/pb0002.png"), "normal")
-		addPictureInAnimation(obstacle.animation, love.graphics.newImage("assets/punching_ball/pb0003.png"), "normal")
-		addPictureInAnimation(obstacle.animation, love.graphics.newImage("assets/punching_ball/pb0002.png"), "normal")
-		setAnimationState(obstacle.animation, "normal")
-				
+				player.numBaskets = player.numBaskets - 1				
 				obstacle.actif = false
 			end
 			end
