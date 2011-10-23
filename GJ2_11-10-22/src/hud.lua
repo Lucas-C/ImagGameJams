@@ -27,21 +27,22 @@ function hud:draw()
 	r, g, b, a = love.graphics.getColor()
 	previousFont = love.graphics.getFont()
 	
-	
+	-- set new graphics state
 	love.graphics.setColor(255, 255, 0, 255)
 	love.graphics.setFont(hud.FONT)
 
+	-- draw texts
 	x = hud.SPRINGX + hud.picSpring:getWidth() * hud.SPRINGSCALE + hud.OFFSETX
 	y = hud.SPRINGY
-	love.graphics.print(player.numSprings, x, y)
+	love.graphics.print("x"..player.numSprings, x, y)
 	
 	x = hud.CROSSX + hud.picCross:getWidth() * hud.CROSSSCALE + hud.OFFSETX
 	y = hud.CROSSY
-	love.graphics.print(player.numCrosses, x, y)
+	love.graphics.print("x"..player.numCrosses, x, y)
 	
 	x = hud.BASKETX + hud.picBasket:getWidth() * hud.BASKETSCALE + hud.OFFSETX
 	y = hud.BASKETY
-	love.graphics.print(player.numBaskets, x, y)
+	love.graphics.print("x"..player.numBaskets, x, y)
 	
 	-- set previous graphics state
 	love.graphics.setColor(r, g, b, a)
