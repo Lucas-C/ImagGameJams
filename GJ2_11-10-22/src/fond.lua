@@ -1,8 +1,8 @@
 fond = {}
 fond.position = 1
 fond.taille = {}
-fond.taille.x = 800
-fond.taille.y = 600
+fond.taille.x = 724
+fond.taille.y = 322
 fond.sprite = nil
 
 function fond:draw()
