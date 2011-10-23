@@ -2,9 +2,10 @@
 require("camera")
 require("player")
 require("background")
+require("hud")
 require("aff_obs")
 
-music = love.audio.newSource("assets/music.wav")
+music = love.audio.newSource("assets/sounds/music.wav")
 
 camera.x = 0
 camera.y = 0
@@ -34,6 +35,7 @@ function love.draw()
   end
 --   love.graphics.draw(test_sprite, 800, 240)
   camera:unset()
+  hud:draw()
 end
 
 function love.update(dt)
@@ -55,7 +57,7 @@ function love.keypressed(key)
    end
 
    if key == " " and player.jumping == false then
-      player:jump()
+      player:startJumping()
    end
 end
 
