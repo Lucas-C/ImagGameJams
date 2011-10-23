@@ -31,10 +31,10 @@ function player:update(dt)
    
    -- jump management
    if (love.timer.getMicroTime() - player.jumpTime) > 0.3 then
-      player::stopJumping()
+      player:stopJumping()
    end
 
-   player.y = 130 + player.line * 70
+   player.y = 100 + player.line * 70
    
    if player.jumping then
 	   player.y = player.y - 40

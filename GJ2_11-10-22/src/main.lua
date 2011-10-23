@@ -54,7 +54,7 @@ function love.keypressed(key)
    end
 
    if key == " " and player.jumping == false then
-      player:jump()
+      player:startJumping()
    end
 end
 
