@@ -41,8 +41,7 @@ end
 function affiche_obstacle(obstacle,lineNumber)
 	if obstacle.anim then
 		drawAnimation(obstacle.animation, obstacle.position * 70 + 35 - obstacle.image:getWidth() / 2, obstacle.yOffset + (lineNumber + 1) * 70)
-	else
+	elseif obstacle.image ~= nil then
 		love.graphics.draw(obstacle.image, obstacle.position * 70 + 35 - obstacle.image:getWidth() / 2, obstacle.yOffset + (lineNumber + 1) * 70)
 	end
 end
-
