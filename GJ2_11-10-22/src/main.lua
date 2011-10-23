@@ -2,6 +2,7 @@
 require("camera")
 require("player")
 require("background")
+require("hud")
 
 music = love.audio.newSource("assets/music.wav")
 
@@ -26,6 +27,7 @@ function love.draw()
 	end
   end
   camera:unset()
+  hud:draw()
 end
 
 function love.update(dt)

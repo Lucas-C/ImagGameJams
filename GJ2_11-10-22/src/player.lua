@@ -14,6 +14,9 @@ player.animation = nil
 player.jumping = false
 player.jumpTime = 0
 player.jumpSound = love.audio.newSource("assets/jump.wav")
+player.numCrosses = 0
+player.numSprings = 0
+player.numBaskets = 0
 
 function player:load()
 	player.animation = createAnimation()
