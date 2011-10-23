@@ -14,8 +14,8 @@ end
 function love.draw()
   camera:set()
   positionFond = math.floor((camera.x+800)/800)
-  love.graphics.print("Fond d'ecran", 800*(positionFond-1), 300)
-  love.graphics.print("Fond d'ecran", 800*positionFond, 300)
+  love.graphics.print("Fond d'ecran", 800*(positionFond-1), 0)
+  love.graphics.print("Fond d'ecran", 800*positionFond, 0)
   player.draw()
   camera:unset()
 end
