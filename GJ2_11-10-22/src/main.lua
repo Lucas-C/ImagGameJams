@@ -2,21 +2,25 @@
 require("camera")
 require("player")
 require("background")
+require("aff_obs")
 
 camera.x = 0
 camera.y = 0
 speedCamera = 200
+level={}
 
 N_LINE = 6
 
 function love.load()
 	player.load()
 	background.load()
+	level=importLevel("test.txt")
 end
 
 function love.draw()
   camera:set()
   background.draw()
+  affiche_obstacles(level,math.floor(camera.x/72),math.floor((camera.x)/72+800/72))
   player.draw()
   camera:unset()
 end
