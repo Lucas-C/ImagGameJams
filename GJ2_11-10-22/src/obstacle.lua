@@ -16,6 +16,18 @@ function getNewObstacle(oType, position)
 		obstacle.anim = false
 		obstacle.yOffset = 25
 		obstacle.image = love.graphics.newImage("assets/sand.png")
+	elseif obstacle.oType == "B" then
+		obstacle.anim = false
+		obstacle.yOffset = 30
+		obstacle.image = love.graphics.newImage("assets/baskets.png")
+	elseif obstacle.oType == "C" then
+		obstacle.anim = false
+		obstacle.yOffset = 0
+		obstacle.image = love.graphics.newImage("assets/crosse.png")
+	elseif obstacle.oType == "D" then
+		obstacle.anim = false
+		obstacle.yOffset = 20
+		obstacle.image = love.graphics.newImage("assets/doinkdoink.png")
 	elseif obstacle.oType == "p" then
 		obstacle.anim = true
 		obstacle.yOffset = 0
@@ -32,11 +44,11 @@ end
 function collideWith(obstacle, player)
 	if obstacle.oType == "h" then
 		return (obstacle.position) * 70  < player.x
-		and obstacle.position * 70 + 10 > player.x
+		and obstacle.position * 70 + 50 > player.x
 		and not player.jumping
 	elseif obstacle.oType == "w" then
 		return (obstacle.position) * 70  < player.x
-		and obstacle.position * 70 + 10 > player.x
+		and obstacle.position * 70 + 50 > player.x
 	elseif obstacle.oType == "s" then
 		return (obstacle.position) * 70 - 175  < player.x
 		and obstacle.position * 70 + 150 > player.x
