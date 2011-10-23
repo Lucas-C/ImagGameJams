@@ -2,18 +2,27 @@ require("animation")
 
 
 PLAYER_MIN_SPEED = 0
-PLAYER_NORMAL_SPEED = 200
+PLAYER_NORMAL_SPEED = 250
 PLAYER_MAX_SPEED = 400
 
 player = {}
-player.x = 50
-player.y = 50
+player.x = 0
+player.y = 90
 player.line = 0
 player.speed = PLAYER_NORMAL_SPEED
 player.animation = nil
+player.won = false
 player.jumping = false
 player.jumpTime = 0
-player.jumpSound = love.audio.newSource("assets/jump.wav")
+player.jumpSound = love.audio.newSource("assets/sounds/jump.wav", "static")
+player.deathSound = love.audio.newSource("assets/sounds/hurt.wav", "static")
+player.victorySound = love.audio.newSource("assets/sounds/victory.wav")
+player.numCrosses = 0
+player.numSprings = 0
+player.numBaskets = 0
+player.dead = false
+player.musicOver = love.audio.newSource("assets/sounds/loose.wav")
+
 
 function player:load()
 	player.animation = createAnimation()
@@ -22,36 +31,36 @@ function player:load()
 	addPictureInAnimation(player.animation, love.graphics.newImage("assets/seriousjoe/seriousjoe3.png"), "normal")
 	addPictureInAnimation(player.animation, love.graphics.newImage("assets/seriousjoe/seriousjoe2.png"), "normal")
 	addPictureInAnimation(player.animation, love.graphics.newImage("assets/seriousjoe/seriousjoe1.png"), "jump")
-	
+	addPictureInAnimation(player.animation, love.graphics.newImage("assets/seriousjoe/seriousjoe2.png"), "still")
+
 	setAnimationState(player.animation, "normal")
 end
 
 function player:update(dt)
    updateAnimation(player.animation, dt)
-   if (love.timer.getMicroTime() - player.jumpTime) > 0.3 then
-      player.jumping = false
-   end
+   if not player.dead then 
+	   -- jump management
+	   if (love.timer.getMicroTime() - player.jumpTime) > 0.4 and player.jumping then
+		  player:stopJumping()
+	   end
 
-   player.y = 130 + player.line * 70
-   
-   if player.jumping then
-	   player.y = player.y - 40
-	   setAnimationState(player.animation, "jump")
-   else
-       setAnimationState(player.animation, "normal")
-   end
-	
-	player.x = player.speed * dt + player.x
-	
-	print(player.x)
-	
-   if (player.x - camera.x) <= 0 then
-      player.x = camera.x
-      player.getSpeed("normal")
-   elseif (player.x - camera.x) >= (800 - getAnimWidth(player.animation)) then
-      player.x = camera.x + 800 - getAnimWidth(player.animation)
-      player.getSpeed("normal")
-   end
+	   player.y = 90 + player.line * 70
+
+	   if player.jumping then
+		   player.y = player.y - 40
+		   setAnimationState(player.animation, "jump")
+	   end
+
+		player.x = player.speed * dt + player.x
+
+	   if (player.x - camera.x) <= 0 then
+		  player.x = camera.x
+		  player.getSpeed("normal")
+	   elseif (player.x - camera.x) >= (800 - getAnimWidth(player.animation)) then
+		  player.x = camera.x + 800 - getAnimWidth(player.animation)
+		  player.getSpeed("normal")
+	   end
+	end
 end
 
 function player:draw()
@@ -62,12 +71,17 @@ function player:setSpeed(sType)
 
    if sType == "normal" then
       player.speed = PLAYER_NORMAL_SPEED
+      setAnimationState(player.animation, "normal")
    elseif sType == "max" then
       player.speed = PLAYER_MAX_SPEED
+      setAnimationState(player.animation, "normal")
    elseif sType == "min" then
       player.speed = PLAYER_MIN_SPEED
+      setAnimationState(player.animation, "still")
    end
-   
+
+   player.animation.frequency = player.speed / 50
+
 end
 
 function player:getSpeed()
@@ -79,7 +93,7 @@ function player:getSpeed()
    elseif player.speed == PLAYER_MIN_SPEED then
       return "min"
    end
-   
+
 end
 
 function player:setLine(lType)
@@ -96,9 +110,27 @@ function player:getLine()
    return player.line;
 end
 
-function player:jump()
+function player:startJumping()
 	player.jumping = true;
 	player.jumpTime = love.timer.getMicroTime()
 	love.audio.stop(player.jumpSound)
 	love.audio.play(player.jumpSound)
 end
+
+function player:stopJumping()
+   player.jumping = false
+   setAnimationState(player.animation, "normal")
+end
+
+function player:kill(animation, sound)
+	player.dead = true
+	player.animation = animation
+	love.audio.play(sound)
+	love.audio.play(player.musicOver)
+end
+
+function player:win()
+	love.audio.play(player.victorySound)
+	player.won = true
+end
+	
