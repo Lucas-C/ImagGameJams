@@ -1,10 +1,11 @@
 require("player")
--- item selected
+-- itemselected
 hud = {}
 hud.picSpring = love.graphics.newImage("assets/doinkdoink.png")
 hud.picCross = love.graphics.newImage("assets/crosse.png")
 hud.picBasket = love.graphics.newImage("assets/baskets.png")
 hud.picLvl = love.graphics.newImage("assets/niv.png")
+hud.picSelected = love.graphics.newImage("assets/selected.png")
 -- Image des Nombres
 hud.picFontNombre = {}
 for i = 0, 9 do
@@ -58,7 +59,14 @@ function hud:drawAux(basex, basey)
 	-- set previous graphics state
 	love.graphics.setColor(r, g, b, a)
 
-	love.graphics.draw(hud.picSpring, basex + hud.SPRINGX, basey + hud.SPRINGY, 0, hud.SPRINGSCALE, hud.SPRINGSCALE)
+	if itemselected == "D" then 
+		love.graphics.draw(hud.picSelected, basex + hud.SPRINGX - 11, basey + hud.SPRINGY - 10)
+	elseif itemselected == "B" then
+		love.graphics.draw(hud.picSelected, basex + hud.SPRINGX - 11, basey + hud.SPRINGY + 25)
+	elseif itemselected == "C" then
+		love.graphics.draw(hud.picSelected, basex + hud.CROSSX - 11, basey + hud.SPRINGY - 10)		
+	end
+	love.graphics.draw(hud.picSpring, basex + hud.SPRINGX, basey + hud.SPRINGY + 3, 0, hud.SPRINGSCALE, hud.SPRINGSCALE)
 	love.graphics.draw(hud.picCross, basex + hud.CROSSX, basey + hud.CROSSY, 0, hud.CROSSSCALE, hud.CROSSSCALE)
 	love.graphics.draw(hud.picBasket, basex + hud.BASKETX, basey + hud.BASKETY, 0, hud.BASKETSCALE, hud.BASKETSCALE)
 	love.graphics.draw(hud.picLvl, basex + hud.LVLX, basey + hud.LVLY, 0, hud.LVLSCALE, hud.LVLSCALE)
