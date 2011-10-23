@@ -6,7 +6,7 @@ require("hud")
 require("aff_obs")
 
 music = love.audio.newSource("assets/sounds/music.wav")
-music = love.audio.newSource("assets/sounds/music.wav")
+
 music:setLooping(true)
 
 pause = false;
@@ -70,6 +70,7 @@ end
 
 function love.update(dt)
 	if player.dead then
+		love.audio.stop(music)
 		updateAnimation(player.animation, dt)
 	elseif not pause then
 		if level[player.line+1] ~= nil then

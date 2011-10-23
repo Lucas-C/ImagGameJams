@@ -76,7 +76,7 @@ end
 function applyCollision(obstacle, player)
 	if (obstacle.actif == nil or obstacle.actif == true) then
 		if (obstacle.oType == "h" or obstacle.oType == "w" or obstacle.oType == "s") then
-			player:kill(getDeathCollision(obstacle))
+			player:kill(getDeathCollision(obstacle), getDeathSound(obstacle))
 		elseif 	obstacle.oType == "B" then
 			if player.numBaskets ~= 9 then
 
@@ -125,7 +125,14 @@ function getDeathCollision(obstacle)
 
 	end
 	setAnimationState(res, "normal")
-
 	return res
+end
 
+function getDeathSound(obstacle)
+
+	if obstacle.oType == "s" then
+		return love.audio.newSource("assets/sounds/splouf.wav")
+	else
+		return love.audio.newSource("assets/sounds/hurt.wav")
+	end
 end
