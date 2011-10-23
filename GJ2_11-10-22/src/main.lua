@@ -5,12 +5,12 @@ require("background")
 
 camera.x = 0
 camera.y = 0
-speedCamera = 100
+speedCamera = 200
 
 N_LINE = 6
 
 function love.load()
-	player.sprite = love.graphics.newImage("assets/seriousjoe.png")
+	player.sprite = love.graphics.newImage("assets/seriousjoe/seriousjoe1.png")
 	background.load()
 end
 

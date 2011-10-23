@@ -1,6 +1,6 @@
 PLAYER_MIN_SPEED = 0
-PLAYER_NORMAL_SPEED = 100
-PLAYER_MAX_SPEED = 250
+PLAYER_NORMAL_SPEED = 200
+PLAYER_MAX_SPEED = 400
 
 player = {}
 player.x = 50
@@ -12,6 +12,14 @@ player.sprite = nil
 function player:update(dt)
 	player.y = 100 + player.line * 50
 	player.x = player.speed * dt + player.x
+	
+   if (player.x - camera.x) <= 0 then
+      player.x = camera.x
+      player.getSpeed("normal")
+   elseif (player.x - camera.x) >= (800 - player.sprite:getWidth()) then
+      player.x = camera.x + 800 - player.sprite:getWidth()
+      player.getSpeed("normal")
+   end
 end
 
 function player:draw()
