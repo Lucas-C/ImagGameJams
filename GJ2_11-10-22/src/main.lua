@@ -160,9 +160,13 @@ function initNextLevel()
 	for i =1,6 do
 		obstaclesEntreMinEtMax[i]=nil
 	end
+	love.audio.rewind(music)
 end
 
 function restart()
+	player.numCrosses = 0
+	player.numSprings = 0
+	player.numBaskets = 0
 	nextLevelIndex = 1
 	print("levels/"..nextLevelIndex)
 	level = importLevel("levels/"..nextLevelIndex..".lvl")
@@ -172,4 +176,5 @@ function restart()
 	for i =1,6 do
 		obstaclesEntreMinEtMax[i]=nil
 	end
+	love.audio.play(music)
 end
