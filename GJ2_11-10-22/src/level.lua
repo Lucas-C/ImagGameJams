@@ -36,8 +36,8 @@ function importLevel(filename)
 			isBlankLine = false
 			if sums[cl+1]==nil then sums[cl+1]=0 end
 			sums[cl+1] = sums[cl+1] + 1
-			if c == "h" then
-				obstacle=getNewObstacle("h", sums[cl+1])
+			if c ~= " " then
+				obstacle=getNewObstacle(c, sums[cl+1])
 				if level[cl+1]==nil then level[cl+1]={} end
 				addObstacle(level[cl+1],obstacle)
 			end
