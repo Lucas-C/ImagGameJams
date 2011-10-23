@@ -29,12 +29,12 @@ function getObstacles(line,obstaclesPrec,min, max)
 	return obstacles
 end
 
-function checkCollisions(line, min, max, player, obstacles)
+function checkCollisions(obstacles)
 	index = 1
 	if obstacles == nil then return end
 	while obstacles[index] ~= nil do
-		if collideWith(obstacles[index], player) then
-			applyCollision(obstacles[index], player)
+		if collideWith(obstacles[index]) then
+			applyCollision(obstacles[index])
 		end	
 		index = index + 1
 	end	

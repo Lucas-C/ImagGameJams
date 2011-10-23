@@ -86,7 +86,7 @@ end
 
 function love.mainUpdate(dt)
 	if level[player.line+1] ~= nil then
-		checkCollisions(level[player.line+1],math.floor(camera.x/70),math.floor((camera.x)/70+800/70),player,obstaclesEntreMinEtMax[player.line+1])
+		checkCollisions(obstaclesEntreMinEtMax[player.line+1])
 	end
 
 	camera.x = camera.x + speedCamera * dt
@@ -135,6 +135,9 @@ function love.keypressed(key)
    elseif key == "p" and pause then
       pause = false;
    end
+   
+   if key == "z" or key == "x" or key == "c" then
+		select_objet(key) end
 
    if key == " " and player.jumping == false and (love.timer.getMicroTime() - player.jumpTime) > 0.6 then
       player:startJumping()
