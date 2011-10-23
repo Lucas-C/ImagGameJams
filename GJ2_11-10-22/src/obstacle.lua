@@ -80,7 +80,7 @@ function collideWith(obstacle)
 end
 
 function applyCollision(obstacle)
-	if (obstacle.actif == nil or obstacle.actif == true) then
+	if obstacle.actif then
 		if (obstacle.oType == "h" or obstacle.oType == "w" or obstacle.oType == "s") then
 			if usableWith(obstacle.oType,itemselected) then
 			if itemselected == "C" then
