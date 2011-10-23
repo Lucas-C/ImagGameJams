@@ -20,6 +20,8 @@ for i =1,6 do
 obstaclesEntreMinEtMax[i]=nil
 end
 
+nextLevelIndex = 1
+
 N_LINE = 6
 
 function love.load()
@@ -137,4 +139,14 @@ function love.keyreleased(key)
    if key == "right" and player:getSpeed() == "max" then
       player:setSpeed("normal");
    end
+end
+
+function initNextLevel()
+	level = importLevel("levels/"..nextLevelIndex)
+	nextLevelIndex = nextLevelIndex + 1
+	camera.x = 0
+	player.x = 0
+	for i =1,6 do
+		obstaclesEntreMinEtMax[i]=nil
+	end
 end
