@@ -45,4 +45,3 @@ function affiche_obstacle(obstacle,lineNumber)
 		love.graphics.draw(obstacle.image, obstacle.position * 70 + 35 - obstacle.image:getWidth() / 2, obstacle.yOffset + (lineNumber + 1) * 70)
 	end
 end
-
