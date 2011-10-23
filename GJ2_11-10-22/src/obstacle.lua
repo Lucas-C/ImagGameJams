@@ -82,7 +82,7 @@ end
 function applyCollision(obstacle)
 	if (obstacle.actif == nil or obstacle.actif == true) then
 		if (obstacle.oType == "h" or obstacle.oType == "w" or obstacle.oType == "s") then
-			if usableWith(obstacle.oType,object) then
+			if usableWith(obstacle.oType,itemselected) then
 			if itemselected == "C" then
 			if player.numCrosses ~= 0 then
 				player.numCrosses = player.numCrosses - 1
