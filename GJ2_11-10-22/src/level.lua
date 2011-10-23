@@ -13,7 +13,7 @@ function importLevel(filename)
 		exit(3)
 	end
 	contents = love.filesystem.read(filename)
-	local ln = contents:sub(1, 1)
+	ln = contents:sub(1, 1)
 	local d = 0
 	local cl = 0
 	for i = 2, #contents do
