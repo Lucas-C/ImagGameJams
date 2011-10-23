@@ -89,11 +89,20 @@ function applyCollision(obstacle)
 			if usableWith(obstacle.oType,itemselected) then
 			if itemselected == "C" then
 			if player.numCrosses ~= 0 then
+				if obstacle.oType == "s" then
+					local sound = love.audio.newSource("assets/sounds/highjump.wav")
+					love.audio.play(sound)
+				else
+					local sound = love.audio.newSource("assets/sounds/break.wav")
+					love.audio.play(sound)
+				end
 				player.numCrosses = player.numCrosses - 1
 				obstacle.actif = false
 			end
 			elseif itemselected == "D" then
 			if player.numSprings ~= 0 then
+				local sound = love.audio.newSource("assets/sounds/boing.wav")
+				love.audio.play(sound)
 				player.numSprings = player.numSprings - 1
 				obstacle.actif = false
 			end
