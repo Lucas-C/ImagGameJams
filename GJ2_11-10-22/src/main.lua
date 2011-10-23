@@ -20,7 +20,7 @@ end
 function love.draw()
   camera:set()
   background.draw()
-  love.graphics.draw(hurdle_sprite, camera.x + 200, 250)
+  love.graphics.draw(hurdle_sprite, camera.x + 250, 150)
   player.draw()
   camera:unset()
 end
