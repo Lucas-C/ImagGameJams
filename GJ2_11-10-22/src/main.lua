@@ -5,7 +5,7 @@ require("background")
 require("hud")
 require("aff_obs")
 
-music = love.audio.newSource("assets/music.wav")
+music = love.audio.newSource("assets/sounds/music.wav")
 
 camera.x = 0
 camera.y = 0
