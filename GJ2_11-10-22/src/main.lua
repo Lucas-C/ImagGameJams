@@ -24,7 +24,7 @@ function love.load()
 -- 	test_sprite = love.graphics.newImage("assets/sand.png")
 	player.load()
 	background.load()
-	level=importLevel("test.txt")
+	level=importLevel("levels/002.txt")
 	love.audio.play(music)
 end
 
