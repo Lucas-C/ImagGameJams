@@ -1,5 +1,5 @@
 require("player")
-
+-- item selected
 hud = {}
 hud.picSpring = love.graphics.newImage("assets/doinkdoink.png")
 hud.picCross = love.graphics.newImage("assets/crosse.png")
