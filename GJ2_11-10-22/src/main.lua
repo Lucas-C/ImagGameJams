@@ -68,7 +68,7 @@ function love.draw()
 end
 
 function love.update(dt)
-	if not pause  or not player.dead then
+	if not pause and not player.dead then
 		camera.x = camera.x + speedCamera * dt
 		player:update(dt)
 
