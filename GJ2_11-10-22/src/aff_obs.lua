@@ -4,12 +4,11 @@ require("line")
 
 
 
-function obstacles_entre_min_et_max_ligne_i(level,min,max,i)
+function obstacles_entre_min_et_max_ligne_i(level,obstaclesPrec,min,max,i)
 	if level==nil then print("Je suis nul.") end
 	if level[i] ~= nil then
-		return getObstacles(level[i],min,max)
+		return getObstacles(level[i],obstaclesPrec,min,max)
 	else
-		print("Aie")
 		return nil
 		
 	end
@@ -24,14 +23,19 @@ function affiche_obstacles_ligne(obstacles,lineNumber)
 end
 
 function update_obstacles(obstacles,dt)
-	local i=0
+	local i=1
+	
+		
 	while obstacles[i] ~= nil do
-		if obstacle.anim then
-		updateAnimation(obstacle.animation,dt)
+		local j=1
+		while obstacles[i][j] ~= nil do
+		if obstacles[i][j].anim==true then
+		updateAnimation(obstacles[i][j].animation,dt)
 		end
-	end
-	
-	
+		j=j+1
+		end
+		i=i+1
+	end	
 end
 
 function affiche_obstacle(obstacle,lineNumber)

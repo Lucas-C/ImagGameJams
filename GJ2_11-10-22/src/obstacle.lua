@@ -3,8 +3,6 @@ function getNewObstacle(oType, position)
 	obstacle.oType = oType
 	obstacle.position = position 
 	
-	
-	
 	if obstacle.oType == "h" then
 		obstacle.anim = false
 		obstacle.image = love.graphics.newImage("assets/hurdle.png")
