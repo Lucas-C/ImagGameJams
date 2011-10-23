@@ -51,13 +51,42 @@ function collideWith(obstacle, player)
 	elseif obstacle.oType == "s" then
 		return (obstacle.position) * 70 - 175  < player.x
 		and obstacle.position * 70 + 150 > player.x
+	elseif obstacle.oType == "C" then
+		return (obstacle.position) * 70  < player.x
+		and obstacle.position * 70 + 50 > player.x
+		and not player.jumping
+	elseif obstacle.oType == "B" then
+		return (obstacle.position) * 70  < player.x
+		and obstacle.position * 70 + 50 > player.x
+		and not player.jumping
+	elseif obstacle.oType == "D" then
+		return (obstacle.position) * 70  < player.x
+		and obstacle.position * 70 + 50 > player.x
+		and not player.jumping
 	else return false
 	end
 end
 
 function applyCollision(obstacle, player)
 	if (obstacle.actif == nil or obstacle.actif == true) then
-		print("AIE ")
+		if (obstacle.oType == "h" or obstacle.oType == "w" or obstacle.oType == "s") then
+			print("AIE ")
+		elseif 	obstacle.oType == "B" then
+			if player.numBaskets ~= 9 then
+
+				player.numBaskets = player.numBaskets + 1
+			end
+		elseif obstacle.oType == "C" then
+			if player.numCrosses ~= 9 then
+
+				player.numCrosses = player.numCrosses + 1
+			end
+		elseif obstacle.oType == "D" then
+			if player.numSprings ~= 9 then
+
+				player.numSprings = player.numSprings + 1
+			end
+		end
 		obstacle.actif = false
 	end
 end
