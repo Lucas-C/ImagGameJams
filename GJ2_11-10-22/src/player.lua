@@ -42,6 +42,8 @@ function player:update(dt)
 	
 	player.x = player.speed * dt + player.x
 	
+	print(player.x)
+	
    if (player.x - camera.x) <= 0 then
       player.x = camera.x
       player.getSpeed("normal")
@@ -91,4 +93,9 @@ end
 
 function player:getLine()
    return player.line;
+end
+
+function player:jump()
+	player.jumping = true;
+	player.jumpTime = love.timer.getMicroTime()
 end
