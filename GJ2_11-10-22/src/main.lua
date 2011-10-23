@@ -3,6 +3,8 @@ require("camera")
 require("player")
 require("background")
 
+music = love.audio.newSource("assets/music.wav")
+
 camera.x = 0
 camera.y = 0
 speedCamera = 200
@@ -15,6 +17,7 @@ function love.load()
 	player.load()
 	hurdle_sprite = love.graphics.newImage("assets/hurdle.png")
 	background.load()
+	love.audio.play(music)
 end
 
 function love.draw()
