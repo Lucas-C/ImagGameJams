@@ -58,7 +58,7 @@ end
 
 function applyCollision(obstacle, player)
 	if (obstacle.actif == nil or obstacle.actif == true) then
-		player:kill(getDeathCollision(obstacle))
+		--player:kill(getDeathCollision(obstacle))
 		obstacle.actif = false
 	end
 end
