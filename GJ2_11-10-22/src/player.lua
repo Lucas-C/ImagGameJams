@@ -118,8 +118,8 @@ function player:stopJumping()
 end
 
 function player:kill(animation)
-	player.dead = true
-	player.animation = animation
-	love.audio.play(player.deathSound)
+	-- player.dead = true
+	-- player.animation = animation
+	-- love.audio.play(player.deathSound)
 	
 end
