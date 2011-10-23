@@ -10,8 +10,8 @@ for i = 0, 9 do
 	hud.picFontNombre[i + 1] = love.graphics.newImage("assets/fonts/num_" .. i .. ".png")
 end
 hud.SPRINGSCALE = 0.2
-hud.CROSSSCALE = 0.2
-hud.BASKETSCALE = 0.2
+hud.CROSSSCALE = 0.25
+hud.BASKETSCALE = 0.4
 hud.OFFSETX = 15
 hud.SPRINGX = 15
 hud.CROSSX = hud.SPRINGX + 100
@@ -73,7 +73,7 @@ function hud:drawAux(basex, basey)
 	hud:printNombre(player.numCrosses, x, y)
 	--love.graphics.print("x"..player.numCrosses, x, y)
 	
-	x = basex + hud.BASKETX + hud.picBasket:getWidth() * hud.BASKETSCALE + hud.OFFSETX + 13
+	x = basex + hud.BASKETX + hud.picBasket:getWidth() * hud.BASKETSCALE + hud.OFFSETX + 11
 	y = basey + hud.BASKETY 
 	hud:printNombre(player.numBaskets, x, y)
 	--love.graphics.print("x"..player.numBaskets, x, y)
