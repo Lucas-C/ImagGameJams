@@ -25,22 +25,22 @@ function love.update(dt)
   player:update(dt)
 end
 
-function love.keypress(key)
+function love.keypressed(key)
    if key == "up" then
-      player.line = player.line + 1
-   elseif key == "down" then
       player.line = player.line - 1
+   elseif key == "down" then
+      player.line = player.line + 1
    end
    
    if key == "left" then
-      player.acceleration("min")
+      player:acceleration("min")
    elseif key == "right" then
-      player.acceleration("max")
+      player:acceleration("max")
    end
 end
 
 function love.keyreleased(key)
    if key == "left" or key == "right" then
-      player.acceleration(false)
+      player:acceleration("false")
    end 
 end

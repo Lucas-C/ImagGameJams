@@ -19,7 +19,8 @@ function player:draw()
 end
 
 function player:acceleration(aType)
-   if aType == false then
+
+   if aType == "false" then
       player.speed = PLAYER_NORMAL_SPEED
    elseif aType == "max" then
       player.speed = PLAYER_MAX_SPEED
