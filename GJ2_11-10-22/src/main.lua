@@ -166,6 +166,7 @@ function restart()
 	nextLevelIndex = 1
 	print("levels/"..nextLevelIndex)
 	level = importLevel("levels/"..nextLevelIndex..".lvl")
+	nextLevelIndex = 2
 	camera.x = 0
 	player.x = 0
 	for i =1,6 do
