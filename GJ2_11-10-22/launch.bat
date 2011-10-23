@@ -1,1 +1,1 @@
-@love src
+@love --console src
