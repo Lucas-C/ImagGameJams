@@ -2,23 +2,29 @@
 require("camera")
 require("player")
 require("background")
+require("aff_obs")
 
 music = love.audio.newSource("assets/music.wav")
 
 camera.x = 0
 camera.y = 0
 speedCamera = 200
+level={}
 
 N_LINE = 6
 
 function love.load()
 	player.load()
 	background.load()
+	level=importLevel("test.txt")
 	love.audio.play(music)
 end
 
 function love.draw()
   camera:set()
+  background.draw()
+  affiche_obstacles(level,math.floor(camera.x/72),math.floor((camera.x)/72+800/72))
+  player.draw()
   for i = 0,6 do
 	background.drawTrack(i)
 	if (player.line == i) then

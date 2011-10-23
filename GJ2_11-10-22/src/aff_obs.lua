@@ -1,29 +1,38 @@
-function aff_obs:affiche_obstacles(min,max)
-	local level={}
+require("level")
+require("line")
+
+
+
+
+function affiche_obstacles(level,min,max)
 	local i=1
-	level=importLevel("test.txt")
-	
-	while level.i ~= nil do
-		affiche_obstacles_line(level.i,min,max)
+	if level==nil then print("Je suis nul.") end
+	while level[i] ~= nil do
+		affiche_obstacles_line(level[i],min,max,i)
+		i=i+1
 	end
 	
 	
 end
 	
-function aff_obs:affiche_obstacles_line(line,min, max,lineNumber)
+function affiche_obstacles_line(line,min, max,lineNumber)
 	local obstacles = {}
-	obstacles = line:getObstacles(min,max)
-	while obstacles.i ~= nil do
-		affiche_obstacle(obstacles.i,lineNumber)
+	local i=1
+	
+	obstacles = getObstacles(line,min,max)
+	while obstacles[i] ~= nil do
+		affiche_obstacle(obstacles[i],lineNumber)
+		i=i+1
 	end
 end
 
-function aff_obs:affiche_obstacle(obstacle,lineNumber)
+function affiche_obstacle(obstacle,lineNumber)
+--[[
 	local obstacle.sprite = nil
 	if obstacle.oType = "h" then
-		obstacle.sprite = love.graphics.newImage("assets\seriousjoe2.png");
+		obstacle.sprite =
 	end
-	
-	love.graphics.draw(obstacle.sprite, obstacle.position*50,600-lineNumber*50)
+--]]
+	love.graphics.draw(love.graphics.newImage("assets/seriousjoe/seriousjoe2.png"), obstacle.position*72,50+(lineNumber)*72)
 end
 	

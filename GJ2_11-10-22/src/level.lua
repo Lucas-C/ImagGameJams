@@ -1,10 +1,15 @@
+require("obstacle")
+require("line")
+
+level={}
+
 function level:addLine(line)
 	level:insert(line)
 end
 
-function level:importLevel(filename)
+function importLevel(filename)
 	level = {}
-	if (love.filesystem.isFile(filename)) then
+	if not(love.filesystem.isFile(filename)) then
 		exit(3)
 	end
 	contents = love.filesystem.read(filename)
@@ -29,11 +34,14 @@ function level:importLevel(filename)
 			end
 		else 
 			isBlankLine = false
+			if sums[cl+1]==nil then sums[cl+1]=0 end
 			sums[cl+1] = sums[cl+1] + 1
 			if c == "h" then
-				obstacle:getNew("h", sums[cl+1])
-				level[cl+1]:addObstacle(obstacle)
+				obstacle=getNewObstacle("h", sums[cl+1])
+				if level[cl+1]==nil then level[cl+1]={} end
+				addObstacle(level[cl+1],obstacle)
+			end
 		end
 	end	
+	return level
 end
-
