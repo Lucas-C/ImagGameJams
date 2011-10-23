@@ -84,14 +84,21 @@ end
 
 function applyCollision(obstacle)
 	if obstacle.actif then
+		print(itemselected)
 		if (obstacle.oType == "p" or obstacle.oType == "w" or obstacle.oType == "s") then
+			print("A")
+			print(obstacle.oType)
+			print(itemselected)
 			if usableWith(obstacle.oType,itemselected) then
+			
+			print("B")
 			if itemselected == "C" then
 			if player.numCrosses ~= 0 then
 				player.numCrosses = player.numCrosses - 1
 				obstacle.actif = false
 			end
 			elseif itemselected == "D" then
+			print("C")
 			if player.numSprings ~= 0 then
 				player.numSprings = player.numSprings - 1
 				obstacle.actif = false

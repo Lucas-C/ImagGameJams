@@ -5,11 +5,10 @@ function select_objet(key)
 	if key == "c" then itemselected = "B" end
 end
 
-function usableWith(obstacle,object)
-	return ((obstacle.oType == "s" and object == "C"
-	or obstacle.oType == "w" and object == "C"
-	or obstacle.oType == "p" and object == "D"
-	or obstacle.oType == "w" and object == "D"
-	or obstacle.oType == "s" and object == "B"
-	or obstacle.oType == "p" and object == "B") and obstacle.actif )
+function usableWith(oType,object)
+	return (oType == "s" and object == "C")
+	or (oType == "p" and object == "D")
+	or (oType == "w" and object == "D")
+	or (oType == "s" and object == "B")
+	or (oType == "p" and object == "B")
 end
