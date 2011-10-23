@@ -2,7 +2,7 @@ require("animation")
 
 
 PLAYER_MIN_SPEED = 0
-PLAYER_NORMAL_SPEED = 200
+PLAYER_NORMAL_SPEED = 250
 PLAYER_MAX_SPEED = 400
 
 player = {}
@@ -15,12 +15,14 @@ player.won = false
 player.jumping = false
 player.jumpTime = 0
 player.jumpSound = love.audio.newSource("assets/sounds/jump.wav")
-player.deathSound = love.audio.newSource("assets/sounds/get.wav")
+player.deathSound = love.audio.newSource("assets/sounds/hurt.wav")
 player.victorySound = love.audio.newSource("assets/sounds/victory.wav")
 player.numCrosses = 0
 player.numSprings = 0
 player.numBaskets = 0
 player.dead = false
+player.musicOver = love.audio.newSource("assets/sounds/loose.wav")
+
 
 function player:load()
 	player.animation = createAnimation()
@@ -36,28 +38,29 @@ end
 
 function player:update(dt)
    updateAnimation(player.animation, dt)
+   if not player.dead then 
+	   -- jump management
+	   if (love.timer.getMicroTime() - player.jumpTime) > 0.4 and player.jumping then
+		  player:stopJumping()
+	   end
 
-   -- jump management
-   if (love.timer.getMicroTime() - player.jumpTime) > 0.4 and player.jumping then
-      player:stopJumping()
-   end
+	   player.y = 90 + player.line * 70
 
-   player.y = 90 + player.line * 70
+	   if player.jumping then
+		   player.y = player.y - 40
+		   setAnimationState(player.animation, "jump")
+	   end
 
-   if player.jumping then
-	   player.y = player.y - 40
-	   setAnimationState(player.animation, "jump")
-   end
+		player.x = player.speed * dt + player.x
 
-	player.x = player.speed * dt + player.x
-
-   if (player.x - camera.x) <= 0 then
-      player.x = camera.x
-      player.getSpeed("normal")
-   elseif (player.x - camera.x) >= (800 - getAnimWidth(player.animation)) then
-      player.x = camera.x + 800 - getAnimWidth(player.animation)
-      player.getSpeed("normal")
-   end
+	   if (player.x - camera.x) <= 0 then
+		  player.x = camera.x
+		  player.getSpeed("normal")
+	   elseif (player.x - camera.x) >= (800 - getAnimWidth(player.animation)) then
+		  player.x = camera.x + 800 - getAnimWidth(player.animation)
+		  player.getSpeed("normal")
+	   end
+	end
 end
 
 function player:draw()
@@ -119,11 +122,11 @@ function player:stopJumping()
    setAnimationState(player.animation, "normal")
 end
 
-function player:kill(animation)
+function player:kill(animation, sound)
 	player.dead = true
 	player.animation = animation
-	love.audio.play(player.deathSound)
-	
+	love.audio.play(sound)
+	love.audio.play(player.musicOver)
 end
 
 function player:win()

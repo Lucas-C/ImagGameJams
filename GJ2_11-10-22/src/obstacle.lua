@@ -7,8 +7,8 @@ function getNewObstacle(oType, position)
 	if obstacle.oType == "A" then
 		obstacle.anim = false
 		obstacle.yOffset = 0
-		obstacle.image = love.graphics.newImage("assets/EOF.png")
-	if obstacle.oType == "h" then
+		obstacle.image = love.graphics.newImage("assets/finish.png")
+	elseif obstacle.oType == "h" then
 		obstacle.anim = false
 		obstacle.yOffset = 0
 		obstacle.image = love.graphics.newImage("assets/hurdle.png")
@@ -53,10 +53,9 @@ function collideWith(obstacle, player)
 	if obstacle.oType == "A" then
 		return (obstacle.position) * 70 < player.x
 		and obstacle.position * 70 + 50 > player.x
-	end
-	if obstacle.oType == "h" then
-		return (obstacle.position) * 70  < player.x
-		and obstacle.position * 70 + 50 > player.x
+	elseif obstacle.oType == "h" then
+		return (obstacle.position) * 70 - 10 < player.x
+		and obstacle.position * 70 + 40 > player.x
 		and not player.jumping
 	elseif obstacle.oType == "w" then
 		return (obstacle.position) * 70  < player.x
@@ -65,16 +64,16 @@ function collideWith(obstacle, player)
 		return (obstacle.position) * 70 - 175  < player.x
 		and obstacle.position * 70 + 150 > player.x
 	elseif obstacle.oType == "C" then
-		return (obstacle.position) * 70  < player.x
-		and obstacle.position * 70 + 50 > player.x
+		return (obstacle.position) * 70 - 15  < player.x
+		and obstacle.position * 70 + 15 > player.x
 		and not player.jumping
 	elseif obstacle.oType == "B" then
-		return (obstacle.position) * 70  < player.x
-		and obstacle.position * 70 + 50 > player.x
+		return (obstacle.position) * 70 - 20  < player.x
+		and obstacle.position * 70 + 20 > player.x
 		and not player.jumping
 	elseif obstacle.oType == "D" then
-		return (obstacle.position) * 70  < player.x
-		and obstacle.position * 70 + 50 > player.x
+		return (obstacle.position) * 70 - 30 < player.x
+		and obstacle.position * 70 + 20 > player.x
 		and not player.jumping
 	else return false
 	end
@@ -83,7 +82,7 @@ end
 function applyCollision(obstacle, player)
 	if (obstacle.actif == nil or obstacle.actif == true) then
 		if (obstacle.oType == "h" or obstacle.oType == "w" or obstacle.oType == "s") then
-			player:kill(getDeathCollision(obstacle))
+			player:kill(getDeathCollision(obstacle), getDeathSound(obstacle))
 		elseif 	obstacle.oType == "B" then
 			if player.numBaskets ~= 9 then
 
@@ -131,10 +130,15 @@ function getDeathCollision(obstacle)
 		for i = 10, 12 do
 			addPictureInAnimation(res, love.graphics.newImage("assets/death_punching/dp00"..i..".png"), "normal")
 		end
-
 	end
 	setAnimationState(res, "normal")
-
 	return res
+end
 
+function getDeathSound(obstacle)
+	if obstacle.oType == "s" then
+		return love.audio.newSource("assets/sounds/splouf.wav")
+	else
+		return love.audio.newSource("assets/sounds/hurt.wav")
+	end
 end

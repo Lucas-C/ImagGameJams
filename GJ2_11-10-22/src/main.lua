@@ -6,7 +6,7 @@ require("hud")
 require("aff_obs")
 
 music = love.audio.newSource("assets/sounds/music.wav")
-music = love.audio.newSource("assets/sounds/music.wav")
+
 music:setLooping(true)
 
 pause = false;
@@ -20,13 +20,17 @@ for i =1,6 do
 obstaclesEntreMinEtMax[i]=nil
 end
 
+nextLevelIndex = 1
+
 N_LINE = 6
+
 
 function love.load()
 -- 	test_sprite = love.graphics.newImage("assets/sand.png")
 	player.load()
 	background.load()
-	level=importLevel("test.txt")
+	--level=importLevel("levels/002.txt")
+	initNextLevel()
 	love.audio.play(music)
 end
 
@@ -77,6 +81,7 @@ end
 
 function love.deathUpdate(dt)
 	updateAnimation(player.animation, dt)
+	love.audio.stop(music)
 end
 
 function love.mainUpdate(dt)
@@ -87,6 +92,10 @@ function love.mainUpdate(dt)
 	camera.x = camera.x + speedCamera * dt
 	player:update(dt)
 	update_obstacles(obstaclesEntreMinEtMax,dt)
+	if player.won then
+		player.won = false;
+		initNextLevel();
+	end	
 end
 
 function love.update(dt)
@@ -106,7 +115,7 @@ function love.keypressed(key)
 	end
    if key == "up" and player.getLine() > 0 then
       player:setLine("up")
-   elseif key == "down" and player.getLine() < N_LINE - 1 then
+   elseif key == "down" and player.getLine() < ln - 1 then
       player:setLine("down")
    end
 
@@ -124,7 +133,7 @@ function love.keypressed(key)
 
 
 
-   if key == " " and player.jumping == false and (love.timer.getMicroTime() - player.jumpTime) > 0.8 then
+   if key == " " and player.jumping == false and (love.timer.getMicroTime() - player.jumpTime) > 0.6 then
       player:startJumping()
    end
 end
@@ -137,4 +146,15 @@ function love.keyreleased(key)
    if key == "right" and player:getSpeed() == "max" then
       player:setSpeed("normal");
    end
+end
+
+function initNextLevel()
+	print("levels/"..nextLevelIndex)
+	level = importLevel("levels/"..nextLevelIndex..".lvl")
+	nextLevelIndex = nextLevelIndex + 1
+	camera.x = 0
+	player.x = 0
+	for i =1,6 do
+		obstaclesEntreMinEtMax[i]=nil
+	end
 end
