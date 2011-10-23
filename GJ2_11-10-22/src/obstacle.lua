@@ -46,7 +46,7 @@ function getNewObstacle(oType, position)
 	return obstacle
 end
 
-function collideWith(obstacle, player)
+function collideWith(obstacle)
 	if obstacle.oType == "h" then
 		return (obstacle.position) * 70  < player.x
 		and obstacle.position * 70 + 50 > player.x
@@ -73,7 +73,7 @@ function collideWith(obstacle, player)
 	end
 end
 
-function applyCollision(obstacle, player)
+function applyCollision(obstacle)
 	if (obstacle.actif == nil or obstacle.actif == true) then
 		if (obstacle.oType == "h" or obstacle.oType == "w" or obstacle.oType == "s") then
 			player:kill(getDeathCollision(obstacle))
