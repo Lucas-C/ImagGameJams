@@ -29,9 +29,17 @@ function love.keypress(key)
       player.line = player.line + 1
    elseif key == "down" then
       player.line = player.line - 1
-   elseif key == "left" then
-      player.speed = 10
-   elseif key == "right" then
-      player.speed = 20
    end
+   
+   if key == "left" then
+      player.acceleration("min")
+   elseif key == "right" then
+      player.acceleration("max")
+   end
+end
+
+function love.keyreleased(key)
+   if key == "left" or key == "right" then
+      player.acceleration(false)
+   end 
 end
