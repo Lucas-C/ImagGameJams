@@ -52,7 +52,7 @@ end
 function collideWith(obstacle)
 	if obstacle.oType == "A" then
 		return obstacle.position * 70 - 50 < player.x
-		and obstacle.position * 70 + 50 > player.x
+		and obstacle.position * 70 + 5000 > player.x
 	elseif obstacle.oType == "h" then
 		return obstacle.position * 70 - 25 < player.x
 		and obstacle.position * 70 + 25 > player.x
@@ -161,7 +161,12 @@ function getDeathCollision(obstacle)
 			addPictureInAnimation(res, love.graphics.newImage("assets/death_punching/dp00"..i..".png"), "normal")
 		end
 	elseif obstacle.oType == "A" then
-	
+		for i = 1, 9 do
+			addPictureInAnimation(res, love.graphics.newImage("assets/death_unheaded/unheaded000"..i..".png"), "normal")
+		end
+		for i = 10, 13 do
+			addPictureInAnimation(res, love.graphics.newImage("assets/death_unheaded/unheaded00"..i..".png"), "normal")
+		end
 	end
 	setAnimationState(res, "normal")
 	return res
