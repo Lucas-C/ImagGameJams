@@ -56,7 +56,7 @@ function love.keypressed(key)
       player:setSpeed("max")
    end
 
-   if key == " " and player.jumping == false then
+   if key == " " and player.jumping == false and (love.timer.getMicroTime() - player.jumpTime) > 1 then
       player:startJumping()
    end
 end

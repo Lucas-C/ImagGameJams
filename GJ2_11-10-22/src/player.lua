@@ -34,7 +34,7 @@ function player:update(dt)
    updateAnimation(player.animation, dt)
    
    -- jump management
-   if (love.timer.getMicroTime() - player.jumpTime) > 0.3 and player.jumping then
+   if (love.timer.getMicroTime() - player.jumpTime) > 0.4 and player.jumping then
       player:stopJumping()
    end
 
