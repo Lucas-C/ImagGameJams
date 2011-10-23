@@ -1,20 +1,26 @@
 
 require("camera")
 require("player")
-require("fond")
+require("background")
 
 camera.x = 0
 camera.y = 0
-speedCamera = 100
+speedCamera = 200
+
+hurdle_sprite = nil
+
+N_LINE = 6
 
 function love.load()
-	player.sprite = love.graphics.newImage("assets/seriousjoe.png")
-	fond.sprite = love.graphics.newImage("assets/Guillaume_masterpiece.png")
+	player.load()
+	hurdle_sprite = love.graphics.newImage("assets/hurdle.png")
+	background.load()
 end
 
 function love.draw()
   camera:set()
-  fond.draw()
+  background.draw()
+  love.graphics.draw(hurdle_sprite, camera.x + 250, 150)
   player.draw()
   camera:unset()
 end
@@ -25,21 +31,30 @@ function love.update(dt)
 end
 
 function love.keypressed(key)
-   if key == "up" then
-      player.line = player.line - 1
-   elseif key == "down" then
-      player.line = player.line + 1
+   if key == "up" and player.getLine() > 0 then
+      player:setLine("up")
+   elseif key == "down" and player.getLine() < N_LINE - 1 then
+      player:setLine("down")
    end
-   
+
    if key == "left" then
-      player:acceleration("min")
+      player:setSpeed("min")
    elseif key == "right" then
-      player:acceleration("max")
+      player:setSpeed("max")
+   end
+
+   if key == " " and player.jumping == false then
+      player.jumping = true;
+      player.jumpTime = love.timer.getMicroTime()
    end
 end
 
 function love.keyreleased(key)
-   if key == "left" or key == "right" then
-      player:acceleration("false")
-   end 
+   if key == "left" and player:getSpeed() == "min" then
+      player:setSpeed("normal")
+   end
+
+   if key == "right" and player:getSpeed() == "max" then
+      player:setSpeed("normal");
+   end
 end
