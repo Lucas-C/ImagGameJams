@@ -38,6 +38,11 @@ function love.keypressed(key)
    elseif key == "right" then
       player:setSpeed("max")
    end
+   
+   if key == " " and player.jumping == false then
+      player.jumping = true;
+      player.jumpTime = love.timer.getMicroTime()
+   end
 end
 
 function love.keyreleased(key)
