@@ -60,11 +60,15 @@ function love.keypressed(key)
    elseif key == "right" then
       player:setSpeed("max")
    end
-   
+   	
    if key == "p" and not pause then
       pause = true;
    elseif key == "p" and pause then
       pause = false;
+   end
+   
+   if key == "escape" then
+      love.event.push('q')
    end
 
    if key == " " and player.jumping == false and (love.timer.getMicroTime() - player.jumpTime) > 0.8 then
