@@ -110,6 +110,11 @@ function love.keypressed(key)
    if key == "escape" then
       love.event.push('q')
    end
+	if key == "r" and player.dead then
+		restart()
+		player.dead = false;
+		player.load()
+	end
 	if player.dead then
 		return
 	end
@@ -131,8 +136,6 @@ function love.keypressed(key)
       pause = false;
    end
 
-
-
    if key == " " and player.jumping == false and (love.timer.getMicroTime() - player.jumpTime) > 0.6 then
       player:startJumping()
    end
@@ -152,6 +155,18 @@ function initNextLevel()
 	print("levels/"..nextLevelIndex)
 	level = importLevel("levels/"..nextLevelIndex..".lvl")
 	nextLevelIndex = nextLevelIndex + 1
+	camera.x = 0
+	player.x = 0
+	for i =1,6 do
+		obstaclesEntreMinEtMax[i]=nil
+	end
+end
+
+function restart()
+	nextLevelIndex = 1
+	print("levels/"..nextLevelIndex)
+	level = importLevel("levels/"..nextLevelIndex..".lvl")
+	nextLevelIndex = 2
 	camera.x = 0
 	player.x = 0
 	for i =1,6 do
