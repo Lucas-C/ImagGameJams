@@ -6,6 +6,7 @@ require("hud")
 require("aff_obs")
 
 music = love.audio.newSource("assets/sounds/music.wav")
+music:setLooping(true)
 
 pause = false;
 
