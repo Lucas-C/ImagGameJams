@@ -44,8 +44,7 @@ function love.keypressed(key)
    end
 
    if key == " " and player.jumping == false then
-      player.jumping = true;
-      player.jumpTime = love.timer.getMicroTime()
+      player:jump()
    end
 end
 

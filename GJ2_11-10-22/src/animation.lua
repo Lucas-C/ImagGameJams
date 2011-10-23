@@ -6,12 +6,20 @@ function createAnimation()
 	res = {}
 	res.pictures = {}
 	res.frame = 0
-	res.frequency = 3
+	res.frequency = 5
+	res.state = nil
 	return res
 end
 
-function addPictureInAnimation(animation, pic)
-	table.insert(animation.pictures, pic)
+function setAnimationState(animation, state)
+	animation.state = state
+end
+
+function addPictureInAnimation(animation, pic, state)
+	if (animation.pictures[state] == nil) then
+		animation.pictures[state] = {}
+	end
+	table.insert(animation.pictures[state], pic)
 end
 
 function updateAnimation(animation, dt)
@@ -20,20 +28,19 @@ end
 
 function getCurrentPicAnimation(animation)
 	a = animation
-	n = table.getn(a.pictures)
-	return a.pictures[1 + (math.floor(a.frame) % n) ]
+	n = table.getn(a.pictures[animation.state])
+	return a.pictures[animation.state][1 + (math.floor(a.frame) % n) ]
 end
 
 function drawAnimation(animation, x, y)
 	a = animation
-	n = table.getn(a.pictures)
 	love.graphics.draw(getCurrentPicAnimation(a), x, y)
 end
 
 function getAnimWidth(animation)
-	return love.graphics.getWidth(getCurrentPicAnimation(animation))
+	return getCurrentPicAnimation(animation):getWidth()
 end
 
 function getAnimHeight(animation)
-	return love.graphics.getHeight(getCurrentPicAnimation(animation))
+	return getCurrentPicAnimation(animation):getHeight()
 end
