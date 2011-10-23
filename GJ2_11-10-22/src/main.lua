@@ -10,7 +10,7 @@ speedCamera = 200
 N_LINE = 6
 
 function love.load()
-	player.sprite = love.graphics.newImage("assets/seriousjoe/seriousjoe1.png")
+	player.load()
 	background.load()
 end
 
