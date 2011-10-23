@@ -54,8 +54,8 @@ function collideWith(obstacle, player)
 		return (obstacle.position) * 70 < player.x
 		and obstacle.position * 70 + 50 > player.x
 	elseif obstacle.oType == "h" then
-		return (obstacle.position) * 70 < player.x
-		and obstacle.position * 70 + 50 > player.x
+		return (obstacle.position) * 70 - 10 < player.x
+		and obstacle.position * 70 + 40 > player.x
 		and not player.jumping
 	elseif obstacle.oType == "w" then
 		return (obstacle.position) * 70  < player.x
