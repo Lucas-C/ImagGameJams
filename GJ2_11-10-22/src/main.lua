@@ -69,11 +69,9 @@ function love.draw()
 end
 
 function love.update(dt)
-	-- if player.dead then
-		-- player:udpate(dt)
-		-- return
-	-- end
-	if not pause then
+	if player.dead then
+		updateAnimation(player.animation, dt)
+	elseif not pause then
 		if level[player.line+1] ~= nil then
 			checkCollisions(level[player.line+1],math.floor(camera.x/70),math.floor((camera.x)/70+800/70),player,obstaclesEntreMinEtMax[player.line+1])
 		end
