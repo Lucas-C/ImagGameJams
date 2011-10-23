@@ -5,6 +5,11 @@ player.line = 0
 player.speed = 10 -- to be changed
 player.sprite = nil
 
+function player:update(dt)
+	player.y = 100 + player.line * 50
+	player.x = player.speed + player.x * dt
+end
+
 function player:draw()
 	love.graphics.draw(player.sprite, player.x, player.y, 0, 1, 1, 0, 0)
 end

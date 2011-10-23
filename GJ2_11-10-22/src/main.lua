@@ -22,6 +22,7 @@ end
 
 function love.update(dt)
   camera.x = camera.x + speedCamera * dt
+  player:update(dt)
 end
 
 function love.keypress(key)
