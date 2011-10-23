@@ -28,7 +28,7 @@ function love.draw()
   player.draw()
   for i = 0,5 do
 	background.drawTrack(i)
-	affiche_obstacles(level,math.floor(camera.x/72),math.floor((camera.x)/72+800/72),i+1)
+	affiche_obstacles(level,math.floor(camera.x/70),math.floor((camera.x)/70+1000/70),i+1)
 	if (player.line == i) then
 		player.draw()
 	end
