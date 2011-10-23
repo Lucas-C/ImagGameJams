@@ -6,7 +6,7 @@ function createAnimation()
 	res = {}
 	res.pictures = {}
 	res.frame = 0
-	res.frequency = 3
+	res.frequency = 5
 	return res
 end
 
@@ -31,9 +31,9 @@ function drawAnimation(animation, x, y)
 end
 
 function getAnimWidth(animation)
-	return love.graphics.getWidth(getCurrentPicAnimation(animation))
+	return getCurrentPicAnimation(animation):getWidth()
 end
 
 function getAnimHeight(animation)
-	return love.graphics.getHeight(getCurrentPicAnimation(animation))
+	return getCurrentPicAnimation(animation):getHeight()
 end
