@@ -5,6 +5,10 @@ camera.scaleX = 1
 camera.scaleY = 1
 camera.rotation = 0
 
+function camera:load()
+	player.sprite = love.graphics.newImage("assets/seriousjoe/seriousjoe1.png")
+end
+
 function camera:set()
   love.graphics.push()
   love.graphics.rotate(-self.rotation)

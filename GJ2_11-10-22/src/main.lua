@@ -12,7 +12,7 @@ hurdle_sprite = nil
 N_LINE = 6
 
 function love.load()
-	player.sprite = love.graphics.newImage("assets/seriousjoe/seriousjoe1.png")
+	player.load()
 	hurdle_sprite = love.graphics.newImage("assets/hurdle.png")
 	background.load()
 end
