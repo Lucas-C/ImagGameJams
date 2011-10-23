@@ -4,7 +4,10 @@ function getNewObstacle(oType, position)
 	obstacle.position = position
 	obstacle.actif = true
 	obstacle.objet = false
-
+	if obstacle.oType == "A" then
+		obstacle.anim = false
+		obstacle.yOffset = 0
+		obstacle.image = love.graphics.newImage("assets/EOF.png")
 	if obstacle.oType == "h" then
 		obstacle.anim = false
 		obstacle.yOffset = 0
@@ -47,6 +50,10 @@ function getNewObstacle(oType, position)
 end
 
 function collideWith(obstacle, player)
+	if obstacle.oType == "A" then
+		return (obstacle.position) * 70 < player.x
+		and obstacle.position * 70 + 50 > player.x
+	end
 	if obstacle.oType == "h" then
 		return (obstacle.position) * 70  < player.x
 		and obstacle.position * 70 + 50 > player.x
@@ -92,6 +99,8 @@ function applyCollision(obstacle, player)
 
 				player.numSprings = player.numSprings + 1
 			end
+		elseif  obstacle.oType == "A" then
+			player:win()
 		end
 		obstacle.actif = false
 	end
