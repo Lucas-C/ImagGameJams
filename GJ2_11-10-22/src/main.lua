@@ -30,6 +30,12 @@ function love.load()
 end
 
 function love.draw()
+	if (player.dead) then 
+		camera:set()
+		player.draw()
+		camera:unset()
+		return
+	end
    love.graphics.setColor(255, 255, 255, 255)
    camera:set()
    background.draw()
