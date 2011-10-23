@@ -7,6 +7,8 @@ require("aff_obs")
 
 music = love.audio.newSource("assets/sounds/music.wav")
 
+pause = false;
+
 camera.x = 0
 camera.y = 0
 speedCamera = 200
@@ -23,24 +25,27 @@ function love.load()
 end
 
 function love.draw()
-  camera:set()
-  background.draw()
-  player.draw()
-  for i = 0,5 do
-	background.drawTrack(i)
-	affiche_obstacles(level,math.floor(camera.x/70),math.floor((camera.x)/70+1000/70),i+1)
-	if (player.line == i) then
-		player.draw()
-	end
-  end
---   love.graphics.draw(test_sprite, 800, 240)
-  camera:unset()
-  hud:draw()
+   camera:set()
+   background.draw()
+   player.draw()
+   for i = 0,5 do
+      background.drawTrack(i)
+      affiche_obstacles(level,math.floor(camera.x/70),math.floor((camera.x)/70+1000/70),i+1)
+      if (player.line == i) then
+	      player.draw()
+      end
+   end
+
+   --   love.graphics.draw(test_sprite, 800, 240)
+   camera:unset()
+   hud:draw()
 end
 
 function love.update(dt)
-  camera.x = camera.x + speedCamera * dt
-  player:update(dt)
+   if not pause then
+      camera.x = camera.x + speedCamera * dt
+      player:update(dt)
+   end
 end
 
 function love.keypressed(key)
@@ -55,8 +60,14 @@ function love.keypressed(key)
    elseif key == "right" then
       player:setSpeed("max")
    end
+   
+   if key == "p" and not pause then
+      pause = true;
+   elseif key == "p" and pause then
+      pause = false;
+   end
 
-   if key == " " and player.jumping == false and (love.timer.getMicroTime() - player.jumpTime) > 1 then
+   if key == " " and player.jumping == false and (love.timer.getMicroTime() - player.jumpTime) > 0.8 then
       player:startJumping()
    end
 end
