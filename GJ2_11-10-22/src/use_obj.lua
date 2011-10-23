@@ -1,6 +1,6 @@
 function select_objet(key)
 	local object = ""
-	if key == "w" then itemselected = "C" end
+	if key == "z" then itemselected = "C" end
 	if key == "x" then itemselected = "D" end
 	if key == "c" then itemselected = "B" end
 end
