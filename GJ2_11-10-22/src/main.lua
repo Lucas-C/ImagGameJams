@@ -1,7 +1,7 @@
 
 require("camera")
 require("player")
-require("fond")
+require("background")
 
 camera.x = 0
 camera.y = 0
@@ -11,12 +11,12 @@ N_LINE = 6
 
 function love.load()
 	player.sprite = love.graphics.newImage("assets/seriousjoe.png")
-	fond.sprite = love.graphics.newImage("assets/background.png")
+	background.load()
 end
 
 function love.draw()
   camera:set()
-  fond.draw()
+  background.draw()
   player.draw()
   camera:unset()
 end
@@ -32,7 +32,7 @@ function love.keypressed(key)
    elseif key == "down" and player.getLine() < N_LINE then
       player:setLine("down")
    end
-   
+
    if key == "left" then
       player:setSpeed("min")
    elseif key == "right" then
@@ -47,5 +47,5 @@ function love.keyreleased(key)
 
    if key == "right" and player:getSpeed() == "max" then
       player:setSpeed("normal");
-   end 
+   end
 end
