@@ -19,6 +19,7 @@ end
 
 function love.draw()
   camera:set()
+  background.draw()
   for i = 0,6 do
 	background.drawTrack(i)
 	if (player.line == i) then
