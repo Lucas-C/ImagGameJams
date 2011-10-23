@@ -53,7 +53,10 @@ function love.mainDraw()
    camera:set()
    background.draw()
    hud.draw()
-   for i = 0,5 do
+	for i = tonumber(ln),5 do
+		background.drawTrack(i)
+	end
+	for i = 0,(tonumber(ln) - 1) do
       background.drawTrack(i)
       obstaclesEntreMinEtMax[i+1]=obstacles_entre_min_et_max_ligne_i(level,obstaclesEntreMinEtMax[i+1],math.floor(math.max(camera.x - 300, 0) / 70), math.floor((camera.x + 1000) / 70),i+1)
       obstaclesEntreMinEtMax[i+1]=obstacles_entre_min_et_max_ligne_i(level,obstaclesEntreMinEtMax[i+1],math.floor(camera.x/70),math.floor((camera.x)/70+1000/70),i+1)
@@ -68,7 +71,7 @@ function love.mainDraw()
 end
 
 function love.draw()
-	if (player.dead) then 
+	if (player.dead) then
 		love.deathDraw()
 		-- need to die after a while
 	elseif pause then
@@ -95,7 +98,7 @@ function love.mainUpdate(dt)
 	if player.won then
 		player.won = false;
 		initNextLevel();
-	end	
+	end
 end
 
 function love.update(dt)
