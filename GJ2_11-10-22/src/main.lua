@@ -8,7 +8,7 @@ camera.y = 0
 speedCamera = 100
 
 function love.load()
-	player.sprite = love.graphics.newImage("assets/Guillaume_masterpiece.png")
+	player.sprite = love.graphics.newImage("assets/seriousjoe.png")
 	fond.sprite = love.graphics.newImage("assets/Guillaume_masterpiece.png")
 end
 
@@ -22,6 +22,7 @@ end
 
 function love.update(dt)
   camera.x = camera.x + speedCamera * dt
+  player:update(dt)
 end
 
 function love.keypress(key)
@@ -29,9 +30,17 @@ function love.keypress(key)
       player.line = player.line + 1
    elseif key == "down" then
       player.line = player.line - 1
-   elseif key == "left" then
-      player.speed = 10
-   elseif key == "right" then
-      player.speed = 20
    end
+   
+   if key == "left" then
+      player.acceleration("min")
+   elseif key == "right" then
+      player.acceleration("max")
+   end
+end
+
+function love.keyreleased(key)
+   if key == "left" or key == "right" then
+      player.acceleration(false)
+   end 
 end
