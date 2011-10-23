@@ -1,21 +1,21 @@
 
 require("camera")
 require("player")
+require("fond")
 
 camera.x = 0
 camera.y = 0
 speedCamera = 100
-positionFond = 1
 
 function love.load()
 	player.sprite = love.graphics.newImage("assets/Guillaume_masterpiece.png")
+	fond.sprite = love.graphics.newImage("assets/Guillaume_masterpiece.png")
 end
 
 function love.draw()
   camera:set()
-  positionFond = math.floor((camera.x+800)/800)
-  love.graphics.print("Fond d'ecran", 800*(positionFond-1), 0)
-  love.graphics.print("Fond d'ecran", 800*positionFond, 0)
+  fond.draw()
+  
   player.draw()
   camera:unset()
 end
