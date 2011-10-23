@@ -14,7 +14,7 @@ player.animation = nil
 player.jumping = false
 player.jumpTime = 0
 player.jumpSound = love.audio.newSource("assets/sounds/jump.wav")
-player.deathSound = love.audio.newSource("assets/sounds/hurt.wav")
+player.deathSound = love.audio.newSource("assets/sounds/get.wav")
 player.numCrosses = 0
 player.numSprings = 0
 player.numBaskets = 0
@@ -118,8 +118,8 @@ function player:stopJumping()
 end
 
 function player:kill(animation)
-	-- player.dead = true
-	-- player.animation = animation
-	-- love.audio.play(player.deathSound)
+	player.dead = true
+	player.animation = animation
+	love.audio.play(player.deathSound)
 	
 end
