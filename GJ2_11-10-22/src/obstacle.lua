@@ -84,22 +84,32 @@ function applyCollision(obstacle, player)
 		if (obstacle.oType == "h" or obstacle.oType == "w" or obstacle.oType == "s") then
 			player:kill(getDeathCollision(obstacle), getDeathSound(obstacle))
 		elseif 	obstacle.oType == "B" then
+			local sound = love.audio.newSource("assets/sounds/get.wav", "static")
+			love.audio.play(sound)
 			if player.numBaskets ~= 9 then
 
 				player.numBaskets = player.numBaskets + 1
 			end
 		elseif obstacle.oType == "C" then
+			local sound = love.audio.newSource("assets/sounds/get.wav", "static")
+			love.audio.play(sound)
 			if player.numCrosses ~= 9 then
 
 				player.numCrosses = player.numCrosses + 1
 			end
 		elseif obstacle.oType == "D" then
+			local sound = love.audio.newSource("assets/sounds/get.wav", "static")
+			love.audio.play(sound)
 			if player.numSprings ~= 9 then
 
 				player.numSprings = player.numSprings + 1
 			end
 		elseif  obstacle.oType == "A" then
-			player:win()
+			if player.jumping then
+				player:win()
+			else 
+				player:kill(getDeathCollision(obstacle), getDeathSound(obstacle))
+			end
 		end
 		obstacle.actif = false
 	end
@@ -130,6 +140,8 @@ function getDeathCollision(obstacle)
 		for i = 10, 12 do
 			addPictureInAnimation(res, love.graphics.newImage("assets/death_punching/dp00"..i..".png"), "normal")
 		end
+	elseif obstacle.oType == "A" then
+	
 	end
 	setAnimationState(res, "normal")
 	return res
@@ -137,8 +149,8 @@ end
 
 function getDeathSound(obstacle)
 	if obstacle.oType == "s" then
-		return love.audio.newSource("assets/sounds/splouf.wav")
+		return love.audio.newSource("assets/sounds/splouf.wav", "static")
 	else
-		return love.audio.newSource("assets/sounds/hurt.wav")
+		return love.audio.newSource("assets/sounds/hurt.wav", "static")
 	end
 end
