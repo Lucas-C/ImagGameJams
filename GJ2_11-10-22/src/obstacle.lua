@@ -4,8 +4,11 @@ function getNewObstacle(oType, position)
 	obstacle.position = position
 	obstacle.actif = true
 	obstacle.objet = false
-
-	if obstacle.oType == "h" then
+	if obstacle.oType == "A" then
+		obstacle.anim = false
+		obstacle.yOffset = 0
+		obstacle.image = love.graphics.newImage("assets/finish.png")
+	elseif obstacle.oType == "h" then
 		obstacle.anim = false
 		obstacle.yOffset = 0
 		obstacle.image = love.graphics.newImage("assets/hurdle.png")
@@ -47,27 +50,30 @@ function getNewObstacle(oType, position)
 end
 
 function collideWith(obstacle)
-	if obstacle.oType == "h" then
-		return (obstacle.position) * 70  < player.x
+	if obstacle.oType == "A" then
+		return obstacle.position * 70 - 50 < player.x
 		and obstacle.position * 70 + 50 > player.x
+	elseif obstacle.oType == "h" then
+		return obstacle.position * 70 - 25 < player.x
+		and obstacle.position * 70 + 25 > player.x
 		and not player.jumping
 	elseif obstacle.oType == "w" then
-		return (obstacle.position) * 70  < player.x
-		and obstacle.position * 70 + 50 > player.x
+		return obstacle.position * 70 - 30  < player.x
+		and obstacle.position * 70 + 30 > player.x
 	elseif obstacle.oType == "s" then
-		return (obstacle.position) * 70 - 175  < player.x
+		return obstacle.position * 70 - 175  < player.x
 		and obstacle.position * 70 + 150 > player.x
 	elseif obstacle.oType == "C" then
-		return (obstacle.position) * 70  < player.x
-		and obstacle.position * 70 + 50 > player.x
+		return obstacle.position * 70 - 15  < player.x
+		and obstacle.position * 70 + 15 > player.x
 		and not player.jumping
 	elseif obstacle.oType == "B" then
-		return (obstacle.position) * 70  < player.x
-		and obstacle.position * 70 + 50 > player.x
+		return obstacle.position * 70 - 20  < player.x
+		and obstacle.position * 70 + 20 > player.x
 		and not player.jumping
 	elseif obstacle.oType == "D" then
-		return (obstacle.position) * 70  < player.x
-		and obstacle.position * 70 + 50 > player.x
+		return obstacle.position * 70 - 30 < player.x
+		and obstacle.position * 70 + 20 > player.x
 		and not player.jumping
 	else return false
 	end
@@ -76,21 +82,33 @@ end
 function applyCollision(obstacle)
 	if (obstacle.actif == nil or obstacle.actif == true) then
 		if (obstacle.oType == "h" or obstacle.oType == "w" or obstacle.oType == "s") then
-			player:kill(getDeathCollision(obstacle))
+			player:kill(getDeathCollision(obstacle), getDeathSound(obstacle))
 		elseif 	obstacle.oType == "B" then
+			local sound = love.audio.newSource("assets/sounds/get.wav", "static")
+			love.audio.play(sound)
 			if player.numBaskets ~= 9 then
 
 				player.numBaskets = player.numBaskets + 1
 			end
 		elseif obstacle.oType == "C" then
+			local sound = love.audio.newSource("assets/sounds/get.wav", "static")
+			love.audio.play(sound)
 			if player.numCrosses ~= 9 then
 
 				player.numCrosses = player.numCrosses + 1
 			end
 		elseif obstacle.oType == "D" then
+			local sound = love.audio.newSource("assets/sounds/get.wav", "static")
+			love.audio.play(sound)
 			if player.numSprings ~= 9 then
 
 				player.numSprings = player.numSprings + 1
+			end
+		elseif  obstacle.oType == "A" then
+			if player.jumping then
+				player:win()
+			else 
+				player:kill(getDeathCollision(obstacle), getDeathSound(obstacle))
 			end
 		end
 		obstacle.actif = false
@@ -122,10 +140,17 @@ function getDeathCollision(obstacle)
 		for i = 10, 12 do
 			addPictureInAnimation(res, love.graphics.newImage("assets/death_punching/dp00"..i..".png"), "normal")
 		end
-
+	elseif obstacle.oType == "A" then
+	
 	end
 	setAnimationState(res, "normal")
-
 	return res
+end
 
+function getDeathSound(obstacle)
+	if obstacle.oType == "s" then
+		return love.audio.newSource("assets/sounds/splouf.wav", "static")
+	else
+		return love.audio.newSource("assets/sounds/hurt.wav", "static")
+	end
 end
