@@ -25,12 +25,6 @@ function affiche_obstacles_line(line,min, max,lineNumber)
 end
 
 function affiche_obstacle(obstacle,lineNumber)
---[[
-	local obstacle.sprite = nil
-	if obstacle.oType = "h" then
-		obstacle.sprite =
-	end
---]]
-	love.graphics.draw(love.graphics.newImage("assets/hurdle.png"), obstacle.position*70,80+(lineNumber)*70)
+	love.graphics.draw(obstacle.sprite, obstacle.position*70,80+(lineNumber)*70)
 end
 	
