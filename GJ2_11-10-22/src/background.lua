@@ -1,6 +1,9 @@
 background = {}
 background.bleachers = {}
 background.track = {}
+background.track.pos_first = 180
+background.track.height = 70
+
 
 function background.loadElement(e, filename)
 	e.sprite = love.graphics.newImage(filename)
@@ -23,10 +26,8 @@ end
 
 function background.draw()
 	background.drawElementHoriz(background.bleachers, 0);
-	background.drawElementHoriz(background.track, 180);
-	background.drawElementHoriz(background.track, 250);
-	background.drawElementHoriz(background.track, 320);
-	background.drawElementHoriz(background.track, 390);
-	background.drawElementHoriz(background.track, 460);
-	background.drawElementHoriz(background.track, 530);
+end
+
+function background.drawTrack(i)
+	background.drawElementHoriz(background.track, background.track.pos_first + i * background.track.height);
 end
