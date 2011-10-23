@@ -63,13 +63,8 @@ function collideWith(obstacle, player)
 end
 
 function applyCollision(obstacle, player)
-<<<<<<< HEAD:GJ2_11-10-22/src/obstacle.lua
-	if (obstacle.actif == nil or obstacle.actif == true) then
-		player:kill(getDeathCollision(obstacle))
-=======
 	if obstacle.actif then
 		player:kill(getDeathCollision(obstacle))
->>>>>>> 0b70633815f2a75bef645eacc13583fdbc32f778:GJ2_11-10-22/src/obstacle.lua
 		obstacle.actif = false
 	end
 end
