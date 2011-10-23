@@ -13,6 +13,7 @@ camera.x = 0
 camera.y = 0
 speedCamera = 200
 level={}
+obstaclesEntreMinEtMax = {}
 
 N_LINE = 6
 
@@ -29,12 +30,17 @@ function love.draw()
    camera:set()
    background.draw()
    player.draw()
+   obstaclesEntreMinEtMax={}
    for i = 0,5 do
       background.drawTrack(i)
-      affiche_obstacles(level,math.floor(camera.x/70),math.floor((camera.x)/70+1000/70),i+1)
+      obstaclesEntreMinEtMax[i+1]=obstacles_entre_min_et_max_ligne_i(level,math.floor(camera.x/70),math.floor((camera.x)/70+1000/70),i+1)
+	  if obstaclesEntreMinEtMax[i+1] ~= nil then
+	  affiche_obstacles_ligne(obstaclesEntreMinEtMax[i+1],i+1)
+	  end
       if (player.line == i) then
 	      player.draw()
       end
+	  
    end
 
    --   love.graphics.draw(test_sprite, 800, 240)
@@ -51,9 +57,16 @@ function love.draw()
 end
 
 function love.update(dt)
+	camera.x = camera.x + speedCamera * dt
+	player:update(dt)
    if not pause then
-      camera.x = camera.x + speedCamera * dt
-      player:update(dt)
+		if level[player.line+1] ~= nil then
+			checkCollisions(level[player.line+1],math.floor(camera.x/70),math.floor((camera.x)/70+800/70),player)
+		end
+	
+		camera.x = camera.x + speedCamera * dt
+		player:update(dt)
+		update_obstacles(obstaclesEntreMinEtMax,dt)
    end
 end
 

@@ -13,6 +13,17 @@ function getObstacles(line,min, max)
 	return obstacles
 end
 
+function checkCollisions(line, min, max, player)
+	obstacles = getObstacles(line, min, max)
+	index = 1
+	while obstacles[index] ~= nil do
+		if collideWith(obstacles[index], player) then
+			applyCollision(obstacles[index], player)
+		end	
+		index = index + 1
+	end	
+end 
+
 
 -- Ajoute l'obstacle à la ligne 
 function addObstacle(line,obstacle)
