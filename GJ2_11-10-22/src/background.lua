@@ -1,3 +1,5 @@
+require("hud")
+
 background = {}
 background.bleachers = {}
 background.track = {}

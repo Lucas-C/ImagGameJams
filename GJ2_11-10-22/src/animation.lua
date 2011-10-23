@@ -15,6 +15,10 @@ function setAnimationState(animation, state)
 	animation.state = state
 end
 
+function setAnimationFrequency(animation, frequency)
+	animation.frequency = frequency
+end
+
 function addPictureInAnimation(animation, pic, state)
 	if (animation.pictures[state] == nil) then
 		animation.pictures[state] = {}
