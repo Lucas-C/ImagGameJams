@@ -7,8 +7,8 @@ function getNewObstacle(oType, position)
 	if obstacle.oType == "A" then
 		obstacle.anim = false
 		obstacle.yOffset = 0
-		obstacle.image = love.graphics.newImage("assets/EOF.png")
-	if obstacle.oType == "h" then
+		obstacle.image = love.graphics.newImage("assets/finish.png")
+	elseif obstacle.oType == "h" then
 		obstacle.anim = false
 		obstacle.yOffset = 0
 		obstacle.image = love.graphics.newImage("assets/hurdle.png")
@@ -53,9 +53,8 @@ function collideWith(obstacle, player)
 	if obstacle.oType == "A" then
 		return (obstacle.position) * 70 < player.x
 		and obstacle.position * 70 + 50 > player.x
-	end
-	if obstacle.oType == "h" then
-		return (obstacle.position) * 70  < player.x
+	elseif obstacle.oType == "h" then
+		return (obstacle.position) * 70 < player.x
 		and obstacle.position * 70 + 50 > player.x
 		and not player.jumping
 	elseif obstacle.oType == "w" then
@@ -131,10 +130,8 @@ function getDeathCollision(obstacle)
 		for i = 10, 12 do
 			addPictureInAnimation(res, love.graphics.newImage("assets/death_punching/dp00"..i..".png"), "normal")
 		end
-
 	end
 	setAnimationState(res, "normal")
 
 	return res
-
 end
