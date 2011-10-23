@@ -92,3 +92,8 @@ end
 function player:getLine()
    return player.line;
 end
+
+function player:jump()
+	player.jumping = true;
+	player.jumpTime = love.timer.getMicroTime()
+end
