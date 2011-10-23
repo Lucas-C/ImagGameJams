@@ -4,7 +4,12 @@ hud = {}
 hud.picSpring = love.graphics.newImage("assets/crosse.png")
 hud.picCross = love.graphics.newImage("assets/crosse.png")
 hud.picBasket = love.graphics.newImage("assets/crosse.png")
- 
+-- Image des Nombres
+hud.picFontNombre = {}
+for i = 0, 9 do
+	hud.picFontNombre[i + 1] = love.graphics.newImage("assets/fonts/num_" .. i .. ".png")
+end
+
 hud.OFFSETX = 10
 hud.SPRINGX = 0
 hud.SPRINGY = 0
@@ -34,6 +39,7 @@ function hud:draw()
 end
 
 function hud:drawAux(basex, basey)
+
 	-- set new graphics state
 	love.graphics.setColor(255, 255, 0, 255)
 

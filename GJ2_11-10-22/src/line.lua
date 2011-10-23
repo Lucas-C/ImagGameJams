@@ -1,13 +1,27 @@
 -- Une line contient les obstacles
 
 -- Renvoie les obstacles entre min et max.
-function getObstacles(line,min, max)
-	local index = 1
+function getObstacles(line,obstaclesPrec,min, max)
+	local index1 = 1
 	local obstacles = {}
-	for i = min, max do
+	if obstaclesPrec ~= nil then 
+	local n= table.getn(obstaclesPrec)
+	local maxPos = -1
+	for index2=1,n do
+		if obstaclesPrec[index2].position >= (min) then
+		obstacles[index1] = obstaclesPrec[index2]
+		index1=index1+1
+		end
+		if obstaclesPrec[index2].position > maxPos
+		then maxPos = obstaclesPrec[index2].position end
+	end
+	else
+	maxPos=min end
+		
+	for i = maxPos, max do
 		if line[i] ~= nil then 
-		obstacles[index] = line[i]
-		index = index + 1
+		obstacles[index1] = line[i]
+		index1 = index1 + 1
 		end
 	end
 	return obstacles
