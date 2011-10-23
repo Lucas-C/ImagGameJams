@@ -201,7 +201,7 @@ function getDeathCollision(obstacle)
 		for i = 1, 9 do
 			addPictureInAnimation(res, love.graphics.newImage("assets/death_unheaded/unheaded000"..i..".png"), "normal")
 		end
-		for i = 10, 13 do
+		for i = 10,10 do
 			addPictureInAnimation(res, love.graphics.newImage("assets/death_unheaded/unheaded00"..i..".png"), "normal")
 		end
 	end
