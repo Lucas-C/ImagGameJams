@@ -32,8 +32,10 @@ function hud:draw()
 	
 	basex = 450
 	basey = 80
-	hud:drawAux((basex - camera.x) % background.bleachers.sprite:getWidth() - background.bleachers.sprite:getWidth(), basey)
-	hud:drawAux((basex - camera.x) % background.bleachers.sprite:getWidth(), basey)
+	local spriteWidth = background.bleachers.sprite:getWidth()
+	local repeatIndex = math.floor((camera.x + spriteWidth) / spriteWidth)
+	hud:drawAux(basex % spriteWidth + repeatIndex * spriteWidth, basey)
+	hud:drawAux(basex % spriteWidth + (repeatIndex - 1) * spriteWidth, basey)
 	
 	-- set previous graphics state
 	love.graphics.setColor(r, g, b, a)
