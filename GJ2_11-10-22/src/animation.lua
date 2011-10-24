@@ -27,20 +27,6 @@ function addPictureInAnimation(animation, pic, state)
 	table.insert(animation.pictures[state], pic)
 end
 
-function makeDirectoryAnimationForObstacles(obstacle,dossier,name,nombre,status)
-		local nbs =""
-		for k = 1,nombre do
-		if k<10 then nbs = "0"..k
-		else nbs= ""..k end
-		addPictureInAnimation(obstacle.animation, love.graphics.newImage("assets/"..dossier.."/"..name.."00"..nbs..".png"), status)
-		end
-		for k = nombre-1,2 do
-		if k<10 then nbs = "0"..k
-		else nbs= ""..k end
-		addPictureInAnimation(obstacle.animation, love.graphics.newImage("assets/"..dossier.."/"..name.."00"..nbs..".png"), status)
-		end
-end
-
 function updateAnimation(animation, dt)
 	animation.frame = animation.frame + animation.frequency * dt
 end
