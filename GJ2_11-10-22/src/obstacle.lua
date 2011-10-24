@@ -1,6 +1,6 @@
 obstacleAnim = {}
 
-function loadOneAnim(animat,dossier,nm,nb,freq,yOff)
+function loadOneAnim(animat,dossier,nm,nb,freq,yOff,xOff)
 	local nbs =""
 	for i = 1,nb do
 		if i<10 then nbs = "0"..i
@@ -10,32 +10,33 @@ function loadOneAnim(animat,dossier,nm,nb,freq,yOff)
 	setAnimationState(animat, "normal")
 	setAnimationFrequency(animat, freq)
 	animat.yOffset = yOff
+	animat.xOffset = xOff
 end
 
 function loadAnims()
 	-- Crosse-sand
 	obstacleAnim.cross_sand = createAnimation()
-	loadOneAnim(obstacleAnim.cross_sand,"cross_sand","cs",8,0.15,-160)
+	loadOneAnim(obstacleAnim.cross_sand,"cross_sand","cs",8,0.15,-160,35)
 	
 	-- Crosse-wall
 	obstacleAnim.cross_wall = createAnimation()
-	loadOneAnim(obstacleAnim.cross_wall,"crosse_wall","cw",5,0.15,-160)
+	loadOneAnim(obstacleAnim.cross_wall,"crosse_wall","cw",5,0.15,-111,15)
 	
 	-- Doink-punch
 	obstacleAnim.doink_punch = createAnimation()
-	loadOneAnim(obstacleAnim.doink_punch,"doink_pounching","dp",4,0.15,-160)
+	loadOneAnim(obstacleAnim.doink_punch,"doink_pounching","dp",4,0.15,-208,24)
 	
 	-- Doink-wall
 	obstacleAnim.doink_wall = createAnimation()
-	loadOneAnim(obstacleAnim.doink_wall,"doink_wall","dw",4,0.15,-160)
+	loadOneAnim(obstacleAnim.doink_wall,"doink_wall","dw",4,0.15,-216,0)
 	
 	-- Running-punch
 	obstacleAnim.run_punch = createAnimation()
-	loadOneAnim(obstacleAnim.run_punch,"running_punching","rp",12,0.15,-160)
+	loadOneAnim(obstacleAnim.run_punch,"running_punching","rp",12,0.15,-160,0)
 	
 	-- Running-sand
 	obstacleAnim.run_sand = createAnimation()
-	loadOneAnim(obstacleAnim.run_sand,"running_sand","rs",8,0.15,-160)	
+	loadOneAnim(obstacleAnim.run_sand,"running_sand","rs",8,0.15,-160,0)	
 	
 end
 
@@ -130,13 +131,13 @@ function applyCollision(obstacle)
 						if obstacle.oType == "s" then
 							player.useObjectAnim = obstacleAnim.cross_sand
 							player:setSpeed("normal")
-							player.useObjectPos.x = obstacle.position * 70 + 35 - getAnimWidth(player.useObjectAnim) / 2
+							player.useObjectPos.x = obstacle.position * 70 + player.useObjectAnim.xOffset - getAnimWidth(player.useObjectAnim) / 2
 							player.useObjectPos.y = 180 + player.line * 70
 							sound = love.audio.newSource("assets/sounds/highjump.wav")
 						else
 							player.useObjectAnim = obstacleAnim.cross_wall
 							player:setSpeed("normal")
-							player.useObjectPos.x = obstacle.position * 70 + 35 - getAnimWidth(player.useObjectAnim) / 2
+							player.useObjectPos.x = obstacle.position * 70 + player.useObjectAnim.xOffset - getAnimWidth(player.useObjectAnim) / 2
 							player.useObjectPos.y = 180 + player.line * 70
 							sound = love.audio.newSource("assets/sounds/break.wav")
 						end
@@ -151,28 +152,28 @@ function applyCollision(obstacle)
 						if obstacle.oType == "p" then
 							player.useObjectAnim = obstacleAnim.doink_punch
 							player:setSpeed("normal")
-							player.useObjectPos.x = obstacle.position * 70 + 35 - getAnimWidth(player.useObjectAnim) / 2
+							player.useObjectPos.x = obstacle.position * 70 + player.useObjectAnim.xOffset - getAnimWidth(player.useObjectAnim) / 2
 							player.useObjectPos.y = 180 + player.line * 70
 						else
 							player.useObjectAnim = obstacleAnim.doink_wall
 							player:setSpeed("normal")
-							player.useObjectPos.x = obstacle.position * 70 + 35 - getAnimWidth(player.useObjectAnim) / 2
+							player.useObjectPos.x = obstacle.position * 70 + player.useObjectAnim.xOffset - getAnimWidth(player.useObjectAnim) / 2
 							player.useObjectPos.y = 180 + player.line * 70
 						end
 					end
 				elseif itemselected == "B" then
-					if player.numSprings ~= 0 then
+					if player.numBaskets ~= 0 then
 						player.numBaskets = player.numBaskets - 1
 						obstacle.actif = false
 						if obstacle.oType == "p" then
 							player.useObjectAnim = obstacleAnim.run_punch
 							player:setSpeed("normal")
-							player.useObjectPos.x = obstacle.position * 70 + 35 - getAnimWidth(player.useObjectAnim) / 2
+							player.useObjectPos.x = obstacle.position * 70 + player.useObjectAnim.xOffset - getAnimWidth(player.useObjectAnim) / 2
 							player.useObjectPos.y = 180 + player.line * 70
 						else
 							player.useObjectAnim = obstacleAnim.run_sand
 							player:setSpeed("normal")
-							player.useObjectPos.x = obstacle.position * 70 + 35 - getAnimWidth(player.useObjectAnim) / 2
+							player.useObjectPos.x = obstacle.position * 70 + player.useObjectAnim.xOffset - getAnimWidth(player.useObjectAnim) / 2
 							player.useObjectPos.y = 180 + player.line * 70
 						end
 					end
