@@ -1,35 +1,40 @@
 obstacleAnim = {}
 
-function loadOneAnim(nom,dossier,nm,nb,freq,yOff)
-	nom = createAnimation()
+function loadOneAnim(animat,dossier,nm,nb,freq,yOff)
 	local nbs =""
 	for i = 1,nb do
 		if i<10 then nbs = "0"..i
 		else nbs = ""..i end
-		addPictureInAnimation(nom, love.graphics.newImage("assets/"..dossier.."/"..nm.."00"..nbs..".png"), "normal")
+		addPictureInAnimation(animat, love.graphics.newImage("assets/"..dossier.."/"..nm.."00"..nbs..".png"), "normal")
 	end
-	setAnimationState(nom, "normal")
-	setAnimationFrequency(nom, freq)
-	nom.yOffset = yOff
+	setAnimationState(animat, "normal")
+	setAnimationFrequency(animat, freq)
+	animat.yOffset = yOff
 end
 
 function loadAnims()
 	-- Crosse-sand
+	obstacleAnim.cross_sand = createAnimation()
 	loadOneAnim(obstacleAnim.cross_sand,"cross_sand","cs",8,0.15,-160)
 	
 	-- Crosse-wall
+	obstacleAnim.cross_wall = createAnimation()
 	loadOneAnim(obstacleAnim.cross_wall,"crosse_wall","cw",5,0.15,-160)
 	
 	-- Doink-punch
+	obstacleAnim.doink_punch = createAnimation()
 	loadOneAnim(obstacleAnim.doink_punch,"doink_pounching","dp",4,0.15,-160)
 	
 	-- Doink-wall
+	obstacleAnim.doink_wall = createAnimation()
 	loadOneAnim(obstacleAnim.doink_wall,"doink_wall","dw",4,0.15,-160)
 	
 	-- Running-punch
+	obstacleAnim.run_punch = createAnimation()
 	loadOneAnim(obstacleAnim.run_punch,"running_punching","rp",12,0.15,-160)
 	
 	-- Running-sand
+	obstacleAnim.run_sand = createAnimation()
 	loadOneAnim(obstacleAnim.run_sand,"running_sand","rs",8,0.15,-160)	
 	
 end
@@ -129,7 +134,10 @@ function applyCollision(obstacle)
 							player.useObjectPos.y = 180 + player.line * 70
 							sound = love.audio.newSource("assets/sounds/highjump.wav")
 						else
-							print("TODO: animation")
+							player.useObjectAnim = obstacleAnim.cross_wall
+							player:setSpeed("normal")
+							player.useObjectPos.x = obstacle.position * 70 + 35 - getAnimWidth(player.useObjectAnim) / 2
+							player.useObjectPos.y = 180 + player.line * 70
 							sound = love.audio.newSource("assets/sounds/break.wav")
 						end
 						love.audio.play(sound)
@@ -140,11 +148,33 @@ function applyCollision(obstacle)
 						love.audio.play(sound)
 						player.numSprings = player.numSprings - 1
 						obstacle.actif = false
+						if obstacle.oType == "p" then
+							player.useObjectAnim = obstacleAnim.doink_punch
+							player:setSpeed("normal")
+							player.useObjectPos.x = obstacle.position * 70 + 35 - getAnimWidth(player.useObjectAnim) / 2
+							player.useObjectPos.y = 180 + player.line * 70
+						else
+							player.useObjectAnim = obstacleAnim.doink_wall
+							player:setSpeed("normal")
+							player.useObjectPos.x = obstacle.position * 70 + 35 - getAnimWidth(player.useObjectAnim) / 2
+							player.useObjectPos.y = 180 + player.line * 70
+						end
 					end
 				elseif itemselected == "B" then
 					if player.numSprings ~= 0 then
 						player.numBaskets = player.numBaskets - 1
 						obstacle.actif = false
+						if obstacle.oType == "p" then
+							player.useObjectAnim = obstacleAnim.run_punch
+							player:setSpeed("normal")
+							player.useObjectPos.x = obstacle.position * 70 + 35 - getAnimWidth(player.useObjectAnim) / 2
+							player.useObjectPos.y = 180 + player.line * 70
+						else
+							player.useObjectAnim = obstacleAnim.run_sand
+							player:setSpeed("normal")
+							player.useObjectPos.x = obstacle.position * 70 + 35 - getAnimWidth(player.useObjectAnim) / 2
+							player.useObjectPos.y = 180 + player.line * 70
+						end
 					end
 				end
 			end
