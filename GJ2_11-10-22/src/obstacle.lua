@@ -1,14 +1,37 @@
 obstacleAnim = {}
 
+function loadOneAnim(nom,dossier,nm,nb,freq,yOff)
+	nom = createAnimation()
+	local nbs =""
+	for i = 1,nb do
+		if i<10 then nbs = "0"..i
+		else nbs = ""..i end
+		addPictureInAnimation(nom, love.graphics.newImage("assets/"..dossier.."/"..nm.."00"..nbs..".png"), "normal")
+	end
+	setAnimationState(nom, "normal")
+	setAnimationFrequency(nom, freq)
+	nom.yOffset = yOff
+end
+
 function loadAnims()
 	-- Crosse-sand
-	obstacleAnim.cross_sand = createAnimation()
-	for i = 1,8 do
-		addPictureInAnimation(obstacleAnim.cross_sand, love.graphics.newImage("assets/cross_sand/cs000"..i..".png"), "normal")
-	end
-	setAnimationState(obstacleAnim.cross_sand, "normal")
-	setAnimationFrequency(obstacleAnim.cross_sand, 0.15)
-	obstacleAnim.cross_sand.yOffset = -160
+	loadOneAnim(obstacleAnim.cross_sand,"cross_sand","cs",8,0.15,-160)
+	
+	-- Crosse-wall
+	loadOneAnim(obstacleAnim.cross_wall,"crosse_wall","cw",5,0.15,-160)
+	
+	-- Doink-punch
+	loadOneAnim(obstacleAnim.doink_punch,"doink_pounching","dp",4,0.15,-160)
+	
+	-- Doink-wall
+	loadOneAnim(obstacleAnim.doink_wall,"doink_wall","dw",4,0.15,-160)
+	
+	-- Running-punch
+	loadOneAnim(obstacleAnim.run_punch,"running_punching","rp",12,0.15,-160)
+	
+	-- Running-sand
+	loadOneAnim(obstacleAnim.run_sand,"running_sand","rs",8,0.15,-160)	
+	
 end
 
 function getNewObstacle(oType, position)
