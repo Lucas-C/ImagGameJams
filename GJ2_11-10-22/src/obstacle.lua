@@ -50,14 +50,9 @@ function getNewObstacle(oType, position)
 		obstacle.yOffset = 20
 		obstacle.image = love.graphics.newImage("assets/doinkdoink.png")
 	elseif obstacle.oType == "p" then
-		obstacle.anim = true
 		obstacle.yOffset = -40
-		obstacle.animation = createAnimation()
-		addPictureInAnimation(obstacle.animation, love.graphics.newImage("assets/punching_ball/pb0001.png"), "normal")
-		addPictureInAnimation(obstacle.animation, love.graphics.newImage("assets/punching_ball/pb0002.png"), "normal")
-		addPictureInAnimation(obstacle.animation, love.graphics.newImage("assets/punching_ball/pb0003.png"), "normal")
-		addPictureInAnimation(obstacle.animation, love.graphics.newImage("assets/punching_ball/pb0002.png"), "normal")
-		setAnimationState(obstacle.animation, "normal")
+		obstacle.anim = false
+		obstacle.image = love.graphics.newImage("assets/punching_ball/pb0001.png")
 	end
 	return obstacle
 end

@@ -18,9 +18,7 @@ speedCamera = 200
 level={}
 obstaclesEntreMinEtMax = {}
 itemselected = nil
-for i =1,6 do
-obstaclesEntreMinEtMax[i]=nil
-end
+indexUpdateObstacles = 0
 
 nextLevelIndex = 1
 
@@ -98,7 +96,12 @@ function love.mainUpdate(dt)
 
 		camera.x = camera.x + speedCamera * dt
 		player:update(dt)
+		if indexUpdateObstacles == 3 then
 		update_obstacles(obstaclesEntreMinEtMax,dt)
+		indexUpdateObstacles = 0
+		else
+		indexUpdateObstacles = indexUpdateObstacles +1
+		end
 	elseif player.victorySound:isStopped() then
 		player.won = false;
 		initNextLevel();
