@@ -32,11 +32,11 @@ function loadAnims()
 	
 	-- Running-punch
 	obstacleAnim.run_punch = createAnimation()
-	loadOneAnim(obstacleAnim.run_punch,"running_punching","rp",12,0.15,-160,0)
+	loadOneAnim(obstacleAnim.run_punch,"running_punching","rp",12,0.15,-100,20)
 	
 	-- Running-sand
 	obstacleAnim.run_sand = createAnimation()
-	loadOneAnim(obstacleAnim.run_sand,"running_sand","rs",8,0.15,-160,0)	
+	loadOneAnim(obstacleAnim.run_sand,"running_sand2","rs",8,0.15,-100,0)	
 	
 end
 
@@ -79,9 +79,9 @@ function getNewObstacle(oType, position)
 		obstacle.yOffset = 20
 		obstacle.image = love.graphics.newImage("assets/doinkdoink.png")
 	elseif obstacle.oType == "p" then
-		obstacle.yOffset = -40
+		obstacle.yOffset = 10
 		obstacle.anim = false
-		obstacle.image = love.graphics.newImage("assets/punching_ball/pb0001.png")
+		obstacle.image = love.graphics.newImage("assets/running_punching/punching_ball.png")
 	end
 	return obstacle
 end
