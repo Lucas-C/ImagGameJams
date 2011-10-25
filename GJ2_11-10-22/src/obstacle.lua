@@ -32,11 +32,11 @@ function loadAnims()
 	
 	-- Running-punch
 	obstacleAnim.run_punch = createAnimation()
-	loadOneAnim(obstacleAnim.run_punch,"running_punching","rp",12,0.15,-100,20)
+	loadOneAnim(obstacleAnim.run_punch,"running_punching","rp",5,0.15,-100,15)
 	
 	-- Running-sand
 	obstacleAnim.run_sand = createAnimation()
-	loadOneAnim(obstacleAnim.run_sand,"running_sand2","rs",8,0.15,-100,0)	
+	loadOneAnim(obstacleAnim.run_sand,"running_sand2","rs",8,0.15,-90,0)	
 	
 end
 
