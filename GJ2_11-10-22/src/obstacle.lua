@@ -36,7 +36,7 @@ function loadAnims()
 	
 	-- Running-sand
 	obstacleAnim.run_sand = createAnimation()
-	loadOneAnim(obstacleAnim.run_sand,"running_sand2","rs",8,0.15,-90,0)	
+	loadOneAnim(obstacleAnim.run_sand,"running_sand","rs",8,0.15,-90,0)	
 	
 end
 
