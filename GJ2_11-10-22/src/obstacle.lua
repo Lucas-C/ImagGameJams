@@ -89,7 +89,7 @@ end
 function collideWith(obstacle)
 	if obstacle.oType == "A" then
 		return obstacle.position * 70 - 50 < player.x
-		and obstacle.position * 70 + 5000 > player.x
+		and obstacle.position * 70 + 100 > player.x
 	elseif obstacle.oType == "h" then
 		return obstacle.position * 70 - 25 < player.x
 		and obstacle.position * 70 + 25 > player.x
@@ -178,6 +178,7 @@ function applyCollision(obstacle)
 						end
 					end
 				end
+				setAnimationState(player.animation, "normal")
 			end
 			if obstacle.actif then
 			player:kill(getDeathCollision(obstacle), getDeathSound(obstacle))
