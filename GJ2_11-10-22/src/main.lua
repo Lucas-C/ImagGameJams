@@ -20,7 +20,7 @@ obstaclesEntreMinEtMax = {}
 itemselected = nil
 indexUpdateObstacles = 0
 
-nextLevelIndex = 1
+nextLevelIndex = 9
 
 N_LINE = 6
 
