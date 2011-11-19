@@ -155,6 +155,12 @@ function love.keypressed(key)
    if key == " " and player.jumping == false and (love.timer.getMicroTime() - player.jumpTime) > 0.6 then
       player:startJumping()
    end
+   
+   if key == "t" then
+		player.numCrosses = 9
+		player.numSprings = 9
+		player.numBaskets = 9
+	end
 end
 
 function love.keyreleased(key)
@@ -173,6 +179,7 @@ function initNextLevel()
 	nextLevelIndex = nextLevelIndex + 1
 	camera.x = 0
 	player.x = 0
+	player.line = 0
 	for i =1,6 do
 		obstaclesEntreMinEtMax[i]=nil
 	end
@@ -183,6 +190,7 @@ function restart()
 	player.numCrosses = 0
 	player.numSprings = 0
 	player.numBaskets = 0
+	player.line = 0
 	level = importLevel("levels/"..(nextLevelIndex - 1)..".lvl")
 	camera.x = 0
 	player.x = 0
