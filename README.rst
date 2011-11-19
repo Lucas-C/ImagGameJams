@@ -29,9 +29,11 @@ LGJ-2
 
 Theme : sport
 
-	t = {} -- some lua code
-	t.a = 0
-	t['a'] = 1
+Some Lua code to test ``.rst`` format ::
+
+	t = {} -- empty table
+	t.a = 0 -- add one field
+	t['a'] = 1 -- change the same field in an another way
 
 LGJ-3
 =====
