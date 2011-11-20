@@ -7,6 +7,8 @@ Project("{4265B1F4-B96B-7986-C71E-702334A259D6}") = "GuillaumeTell", "Assembly-U
 EndProject
 Project("{4265B1F4-B96B-7986-C71E-702334A259D6}") = "GuillaumeTell", "Assembly-UnityScript.unityproj", "{DF02DF7C-07DB-2CB2-D591-99AE5AF1F11D}"
 EndProject
+Project("{4265B1F4-B96B-7986-C71E-702334A259D6}") = "GuillaumeTell", "Assembly-UnityScript-Editor-firstpass.unityproj", "{536F1488-B831-D072-6E5F-7E52C51CA3CC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{DF02DF7C-07DB-2CB2-D591-99AE5AF1F11D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DF02DF7C-07DB-2CB2-D591-99AE5AF1F11D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DF02DF7C-07DB-2CB2-D591-99AE5AF1F11D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{536F1488-B831-D072-6E5F-7E52C51CA3CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{536F1488-B831-D072-6E5F-7E52C51CA3CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{536F1488-B831-D072-6E5F-7E52C51CA3CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{536F1488-B831-D072-6E5F-7E52C51CA3CC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
