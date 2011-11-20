@@ -24,7 +24,7 @@ function OnGUI () {
 
 	var currentY = my + offy;
 	if (GUI.Button(Rect((sw - bw) / 2, currentY, bw, bh), "Nouveau jeu")) {
-		Application.LoadLevel("Game");
+		Application.LoadLevel("intro");
 	}
 	currentY += bh + offy;
 	if (GUI.Button(Rect((sw - bw) / 2, currentY, bw, bh), "Crédits")) {
