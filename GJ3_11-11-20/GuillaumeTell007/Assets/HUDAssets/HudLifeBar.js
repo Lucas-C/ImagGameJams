@@ -16,7 +16,6 @@ function OnGUI () {
 	GUI.DrawTexture(Rect(offX, offY, appleback.width, appleback.height), appleback);
 	GUI.color = saveColor;
 	var playerLives = GetComponent(PlayerController).life; // Replace by the real value
-	print(playerLives);
 	var image: Texture2D;
 	switch(playerLives) {
 	case 1:
@@ -25,20 +24,19 @@ function OnGUI () {
 	case 2:
 		image = apple2;
 		break;
-	case 3: 
-		image = apple3;	
+	case 3:
+		image = apple3;
 		break;
-	case 4: 
+	case 4:
 		image = apple4;
 		break;
 	case 5:
 		image = apple5;
 		break;
 	default:
-		print("Lucas est une grosse tache");
+		print("default FAILED in OnGUI() [HudLifeBar.js]");
 		break;
 	}
-	if (image != null) 
+	if (image != null)
 		GUI.DrawTexture(Rect(offX, offY, image.width, image.height), image);
-	print(Screen.width);
 }

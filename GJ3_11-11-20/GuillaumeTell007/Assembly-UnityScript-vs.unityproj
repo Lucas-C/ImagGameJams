@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>9.0.21022</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{F6089EEF-7201-96C8-38C1-04CF06A70568}</ProjectGuid>
+	<ProjectGuid>{E55CF90E-13EE-2106-3854-050ABEC39FF9}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -44,14 +44,18 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\BeginMenuAssets\beginMenu.js" />
+     <Compile Include="Assets\Ennemy Assets\Ennemy.js" />
      <Compile Include="Assets\HUDAssets\HudLifeBar.js" />
+     <Compile Include="Assets\HUDAssets\aimer.js" />
+     <Compile Include="Assets\HUDAssets\compas.js" />
  <Reference Include="Assembly-UnityScript-firstpass">
  <HintPath>Library\ScriptAssemblies\Assembly-UnityScript-firstpass.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass-vs.csproj">
-      <Project>{BE49180C-E39D-6D9A-D8E4-5850C4843490}</Project>
+      <Project>{1E607EA3-3156-2D56-250F-DA3824A1480A}</Project>
       <Name>Assembly-CSharp-firstpass-vs</Name>
     </ProjectReference>
   </ItemGroup>
