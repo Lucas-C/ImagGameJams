@@ -78,6 +78,8 @@ function OnGUI()
 	pos += spacing;
 	GUI.Label(Rect(0, pos - (Time.time - initTime) * scrollingSpeed, Screen.width, spacing), "Julien Fleury");
 	pos += spacing;
+	GUI.Label(Rect(0, pos - (Time.time - initTime) * scrollingSpeed, Screen.width, spacing), "Gilles Laurent");
+	pos += spacing;
 	GUI.Label(Rect(0, pos - (Time.time - initTime) * scrollingSpeed, Screen.width, spacing), "Benoît \"Bite\" Person");
 	pos += spacing;
 	pos += spacing;
@@ -90,7 +92,10 @@ function OnGUI()
 
 	GUI.Label(Rect(0, pos - (Time.time - initTime) * scrollingSpeed, Screen.width, spacing), "MUSIC COMPOSER");
 	pos += spacing;
-	GUI.Label(Rect(0, pos - (Time.time - initTime) * scrollingSpeed, Screen.width, spacing), "Benoît Genevaux");
+	GUI.Label(Rect(0, pos - (Time.time - initTime) * scrollingSpeed, Screen.width, spacing), "Heloïse Guillemaud");
 	pos += spacing;
+	GUI.Label(Rect(0, pos - (Time.time - initTime) * scrollingSpeed, Screen.width, spacing), "Hobitiana Rabenarivo");
+	pos += spacing;
+// 	GUI.Label(Rect(0, pos - (Time.time - initTime) * scrollingSpeed, Screen.width, spacing), "Benoît Genevaux");
 	pos += spacing;
 }
