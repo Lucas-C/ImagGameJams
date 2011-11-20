@@ -30,7 +30,7 @@ package screens
 		public function StartMenu() 
 		{
 			// Title
-			var title:TextEntity = new TextEntity("Electrosheep", 70, 0xEEEE00);
+			var title:TextEntity = new TextEntity("Elektrosheep", 70, 0xEEEE00);
 			title.x = (FP.screen.width - title.textWidth) / 2;
 			title.y = 0;
 			add(title);
