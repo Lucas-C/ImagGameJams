@@ -50,7 +50,11 @@
      <Compile Include="Assets\HUDAssets\HudLifeBar.js" />
      <Compile Include="Assets\HUDAssets\aimer.js" />
      <Compile Include="Assets\HUDAssets\compas.js" />
+     <Compile Include="Assets\Intro\CreditsScroller.js" />
+     <Compile Include="Assets\Intro\TutorielGUI.js" />
+     <Compile Include="Assets\Intro\intro\DialogueGUI.js" />
      <Compile Include="Assets\Victory\VictoryGUI.js" />
+     <None Include="Assets\Intro\intro\dialog.txt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">

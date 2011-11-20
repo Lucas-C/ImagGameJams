@@ -51,6 +51,7 @@
      <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\PlatformInputController.js" />
      <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\PlayerController.js" />
      <Compile Include="Assets\Standard Assets\Credits\CreditsScroller.js" />
+     <None Include="Assets\Intro\intro\dialog.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
