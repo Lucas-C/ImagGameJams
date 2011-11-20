@@ -52,6 +52,7 @@
      <Compile Include="Assets\HUDAssets\compas.js" />
      <Compile Include="Assets\IA\AI_Enemy.js" />
      <Compile Include="Assets\IA\AI_Villager.js" />
+     <Compile Include="Assets\IA\villageoisIA.js" />
      <Compile Include="Assets\Intro\CreditsScroller.js" />
      <Compile Include="Assets\Intro\TutorielGUI.js" />
      <Compile Include="Assets\Intro\intro\DialogueGUI.js" />
