@@ -15,9 +15,8 @@ function OnGUI () {
 	GUI.color = Color(1, 1, 0.3, 0.5);
 	GUI.DrawTexture(Rect(offX, offY, appleback.width, appleback.height), appleback);
 	GUI.color = saveColor;
-	var playerLives = 5; // Replace by the real value
-	compteur += 1;
-	playerLives = ((compteur / 50) % 5) + 1;
+	var playerLives = GetComponent(PlayerController).life; // Replace by the real value
+	print(playerLives);
 	var image: Texture2D;
 	switch(playerLives) {
 	case 1:
@@ -39,6 +38,7 @@ function OnGUI () {
 		print("Lucas est une grosse tache");
 		break;
 	}
-	GUI.DrawTexture(Rect(offX, offY, image.width, image.height), image);
+	if (image != null) 
+		GUI.DrawTexture(Rect(offX, offY, image.width, image.height), image);
 	print(Screen.width);
 }
