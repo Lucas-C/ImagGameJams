@@ -46,9 +46,11 @@
   <ItemGroup>
      <Compile Include="Assets\BeginMenuAssets\beginMenu.js" />
      <Compile Include="Assets\Ennemy Assets\Ennemy.js" />
+     <Compile Include="Assets\GameOver\GameOverGUI.js" />
      <Compile Include="Assets\HUDAssets\HudLifeBar.js" />
      <Compile Include="Assets\HUDAssets\aimer.js" />
      <Compile Include="Assets\HUDAssets\compas.js" />
+     <Compile Include="Assets\Victory\VictoryGUI.js" />
  <Reference Include="Assembly-UnityScript-firstpass">
  <HintPath>Library\ScriptAssemblies\Assembly-UnityScript-firstpass.dll</HintPath>
  </Reference>

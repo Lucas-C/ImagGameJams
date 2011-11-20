@@ -24,17 +24,15 @@ function OnGUI () {
 
 	var currentY = my + offy;
 	if (GUI.Button(Rect((sw - bw) / 2, currentY, bw, bh), "Nouveau jeu")) {
-		Application.LoadLevel("hud");
+		Application.LoadLevel("Game");
 	}
 	currentY += bh + offy;
 	if (GUI.Button(Rect((sw - bw) / 2, currentY, bw, bh), "Crédits")) {
-		print("TODO: lancer jeu");
+		Application.LoadLevel("Credits");
 	}
 	currentY += bh + offy;
 	if (GUI.Button(Rect((sw - bw) / 2, currentY, bw, bh), "Quitter")) {
 		Application.Quit();
-		print("TODO: quitter jeu");
 	}
 }
 
- 
