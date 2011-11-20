@@ -1,0 +1,7 @@
+Télécharger : 
+http://forum.unity3d.com/attachment.php?attachmentid=23715&d=1313583787
+
+Chercher Unity-BlenderToFBX.py dans votre répertoire d'installation d'Unity.
+Le remplacer avec le fichier de l'archive.
+
+ça devrait marcher
