@@ -38,7 +38,7 @@ function OnGUI()
 
 	GUI.Label(Rect(0, pos - (Time.time - initTime) * scrollingSpeed, Screen.width, spacing), "LEAD PROGRAMMER");
 	pos += spacing;
-	GUI.Label(Rect(0, pos - (Time.time - initTime) * scrollingSpeed, Screen.width, spacing), "Louis Dureuil");
+	GUI.Label(Rect(0, pos - (Time.time - initTime) * scrollingSpeed, Screen.width, spacing), "Louis \"retrouve sa hauteur naturelle\" Dureuil");
 	pos += spacing;
 	pos += spacing;
 

@@ -14,7 +14,6 @@ var blackscreen: Texture2D;
 private var state : int = -1;
 private var initTime = 0;
 
-
 function OnGUI()
 {
 	var backgroundStyle : GUIStyle = new GUIStyle();
