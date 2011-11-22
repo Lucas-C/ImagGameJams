@@ -43,19 +43,24 @@ function CanSeePlayer () : boolean {
 var life : int = 2;
 
 private var dead = false;
-function ApplyDamage(damage:int)
+function ApplyDamage(a_dmg:Damage)
 {
 	if (life <= 0)
 		return;
-	life -= damage;
+	life -= a_dmg.damage;
 	if (life <= 0) {
 		Die();
 		dead = true;
+	}
+	
+	if(a_dmg.object != null)
+	{
+		Destroy(a_dmg.object);
 	}
 }
 
 function Die()
 {
-	//Destroy(GameObject);
+	Destroy(gameObject);
 }
 

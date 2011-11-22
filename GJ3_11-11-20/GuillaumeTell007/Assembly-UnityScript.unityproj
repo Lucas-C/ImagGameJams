@@ -44,6 +44,8 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Arrows\ArrowCollision.js" />
+     <Compile Include="Assets\Arrows\ArrowShot.js" />
      <Compile Include="Assets\BeginMenuAssets\beginMenu.js" />
      <Compile Include="Assets\Ennemy Assets\Ennemy.js" />
      <Compile Include="Assets\GameOver\GameOverGUI.js" />
