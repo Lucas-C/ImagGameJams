@@ -6,10 +6,8 @@ package gameplay
 	import flash.net.URLLoaderDataFormat;
 	import flash.net.URLRequest;
 	import net.flashpunk.World;
-	import net.flashpunk.Sfx;
 	import net.flashpunk.FP;
 	import screens.GameOver;
-	import screens.Victory;
 
 	/**
 	 * @author Lucas Cimon
@@ -19,7 +17,7 @@ package gameplay
 		public static const DIFFICULTY_EASY:int = 0;
 		public static const DIFFICULTY_NORMAL:int = 1;
 		public static const DIFFICULTY_HARD:int = 2;
-		private var m_diffculty:int;
+		public static var CURRENT_DIFFICULTY:int;
 		
 		private var m_powerplants:Array = new Array;
 		private var m_farms:Array = new Array;
@@ -28,14 +26,11 @@ package gameplay
 		
 		private var initialized:Boolean = false;
 		
-		[Embed(source = '../../assets/music.mp3')] private const MUSIC:Class;
-		public var music:Sfx = new Sfx(MUSIC);
-		
 		public function LevelData(a_difficulty:int) 
 		{
-			m_diffculty = a_difficulty;
+			CURRENT_DIFFICULTY = a_difficulty;
 			var diff:String;
-			switch(m_diffculty)
+			switch(CURRENT_DIFFICULTY)
 			{
 				case LevelData.DIFFICULTY_EASY : 	diff = "easy"; 
 													break;
@@ -46,7 +41,6 @@ package gameplay
 				default: diff = "normal";
 			}
 			readXML("../assets/levels/level1_"+diff+".xml")
-			music.loop();
 		}
 		
 		private function readXML(a_file:String):void
@@ -184,17 +178,17 @@ package gameplay
 			return true;
 		}
 		
-		private function allUnpowered():Boolean
+		private function oneUnpowered():Boolean
 		{
 			for each(var pp:PowerPlant in m_powerplants)
 			{
-				if (!pp.hasNoPower())
+				if (pp.hasNoPower())
 				{
-					return false;
+					return true;
 				}
 			}
 			
-			return true;
+			return false;
 		}
 		
 		override public function update():void
@@ -208,13 +202,13 @@ package gameplay
 			// Victory test
 			if (allPowered())
 			{
-				FP.world =  new Victory;
+				FP.world =  new GameOver(true);
 			}
 			
 			// Defeat test
-			if (allUnpowered())
+			if (oneUnpowered())
 			{
-				FP.world = new GameOver;
+				FP.world = new GameOver(false);
 			}
 		}
 	}
