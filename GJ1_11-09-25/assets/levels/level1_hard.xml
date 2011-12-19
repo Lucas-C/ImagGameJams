@@ -1,11 +1,11 @@
 <LEVEL>
 	
-	<FARM id="0" abs="40" ord="140" pop_delay="240" pop_rate="180" />
-	<FARM id="1" abs="340" ord="140" pop_delay="360" pop_rate="180" />
+	<FARM id="0" abs="40" ord="140" pop_delay="120" pop_rate="120" />
+	<FARM id="1" abs="340" ord="140" pop_delay="180" pop_rate="120" />
 
 	<POWERPLANT id="0" abs="40" ord="40" color="RED" min_power="80" max_power="100" />
-	<POWERPLANT id="1" abs="340" ord="40" color="YELLOW" min_power="80" max_power="100" />
-	<POWERPLANT id="2" abs="40" ord="240" color="BLUE" min_power="80" max_power="100" />
+	<POWERPLANT id="1" abs="340" ord="40" color="BLUE" min_power="80" max_power="100" />
+	<POWERPLANT id="2" abs="40" ord="240" color="YELLOW" min_power="80" max_power="100" />
 	<POWERPLANT id="3" abs="340" ord="240" color="GREEN" min_power="80" max_power="100" />
 	
 	<SWITCH id="0" abs="190" ord="40" />

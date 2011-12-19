@@ -30,7 +30,7 @@ package screens
 		public function StartMenu() 
 		{
 			// Title
-			var title:TextEntity = new TextEntity("Electrosheep", 70, 0xEEEE00);
+			var title:TextEntity = new TextEntity("Elektrosheep", 70, 0xEEEE00);
 			title.x = (FP.screen.width - title.textWidth) / 2;
 			title.y = 0;
 			add(title);
@@ -93,7 +93,7 @@ package screens
 			m_pointer.y = m_selectedItem.y + (m_selectedItem.textHeight - 16)/ 2;
 		}
 		
-		private function selectItem(a_item:MenuItem)
+		private function selectItem(a_item:MenuItem):void
 		{
 			m_selectedItem.isSelected = false;
 			m_selectedItem = a_item;

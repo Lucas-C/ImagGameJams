@@ -37,8 +37,11 @@ package gameplay
 		
 		
 		
-		public function PowerPlant(a_color:SheepColor, a_min_power:int, a_max_power:int) 
+		public function PowerPlant(a_x:int, a_y:int, a_color:SheepColor, a_min_power:int, a_max_power:int) 
 		{
+			super(a_x, a_y);
+			x = a_x;
+			y = a_y;
 			layer = POWERPLANTLAYER;
 			m_power = 20;
 			m_min_power = a_min_power;
@@ -148,7 +151,7 @@ package gameplay
 			return null;
 		}
 		
-		public override function getPos(progression:Number, direction:Boolean):IntPoint
+		public override function getSheepPosition(progression:Number, direction:Boolean):IntPoint
 		{
 			return new IntPoint(x + halfWidth, y + halfHeight);
 		}

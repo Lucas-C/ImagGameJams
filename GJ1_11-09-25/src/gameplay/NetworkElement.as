@@ -8,6 +8,23 @@ package gameplay
 	 */
 	public class NetworkElement extends Entity 
 	{
+		private var m_pos:IntPoint;
+				
+		public function NetworkElement(a_x:int, a_y:int)
+		{
+			this.pos = new IntPoint(a_x, a_y);
+		}
+		
+		public function get pos():IntPoint
+		{
+			return m_pos;
+		}
+		
+		public function set pos(a_pos:IntPoint):void
+		{
+			m_pos = a_pos;
+		}
+		
 		public function getNext(direction:Boolean):NetworkElement
 		{
 			return null;
@@ -16,7 +33,7 @@ package gameplay
 		/**
 		 * @param progression between 0 & 1
 		 */
-		public function getPos(progression:Number, direction:Boolean):IntPoint
+		public function getSheepPosition(progression:Number, direction:Boolean):IntPoint
 		{
 			return null;
 		}

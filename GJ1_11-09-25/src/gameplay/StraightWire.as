@@ -35,20 +35,31 @@ package gameplay
 		/**
 		 * Constructor
 		 */
-		public function StraightWire(pos1:IntPoint, pos2:IntPoint) 
+		public function StraightWire(a_ext1:NetworkElement, a_ext2:NetworkElement) 
 		{
+			super(0, 0); // TODO : Fix constructor of NetworkElement
+			
+			var pos1:IntPoint = a_ext1.pos;
+			var pos2:IntPoint = a_ext2.pos;
+			
 			this.layer = WIRELAYER;
-			//x = Math.min(pos1.x,pos2.x);
-			//y = Math.min(pos1.y, pos2.y);
 			x = (pos1.x + pos2.x) / 2;
 			y = (pos1.y + pos2.y) / 2;
-			if (pos1.x <= pos2.x) {
+			this.pos = new IntPoint(x, y);
+			
+			if (pos1.x <= pos2.x) 
+			{
+				this.ext1 = a_ext1;
+				this.ext2 = a_ext2;
 				this.posExt1 = pos1;
 				this.posExt2 = pos2;
-			} else {
+			} 
+			else 
+			{
+				this.ext1 = a_ext2;
+				this.ext2 = a_ext1;
 				this.posExt1 = pos2;
 				this.posExt2 = pos1;
-				
 			}
 			if (posExt1.x == posExt2.x)
 				if (posExt1.y == posExt2.y)
@@ -80,7 +91,7 @@ package gameplay
 				return ext1;
 		}
 		
-		public override function getPos(progression:Number, direction:Boolean):IntPoint
+		public override function getSheepPosition(progression:Number, direction:Boolean):IntPoint
 		{
 			if (direction)
 				return new IntPoint(	posExt1.x + (posExt2.x - posExt1.x) * progression,

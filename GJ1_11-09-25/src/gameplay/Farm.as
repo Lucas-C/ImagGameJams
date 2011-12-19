@@ -25,6 +25,7 @@ package gameplay
 		
 		public function Farm(a_x:int , a_y:int, a_prog_init:Number=0, a_sheepPopInterval:Number=60) 
 		{
+			super(a_x, a_y);
 			layer = FARMLAYER;
 			x = a_x;
 			y = a_y;
@@ -83,7 +84,7 @@ package gameplay
 		}
 		
 		
-		public override function getPos(progression:Number, direction:Boolean):IntPoint
+		public override function getSheepPosition(progression:Number, direction:Boolean):IntPoint
 		{
 			var p:IntPoint = new IntPoint;
 			p.x = x;

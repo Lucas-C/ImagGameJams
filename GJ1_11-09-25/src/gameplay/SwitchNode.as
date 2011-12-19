@@ -43,6 +43,7 @@ package gameplay
 		
 		public function SwitchNode(switchx: int = 0, switchy: int = 0) 
 		{
+			super(switchx, switchy);
 			layer = SWITCHNODELAYER;
 			m_id = nodesNumber;
 			nodesNumber++;
@@ -156,9 +157,8 @@ package gameplay
 			return getStraightWire(m_direction);
 		}
 		
-		public override function getPos(progression:Number, direction:Boolean):IntPoint
+		public override function getSheepPosition(progression:Number, direction:Boolean):IntPoint
 		{
-			//return new IntPoint(x + halfWidth, y + halfHeight);
 			return new IntPoint(x, y);
 		}
 		

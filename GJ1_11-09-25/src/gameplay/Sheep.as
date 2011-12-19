@@ -31,7 +31,7 @@ package gameplay
 			m_currentWire = a_currentWire;
 			this.setHitbox(m_anim.scaledWidth, m_anim.scaledHeight, x, y);
 		
-			var xy:IntPoint = m_currentWire.getPos(m_progression, m_direction);
+			var xy:IntPoint = m_currentWire.getSheepPosition(m_progression, m_direction);
 			x = xy.x - halfWidth;
 			y = xy.y - halfHeight;
 		}
@@ -63,7 +63,7 @@ package gameplay
 				}
 			}
 			if (m_currentWire) {
-				var xy:IntPoint = m_currentWire.getPos(m_progression, m_direction);
+				var xy:IntPoint = m_currentWire.getSheepPosition(m_progression, m_direction);
 				x = xy.x - halfWidth;
 				y = xy.y - halfHeight;
 			}
