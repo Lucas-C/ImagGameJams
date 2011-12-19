@@ -1,8 +1,8 @@
 function select_objet(key)
 	local object = ""
-	if key == "z" then itemselected = "C" end
+	if key == "z" then itemselected = "B" end
 	if key == "x" then itemselected = "D" end
-	if key == "c" then itemselected = "B" end
+	if key == "c" then itemselected = "C" end
 end
 
 function usableWith(oType,object)

@@ -8,6 +8,7 @@ function createAnimation()
 	res.frame = 0
 	res.frequency = 5
 	res.state = nil
+	res.yOffset = 0
 	return res
 end
 
@@ -38,7 +39,7 @@ end
 
 function drawAnimation(animation, x, y)
 	a = animation
-	love.graphics.draw(getCurrentPicAnimation(a), x, y)
+	love.graphics.draw(getCurrentPicAnimation(a), x, y + a.yOffset)
 end
 
 function getAnimWidth(animation)

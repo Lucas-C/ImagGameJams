@@ -18,9 +18,7 @@ speedCamera = 200
 level={}
 obstaclesEntreMinEtMax = {}
 itemselected = nil
-for i =1,6 do
-obstaclesEntreMinEtMax[i]=nil
-end
+indexUpdateObstacles = 0
 
 nextLevelIndex = 1
 
@@ -29,6 +27,7 @@ N_LINE = 6
 
 function love.load()
 -- 	test_sprite = love.graphics.newImage("assets/sand.png")
+	loadAnims()
 	player.load()
 	background.load()
 	--level=importLevel("levels/002.txt")
@@ -97,7 +96,12 @@ function love.mainUpdate(dt)
 
 		camera.x = camera.x + speedCamera * dt
 		player:update(dt)
+		if indexUpdateObstacles == 3 then
 		update_obstacles(obstaclesEntreMinEtMax,dt)
+		indexUpdateObstacles = 0
+		else
+		indexUpdateObstacles = indexUpdateObstacles +1
+		end
 	elseif player.victorySound:isStopped() then
 		player.won = false;
 		initNextLevel();
@@ -115,7 +119,8 @@ function love.update(dt)
 end
 
 function love.keypressed(key)
-   if key == "escape" then
+   if key == "escape" or key == "a" then -- QWERTY: 'q'
+--       credits.draw()
       love.event.push('q')
    end
 	if key == "r" and player.dead then
@@ -150,6 +155,12 @@ function love.keypressed(key)
    if key == " " and player.jumping == false and (love.timer.getMicroTime() - player.jumpTime) > 0.6 then
       player:startJumping()
    end
+   
+   if key == "t" then
+		player.numCrosses = 9
+		player.numSprings = 9
+		player.numBaskets = 9
+	end
 end
 
 function love.keyreleased(key)
@@ -168,6 +179,7 @@ function initNextLevel()
 	nextLevelIndex = nextLevelIndex + 1
 	camera.x = 0
 	player.x = 0
+	player.line = 0
 	for i =1,6 do
 		obstaclesEntreMinEtMax[i]=nil
 	end
@@ -178,6 +190,7 @@ function restart()
 	player.numCrosses = 0
 	player.numSprings = 0
 	player.numBaskets = 0
+	player.line = 0
 	level = importLevel("levels/"..(nextLevelIndex - 1)..".lvl")
 	camera.x = 0
 	player.x = 0

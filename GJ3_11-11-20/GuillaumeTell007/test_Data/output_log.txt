@@ -1,0 +1,13 @@
+Direct3D:
+    Version:  Direct3D 9.0c [nvd3dum.dll 8.17.12.8562]
+    Renderer: NVIDIA GeForce GTS 360M
+    Vendor:   NVIDIA
+    VRAM:     978 MB (via DXGI)
+    Caps:     Shader=30 DepthRT=1 NativeDepth=1 NativeShadow=1 DF16=0 DF24=0 INTZ=1 RAWZ=0 NULL=1 RESZ=0 SlowINTZ=0
+desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
+<I> Initializing (RawInput).
+<RI> Input initialized.
+Non platform assembly: data-031A9070 (this message is harmless)
+Non platform assembly: data-0320F890 (this message is harmless)
+Non platform assembly: data-032110B0 (this message is harmless)
+Platform assembly: D:\Bazar\ImagGameJams\GJ3_11-11-20\GT_Arrow\test_Data\Managed\Boo.Lang.dll (this message is harmless)

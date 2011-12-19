@@ -1,0 +1,14 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Ennemy Assets\Ennemy.js">
+    <Files>
+      <File FileName="Assets\Arrows\ArrowShot.js" Line="1" Column="1" />
+      <File FileName="Assets\Arrows\ArrowCollision.js" Line="10" Column="2" />
+      <File FileName="Assets\Ennemy Assets\Ennemy.js" Line="47" Column="2" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

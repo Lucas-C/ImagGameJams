@@ -1,0 +1,21 @@
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+
+Project("{09177A10-1783-957E-5191-AD36B24C9FD6}") = "LGJ3", "Assembly-UnityScript.unityproj", "{1197CB2D-81C1-D72B-0E1E-650D1C14279B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1197CB2D-81C1-D72B-0E1E-650D1C14279B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1197CB2D-81C1-D72B-0E1E-650D1C14279B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1197CB2D-81C1-D72B-0E1E-650D1C14279B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1197CB2D-81C1-D72B-0E1E-650D1C14279B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	
+EndGlobal
